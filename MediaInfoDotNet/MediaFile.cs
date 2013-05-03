@@ -99,17 +99,17 @@ namespace MediaInfoDotNet
 		}
 
 
-		IDictionary<int, ChapterStream> _Chapter;
-		///<summary>Chapter streams in this file.</summary>
-		public IDictionary<int, ChapterStream> Chapter {
+		IDictionary<int, OtherStream> _Other;
+		///<summary>Other streams in this file.</summary>
+		public IDictionary<int, OtherStream> Other {
 			get {
-				if(_Chapter == null) {
-					_Chapter = new Dictionary<int, ChapterStream>(chapterCount);
-					for(int id = 0; id < chapterCount; ++id) {
-						_Chapter.Add(id, new ChapterStream(mediaInfo, id));
+				if(_Other == null) {
+					_Other = new Dictionary<int, OtherStream>(otherCount);
+					for(int id = 0; id < otherCount; ++id) {
+						_Other.Add(id, new OtherStream(mediaInfo, id));
 					}
 				}
-				return _Chapter;
+				return _Other;
 			}
 		}
 

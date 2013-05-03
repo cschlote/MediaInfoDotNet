@@ -204,13 +204,13 @@ namespace MediaInfoDotNet.Models
 			}
 		}
 
-		int _chapterCount = int.MinValue;
-		///<summary>Number of chapters in this file.</summary>
-		protected int chapterCount {
+		int _otherCount = int.MinValue;
+		///<summary>Number of others in this file.</summary>
+		protected int otherCount {
 			get {
-				if(_chapterCount == int.MinValue)
-					_chapterCount = miGetInt("ChaptersCount");
-				return _chapterCount;
+				if(_otherCount == int.MinValue)
+					_otherCount = miGetInt("OtherCount");
+				return _otherCount;
 			}
 		}
 

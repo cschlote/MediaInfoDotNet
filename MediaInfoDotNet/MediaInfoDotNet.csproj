@@ -66,7 +66,7 @@
     <Compile Include="MediaFile.cs" />
     <Compile Include="MediaInfoDLL.cs" />
     <Compile Include="Models\AudioStream.cs" />
-    <Compile Include="Models\ChapterStream.cs" />
+    <Compile Include="Models\OtherStream.cs" />
     <Compile Include="Models\GeneralStream.cs" />
     <Compile Include="Models\ImageStream.cs" />
     <Compile Include="Models\MultiStreamCommon.cs" />
@@ -80,6 +80,7 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="MediaInfoDotNet.nuspec">
       <Generator>nuget.exe pack</Generator>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

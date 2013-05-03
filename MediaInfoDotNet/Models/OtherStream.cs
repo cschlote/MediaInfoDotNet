@@ -5,9 +5,9 @@
  * 
  ******************************************************************************
  *
- * ChapterStream.cs
+ * OtherStream.cs
  * 
- * Presents information and functionality specific to a chapter stream.
+ * Presents information and functionality specific to a 'other' stream.
  * 
  ******************************************************************************
  */
@@ -18,17 +18,17 @@ using MediaInfoDotNet.Models;
 
 namespace MediaInfoDotNet.Models
 {
-	///<summary>Represents a single chapter stream.</summary>
-	public sealed class ChapterStream : Media
+	///<summary>Represents a single 'other' stream.</summary>
+	public sealed class OtherStream : Media
 	{
 		readonly MultiStreamCommon streamCommon;
 
-		///<summary>ChapterStream constructor.</summary>
+		///<summary>OtherStream constructor.</summary>
 		///<param name="mediaInfo">A MediaInfo object.</param>
-		///<param name="id">The MediaInfo ID for this chapter stream.</param>
-		public ChapterStream(MediaInfo mediaInfo, int id)
+		///<param name="id">The MediaInfo ID for this other stream.</param>
+		public OtherStream(MediaInfo mediaInfo, int id)
 			: base(mediaInfo, id) {
-			kind = StreamKind.Chapters;
+			kind = StreamKind.Other;
 			streamCommon = new MultiStreamCommon(mediaInfo, kind, id);
 		}
 
