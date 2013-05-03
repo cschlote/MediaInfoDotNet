@@ -11,9 +11,13 @@
     <description>MediaInfo.NET provides a fast, easy-to-use .NET wrapper for MediaInfo.dll. It abstracts the calls to the underlaying native DLL and provides strongly typed fields for each kind of media stream within a file.</description>
     <releaseNotes>
       - Downloaded latest sources from googlecode
-      - Created a package from the sources
+      - Created a NuGet package from the sources
+      - Compiled as AnyCPU, Debug, including Symbols and Source
+      - Added copies of MediaInfo.dll 7.62 both x86 and x64
+      - Updated MediaInfoDLL.cs to load the appropriate native DLL on class init
+      - URL: git://vahanus.net/gitroot/csc/MediaInfoDotNet.git
     </releaseNotes>
-    <copyright>Copyright 2013 $author$</copyright>
-    <tags>media tags scraper</tags>
+    <copyright>Copyright 2013, $author$</copyright>
+    <tags>net40 media tags scraper</tags>
   </metadata>
 </package>
