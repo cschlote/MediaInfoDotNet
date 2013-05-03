@@ -1,0 +1,8 @@
+*/gtk-gui/*     -text
+*.sln           eol=crlf
+*.sh            eol=lf
+*.jpg           -text
+*.png		-text
+
+
+

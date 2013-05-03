@@ -1,0 +1,12 @@
+.hg/
+packages/
+obj/
+bin/
+*~
+*.pidb
+*.userprefs
+*.suo
+*.resources
+*.VisualState.xml
+*.nupkg
+*.csproj.user
