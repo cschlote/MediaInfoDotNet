@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Charles Burns, Carsten Schlote</authors>
+    <owners>cschlote</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>$description$</summary>
+    <description>MediaInfo.NET provides a fast, easy-to-use .NET wrapper for MediaInfo.dll. It abstracts the calls to the underlaying native DLL and provides strongly typed fields for each kind of media stream within a file.</description>
+    <releaseNotes>
+      - Downloaded latest sources from googlecode
+      - Created a package from the sources
+    </releaseNotes>
+    <copyright>Copyright 2013 $author$</copyright>
+    <tags>media tags scraper</tags>
+  </metadata>
+</package>
