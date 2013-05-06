@@ -78,10 +78,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <Content Include="MediaInfoDotNet.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="MediaInfoDotNet.nuspec">
       <Generator>nuget.exe pack</Generator>
       <SubType>Designer</SubType>
     </None>
+    <None Include="tools\install.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="x64\MediaInfo.dll">
