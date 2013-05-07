@@ -2,6 +2,7 @@
  * MediaInfo.NET - A fast, easy-to-use .NET wrapper for MediaInfo.dll
  * 
  * New versions available from http://code.google.com/p/mediainfo-dot-net/
+ * or from http://git.vahanus.net/?p=csc/MediaInfoDotNet.git
  * 
  * Use at your own risk, under the same license as MediaInfo itself.
  * 
@@ -9,6 +10,7 @@
  * MediaInfo project at: http://mediainfo.sourceforge.net
  * 
  * Copyright (C) Charles N. Burns
+ * Copyright (C) 2013 Carsten Schlote
  * 
  ******************************************************************************
  * 
@@ -43,7 +45,7 @@ namespace MediaInfoDotNet
 
         IDictionary<int, VideoStream> _Video;
         ///<summary>Video streams in this file.</summary>
-        [Description ("Collection of videostreams"), Category ("Streams"), ReadOnly (true)]
+        [Description ("Video streams in this file."), Category ("Streams")]
         public IDictionary<int, VideoStream> Video {
             get {
                 if (_Video == null) {
@@ -58,7 +60,7 @@ namespace MediaInfoDotNet
 
         IDictionary<int, AudioStream> _Audio;
         ///<summary>Audio streams in this file.</summary>
-        [Description ("Collection of audiostreams"), Category ("Streams"), ReadOnly(true)]
+        [Description ("Audio streams in this file."), Category ("Streams")]
         public IDictionary<int, AudioStream> Audio {
             get {
                 if (_Audio == null) {
@@ -74,7 +76,7 @@ namespace MediaInfoDotNet
 
         IDictionary<int, TextStream> _Text;
         ///<summary>Text streams in this file.</summary>
-        [Description ("Collection of textstreams"), Category ("Streams"), ReadOnly (true)]
+        [Description ("Text streams in this file."), Category ("Streams")]
         public IDictionary<int, TextStream> Text {
             get {
                 if (_Text == null) {
@@ -90,7 +92,7 @@ namespace MediaInfoDotNet
 
         IDictionary<int, ImageStream> _Image;
         ///<summary>Image streams in this file.</summary>
-        [Description ("Collection of Imagestreams"), Category ("Streams"), ReadOnly (true)]
+        [Description ("Image streams in this file."), Category ("Streams")]
         public IDictionary<int, ImageStream> Image {
             get {
                 if (_Image == null) {
@@ -106,7 +108,7 @@ namespace MediaInfoDotNet
 
         IDictionary<int, OtherStream> _Other;
         ///<summary>Other streams in this file.</summary>
-        [Description ("Collection of others streams (e.g. chapters)"), Category ("Streams"), ReadOnly (true)]
+        [Description ("Other streams in this file. (e.g. chapters)"), Category ("Streams")]
         public IDictionary<int, OtherStream> Other {
             get {
                 if (_Other == null) {
@@ -122,7 +124,7 @@ namespace MediaInfoDotNet
 
         IDictionary<int, MenuStream> _Menu;
         ///<summary>Menu streams in this file.</summary>
-        [Description ("Collection of menu streams"), Category ("Streams"), ReadOnly (true)]
+        [Description ("Menu streams in this file."), Category ("Streams")]
         public IDictionary<int, MenuStream> Menu {
             get {
                 if (_Menu == null) {
