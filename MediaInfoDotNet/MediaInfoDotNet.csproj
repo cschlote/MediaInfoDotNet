@@ -81,6 +81,7 @@
     <Content Include="MediaInfoDotNet.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="CodeMap1.dgml" />
     <None Include="MediaInfoDotNet.nuspec">
       <Generator>nuget.exe pack</Generator>
       <SubType>Designer</SubType>
