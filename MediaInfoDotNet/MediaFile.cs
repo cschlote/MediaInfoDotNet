@@ -42,6 +42,16 @@ namespace MediaInfoDotNet
             : base (filePath) {
         }
 
+		/// <summary>
+		/// Determines if an opend file contains streams at all. It is very likely that
+		/// a file isn't a media file, if this method returns false.
+		/// </summary>
+		[Description ("Determine, if there are any media streams in a file"), Category ("Streams")]
+		public bool hasStreams {
+			get {
+				return this.videoCount > 0 || this.audioCount > 0 || this.textCount > 0 || this.otherCount > 0 || this.imageCount > 0 || this.menuCount > 0;
+			}
+		}
 
         IDictionary<int, VideoStream> _Video;
         ///<summary>Video streams in this file.</summary>
