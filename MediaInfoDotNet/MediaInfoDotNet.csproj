@@ -83,7 +83,6 @@
     </Content>
     <None Include="CodeMap1.dgml" />
     <None Include="MediaInfoDotNet.nuspec">
-      <Generator>nuget.exe pack</Generator>
       <SubType>Designer</SubType>
     </None>
     <None Include="tools\install.ps1" />
