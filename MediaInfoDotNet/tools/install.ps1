@@ -13,9 +13,13 @@ $fileNames = "MediaInfo.dll", "MediaInfoDotNet.dll.config"
 $propertyName = "CopyToOutputDirectory"
 
 foreach($platformName in $platformNames) {
-  $folder = $project.ProjectItems.Item($platformName)
-  if ($folder -eq $null) {
-    continue
+  if ($platformName -ne "") {
+	$folder = $project.ProjectItems.Item($platformName)
+	if ($folder -eq $null) {
+		continue
+	}
+  } else {
+	$folder = $project	
   }
   foreach($fileName in $fileNames) {
 	$item = $folder.ProjectItems.Item($fileName)
