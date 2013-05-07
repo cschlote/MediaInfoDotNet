@@ -63,6 +63,14 @@ namespace MediaInfoDotNet.Models
 		protected StreamKind kind;
 
 		#region MediaInfoLibraryCalls
+
+		/// <summary>Returns an information text containing all detected properties.</summary>
+		/// <returns>A string containing all information about a file.</returns>
+		public string miInform() {
+			string miResult = mediaInfo.Inform();
+			return miResult == null ? string.Empty : miResult;
+		}
+
 		/// <summary>Returns information about MediaInfo.</summary>
 		/// <param name="parameter">Option such as Info_Parameters</param>
 		public string miOption(string parameter) {
@@ -103,7 +111,7 @@ namespace MediaInfoDotNet.Models
 		protected float miGetFloat(string parameter) {
 			float parsedValue;
 			string miResult = mediaInfo.Get(kind, id, parameter);
-			float.TryParse(miResult, out parsedValue);
+			float.TryParse(miResult, NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out parsedValue);
 			return parsedValue;
 		}
 
