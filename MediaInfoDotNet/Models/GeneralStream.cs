@@ -21,16 +21,16 @@ using MediaInfoLib;
 namespace MediaInfoDotNet.Models
 {
     ///<summary>For inheritance by classes representing media files.</summary>
-    [TypeConverter (typeof (ExpandableObjectConverter))]
-    public abstract class GeneralStream : Media
+//    [TypeConverter (typeof (ExpandableObjectConverter))]
+    public sealed class GeneralStream : Media
     {
         readonly MultiStreamCommon streamCommon;
 
         ///<summary>GeneralStream constructor.</summary>
-        ///<param name="filePath">Complete path and name of a file.</param>
-        public GeneralStream (string filePath)
-            : base (filePath) {
-            kind = StreamKind.General;
+        ///<param name="mediaInfo">A MediaInfo object.</param>
+        ///<param name="id">The MediaInfo ID for this audio stream.</param>
+        public GeneralStream (MediaInfo mediaInfo, int id)
+            : base (mediaInfo, StreamKind.General, id) {
             streamCommon = new MultiStreamCommon (mediaInfo, kind, id);
         }
 
@@ -195,10 +195,11 @@ namespace MediaInfoDotNet.Models
         }
         #endregion
 
-        #region InternalUse
+        #region General/Counts
         int _videoCount = int.MinValue;
         ///<summary>Number of video streams in this file.</summary>
-        protected int videoCount {
+        [Description ("Number of video streams."), Category ("General/Counts")]
+        public int videoCount {
             get {
                 if (_videoCount == int.MinValue)
                     _videoCount = miGetInt ("VideoCount");
@@ -208,7 +209,8 @@ namespace MediaInfoDotNet.Models
 
         int _audioCount = int.MinValue;
         ///<summary>Number of audio streams in this file.</summary>
-        protected int audioCount {
+        [Description ("Number of audio streams."), Category ("General/Counts")]
+        public int audioCount {
             get {
                 if (_audioCount == int.MinValue)
                     _audioCount = miGetInt ("AudioCount");
@@ -218,7 +220,8 @@ namespace MediaInfoDotNet.Models
 
         int _textCount = int.MinValue;
         ///<summary>Number of subtitles or other texts in this file.</summary>
-        protected int textCount {
+        [Description ("Number of text streams."), Category ("General/Counts")]
+        public int textCount {
             get {
                 if (_textCount == int.MinValue)
                     _textCount = miGetInt ("TextCount");
@@ -228,7 +231,8 @@ namespace MediaInfoDotNet.Models
 
         int _imageCount = int.MinValue;
         ///<summary>Number of images in this file.</summary>
-        protected int imageCount {
+        [Description ("Number of image streams."), Category ("General/Counts")]
+        public int imageCount {
             get {
                 if (_imageCount == int.MinValue)
                     _imageCount = miGetInt ("ImageCount");
@@ -236,19 +240,21 @@ namespace MediaInfoDotNet.Models
             }
         }
 
-        int _otherCount = int.MinValue;
+        int _chapterCount = int.MinValue;
         ///<summary>Number of others in this file.</summary>
-        protected int otherCount {
+        [Description ("Number of other streams."), Category ("General/Counts")]
+        public int chapterCount {
             get {
-                if (_otherCount == int.MinValue)
-                    _otherCount = miGetInt ("OtherCount");
-                return _otherCount;
+                if (_chapterCount == int.MinValue)
+                    _chapterCount = miGetInt ("ChapterCount");
+                return _chapterCount;
             }
         }
 
         int _menuCount = int.MinValue;
         ///<summary>Number of menu streams in this file.</summary>
-        protected int menuCount {
+        [Description ("Number of menu streams."), Category ("General/Counts")]
+        public int menuCount {
             get {
                 if (_menuCount == int.MinValue)
                     _menuCount = miGetInt ("MenuCount");

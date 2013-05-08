@@ -19,51 +19,43 @@ using MediaInfoLib;
 
 namespace MediaInfoDotNet.Models
 {
-    ///<summary>Implements features common to all media types.</summary>
+    ///<summary>Implements features common to all stream types.</summary>
     public abstract class Media : IDisposable
     {
         ///<summary>Used to create a stream-specific object, such as an audio
         ///stream, for use by an existing MediaFile object.</summary>
         ///<param name="mediaInfo">A pre-initialized MediaInfo object.</param>
+        ///<param name="kind">A defined value from StreamKind enum.</param>
         ///<param name="id">The MediaInfo ID for this stream.</param>
-        public Media (MediaInfo mediaInfo, int id) {
+        public Media (MediaInfo mediaInfo, StreamKind kind, int id) {
             string errorText;
             this.mediaInfo = mediaInfo;
             if (mediaInfo == null) {
                 errorText = "MediaInfo object cannot be null.";
                 throw new ArgumentNullException (errorText);
-            } else if (!isMediaInfoDllCompatible ()) {
+            } 
+            if (!isMediaInfoDllCompatible ()) {
                 errorText = "Incompatible version of MediaInfo.DLL";
                 throw new InvalidOperationException (errorText);
-            } else {
-                this.id = id;
             }
+            this.kind = kind;
+            if (!Enum.IsDefined (typeof(StreamKind), (object)kind)) {
+                errorText = "Invalid value for StreamKind";
+                throw new ArgumentOutOfRangeException (errorText);
+            }
+            this.id = id;
         }
 
-        ///<summary>Complete path to the current media file.</summary>
-        [Description ("Complete path to the current media file."), Category ("Media")]
-        public string filePath { get; private set; }
-
-        ///<summary>Initializes the initial MediaInfo object.</summary>
-        ///<param name="filePath">Complete path and name of a file.</param>
-        public Media (string filePath) {
-            if (filePath == null)
-                throw new ArgumentNullException ("File name cannot be null.");
-            this.mediaInfo = new MediaInfo ();
-            mediaInfo.Open (filePath);
-            this.filePath = filePath;
-        }
-
-        ///<summary>MediaInfo object</summary>
+        ///<summary>Preinitialized MediaInfo object passed in on instanciation</summary>
         protected MediaInfo mediaInfo { get; private set; }
+
+        ///<summary>MediaInfo stream kind.</summary>
+        protected StreamKind kind = StreamKind.None;
 
         ///<summary>MediaInfo ID for this stream kind.</summary>
         protected int id { get; private set; }
 
-        ///<summary>MediaInfo stream kind.</summary>
-        protected StreamKind kind;
-
-        #region MediaInfoLibraryCalls
+        #region MediaInfoLib Calls to unmanged code and type conversion
 
         /// <summary>Returns an information text containing all detected properties.</summary>
         /// <returns>A string containing all information about a file.</returns>
@@ -92,8 +84,9 @@ namespace MediaInfoDotNet.Models
         protected long miGetLong (string parameter) {
             long parsedValue;
             string miResult = mediaInfo.Get (kind, id, parameter);
-            long.TryParse (miResult, out parsedValue);
-            return parsedValue;
+            bool rc = long.TryParse (miResult, NumberStyles.Number,
+                System.Globalization.CultureInfo.InvariantCulture, out parsedValue);
+            return rc ? parsedValue : 0;
         }
 
 
@@ -102,8 +95,9 @@ namespace MediaInfoDotNet.Models
         protected int miGetInt (string parameter) {
             int parsedValue;
             string miResult = mediaInfo.Get (kind, id, parameter);
-            int.TryParse (miResult, out parsedValue);
-            return parsedValue;
+            bool rc = int.TryParse (miResult, NumberStyles.Number,
+                System.Globalization.CultureInfo.InvariantCulture, out parsedValue);
+            return rc ? parsedValue : 0;
         }
 
         ///<summary>Returns a MediaInfo value as a float, 0.0 if error.</summary>
@@ -111,8 +105,9 @@ namespace MediaInfoDotNet.Models
         protected float miGetFloat (string parameter) {
             float parsedValue;
             string miResult = mediaInfo.Get (kind, id, parameter);
-            float.TryParse (miResult, NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out parsedValue);
-            return parsedValue;
+            bool rc = float.TryParse (miResult, NumberStyles.Float, 
+                System.Globalization.CultureInfo.InvariantCulture, out parsedValue);
+            return rc ? parsedValue : 0.0f;
         }
 
         ///<summary>Returns a MediaInfo value as a float, 0.0 if error.</summary>
@@ -120,8 +115,9 @@ namespace MediaInfoDotNet.Models
         protected double miGetDouble (string parameter) {
             double parsedValue;
             string miResult = mediaInfo.Get (kind, id, parameter);
-            double.TryParse (miResult, out parsedValue);
-            return parsedValue;
+            bool rc = double.TryParse (miResult, NumberStyles.Float,
+                System.Globalization.CultureInfo.InvariantCulture, out parsedValue);
+            return rc ? parsedValue : 0.0;
         }
 
         ///<summary>Returns a MediaInfo date, Minval if error.</summary>
@@ -131,37 +127,58 @@ namespace MediaInfoDotNet.Models
             string format = "'UTC' yyyy-MM-dd HH:mm:ss") {
             DateTime parsedValue = DateTime.SpecifyKind (DateTime.MinValue, DateTimeKind.Utc);
             string miResult = mediaInfo.Get (kind, id, parameter);
-            DateTime.TryParseExact (miResult, format,
+            bool rc = DateTime.TryParseExact (miResult, format,
                 DateTimeFormatInfo.InvariantInfo,
                 DateTimeStyles.AssumeUniversal, out parsedValue);
-            return parsedValue.ToUniversalTime ();
+            return rc ? parsedValue.ToUniversalTime () : DateTime.SpecifyKind (DateTime.MinValue, DateTimeKind.Utc);
         }
 
+        #endregion
+        #region MediaInfo Version check and Version info
+        /// <summary>Cached return value for option Info_Version. Represents
+        /// the MediaInfoLib Version</summary>
+        protected string miLibVersion = null;
+
         ///<summary>Returns true if MediaInfo.dll is compatible.</summary>
-        bool isMediaInfoDllCompatible () {
-            String ToDisplay =
-                mediaInfo.Option ("Info_Version", "0.7.0.0;MediaInfo.Net;0.1");
-            return (ToDisplay.Length > 0 ? true : false);
+        protected bool isMediaInfoDllCompatible () {
+            if (miLibVersion == null)
+                miLibVersion = mediaInfo.Option ("Info_Version", "0.7.0.0;MediaInfo.Net;0.1");
+            return (miLibVersion.Length > 0 ? true : false);
+        }
+        /// <summary>Returns the version string of the loaded mediainfo DLL</summary>
+        /// <returns>The version string returned by mediaInfo.Option()</returns>
+        protected string getMediaInfoVersion () {
+            if (miLibVersion == null)
+                isMediaInfoDllCompatible ();
+            return miLibVersion;
         }
 
         #endregion
 
-        #region IDisposable
-        ///<summary>Destructor. Disposes of resources.</summary>
-        ~Media () {
-            Dispose ();
-        }
+        #region IDisposable Implementation
 
-
-        bool disposed = false;
-        ///<summary>Ensures resource disposal.</summary>
-        public void Dispose () {
+        /// <summary>Flag to prevent multiple disposes.</summary>
+        private bool disposed = false;
+        /// <summary>Internal dispose method.</summary>
+        private void Dispose (bool disposing) {
             if (disposed == false) {
+                if (disposing) {
+                    // Dispose managed resources here. NA here.
+                }
                 disposed = true;
                 mediaInfo.Close ();
                 GC.SuppressFinalize (this);
             }
         }
+        ///<summary>Destructor. Disposes of resources.</summary>
+        ~Media () {
+            Dispose (false);
+        }
+        ///<summary>Ensures resource disposal.</summary>
+        public void Dispose () {
+            Dispose (true);
+        }
+
         #endregion
     }
 }

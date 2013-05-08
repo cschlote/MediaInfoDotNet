@@ -2,6 +2,7 @@
  * MediaInfo.NET - A fast, easy-to-use .NET wrapper for MediaInfo.
  * Use at your own risk, under the same license as MediaInfo itself.
  * Copyright (C) 2012 Charles N. Burns
+ * Copyright (C) 2013 Carsten Schlote
  * 
  ******************************************************************************
  *
@@ -13,94 +14,126 @@
  */
 
 using System;
-using MediaInfoLib;
-using MediaInfoDotNet;
 using System.Collections.Generic;
+using System.ComponentModel;
+using MediaInfoDotNet;
+using MediaInfoLib;
 
 namespace MediaInfoDotNet.Models
 {
-	///<summary>Represents a single image stream.</summary>
-	public sealed class ImageStream : Media
-	{
-		readonly MultiStreamCommon streamCommon;
+    ///<summary>Represents a single image stream.</summary>
+    public sealed class ImageStream : Media
+    {
+        readonly MultiStreamCommon streamCommon;
 
-		///<summary>ImageStream constructor.</summary>
-		///<param name="mediaInfo">A MediaInfo object.</param>
-		///<param name="id">The MediaInfo ID for this image stream.</param>
-		public ImageStream(MediaInfo mediaInfo, int id)
-			: base(mediaInfo, id) {
-			kind = StreamKind.Image;
-			streamCommon = new MultiStreamCommon(mediaInfo, kind, id);
-		}
+        ///<summary>ImageStream constructor.</summary>
+        ///<param name="mediaInfo">A MediaInfo object.</param>
+        ///<param name="id">The MediaInfo ID for this image stream.</param>
+        public ImageStream (MediaInfo mediaInfo, int id)
+            : base (mediaInfo, StreamKind.Image, id) {
+            streamCommon = new MultiStreamCommon (mediaInfo, kind, id);
+        }
 
-		#region AllStreamsCommon
-		///<summary>The format or container of this file or stream.</summary>
-		public string format { get { return streamCommon.format; } }
+        #region AllStreamsCommon
 
-		///<summary>The title of this stream.</summary>
-		public string title { get { return streamCommon.title; } }
+        ///<summary>The format or container of this file or stream.</summary>
+        [Description ("The format or container of this file or stream."), Category ("AllStreamsCommon")]
+        public string format { get { return streamCommon.format; } }
 
-		///<summary>This stream's globally unique ID (GUID).</summary>
-		public string uniqueId { get { return streamCommon.uniqueId; } }
-		#endregion
+        ///<summary>The title of this stream.</summary>
+        [Description ("The title of this stream."), Category ("AllStreamsCommon")]
+        public string title { get { return streamCommon.title; } }
 
-		#region GeneralVideoAudioTextImageCommon
-		///<summary>Date and time stream encoding completed.</summary>
-		public DateTime encodedDate { get { return streamCommon.encodedDate; } }
+        ///<summary>This stream's globally unique ID (GUID).</summary>
+        [Description ("This stream's globally unique ID (GUID)."), Category ("AllStreamsCommon")]
+        public string uniqueId { get { return streamCommon.uniqueId; } }
 
-		///<summary>Software used to encode this stream.</summary>
-		public string encodedLibrary { get { return streamCommon.encoderLibrary; } }
+        #endregion
 
-		///<summary>Media type of stream, formerly called MIME type.</summary>
-		public string internetMediaType { get { return streamCommon.internetMediaType; } }
+        #region GeneralVideoAudioTextImageCommon
 
-		///<summary>Size in bytes.</summary>
-		public long size { get { return streamCommon.size; } }
+        ///<summary>Date and time stream encoding completed.</summary>
+        [Description ("Date and time stream encoding completed."), Category ("GeneralVideoAudioTextImageCommon")]
+        public DateTime encodedDate { get { return streamCommon.encodedDate; } }
 
-		///<summary>Encoder settings used for encoding this stream.
-		///String format: name=value / name=value / ...</summary>
-		public string encoderSettingsRaw { get { return streamCommon.encoderSettingsRaw; } }
+        ///<summary>Software used to encode this stream.</summary>
+        [Description ("Software used to encode this stream."), Category ("GeneralVideoAudioTextImageCommon")]
+        public string encodedLibrary { get { return streamCommon.encoderLibrary; } }
 
-		///<summary>Encoder settings used for encoding this stream.</summary>
-		public IDictionary<string, string> encoderSettings { get { return streamCommon.encoderSettings; } }
-		#endregion
+        ///<summary>Media type of stream, formerly called MIME type.</summary>
+        [Description ("Media type of stream, formerly called MIME type."), Category ("GeneralVideoAudioTextImageCommon")]
+        public string internetMediaType { get { return streamCommon.internetMediaType; } }
 
-		#region GeneralVideoAudioTextImageMenuCommon
-		///<summary>Codec ID available from some codecs.</summary>
-		///<example>AAC audio:A_AAC, h.264 video:V_MPEG4/ISO/AVC</example>
-		public string codecId { get { return streamCommon.codecId; } }
+        ///<summary>Size in bytes.</summary>
+        [Description ("Size in bytes."), Category ("GeneralVideoAudioTextImageCommon")]
+        public long size { get { return streamCommon.size; } }
 
-		///<summary>Common name of the codec.</summary>
-		public string codecCommonName { get { return streamCommon.codecCommonName; } }
-		#endregion
+        ///<summary>Encoder settings used for encoding this stream.
+        ///String format: name=value / name=value / ...</summary>
+        [Description ("Encoder settings used for encoding this stream. (Raw String)"), Category ("GeneralVideoAudioTextImageCommon")]
+        public string encoderSettingsRaw { get { return streamCommon.encoderSettingsRaw; } }
 
-		#region VideoAudioTextImageCommon
-		///<summary>Compression mode (lossy or lossless).</summary>
-		public string compressionMode { get { return streamCommon.compressionMode; } }
+        ///<summary>Encoder settings used for encoding this stream (as dictionary).</summary>
+        [Description ("Encoder settings used for encoding this stream. (Dictionary)"), Category ("GeneralVideoAudioTextImageCommon")]
+        public IDictionary<string, string> encoderSettings { get { return streamCommon.encoderSettings; } }
 
-		///<summary>Ratio of current size to uncompressed size.</summary>
-		public string compressionRatio { get { return streamCommon.compressionRatio; } }
+        #endregion
 
-		///<example>Stream bit depth (16, 24, 32...)</example>
-		public int bitDepth { get { return streamCommon.bitDepth; } }
-		#endregion
+        #region GeneralVideoAudioTextImageMenuCommon
 
-		#region VideoAudioTextImageMenuCommon
-		///<summary>2-letter (if available) or 3-letter ISO code.</summary>
-		public string language { get { return streamCommon.language; } }
-		#endregion
+        ///<summary>Codec ID available from some codecs.</summary>
+        ///<example>AAC audio:A_AAC, h.264 video:V_MPEG4/ISO/AVC</example>
+        [Description ("Codec ID available from some codecs."), Category ("GeneralVideoAudioTextImageMenuCommon")]
+        public string codecId { get { return streamCommon.codecId; } }
 
-		#region VideoImageCommon
-		///<summary>Ratio of pixel width to pixel height.</summary>
-		public float pixelAspectRatio { get { return streamCommon.pixelAspectRatio; } }
-		#endregion
+        ///<summary>Common name of the codec.</summary>
+        [Description ("Common name of the codec."), Category ("GeneralVideoAudioTextImageMenuCommon")]
+        public string codecCommonName { get { return streamCommon.codecCommonName; } }
 
-		#region VideoTextImageCommon
-		///<summary>Height in pixels.</summary>
-		public int height { get { return streamCommon.height; } }
+        #endregion
 
-		///<summary>Width in pixels.</summary>
-		public int width { get { return streamCommon.width; } }
-		#endregion
-	}
+        #region VideoAudioTextImageCommon
+
+        ///<summary>Compression mode (lossy or lossless).</summary>
+        [Description ("Compression mode (lossy or lossless)."), Category ("VideoAudioTextImageCommon")]
+        public string compressionMode { get { return streamCommon.compressionMode; } }
+
+        ///<summary>Ratio of current size to uncompressed size.</summary>
+        [Description ("Ratio of current size to uncompressed size."), Category ("VideoAudioTextImageCommon")]
+        public string compressionRatio { get { return streamCommon.compressionRatio; } }
+
+        ///<example>Stream bit depth (16, 24, 32...)</example>
+        [Description ("Stream bit depth (16, 24, 32...)"), Category ("VideoAudioTextImageCommon")]
+        public int bitDepth { get { return streamCommon.bitDepth; } }
+
+        #endregion
+
+        #region VideoAudioTextImageMenuCommon
+
+        ///<summary>2-letter (if available) or 3-letter ISO code.</summary>
+        [Description ("2-letter (if available) or 3-letter ISO code."), Category ("VideoAudioTextImageMenuCommon")]
+        public string language { get { return streamCommon.language; } }
+
+        #endregion
+
+        #region VideoTextCommon
+
+        ///<summary>Frame rate mode (CFR, VFR) of stream.</summary>
+        [Description ("Frame rate mode (CFR, VFR) of stream."), Category ("VideoTextCommon")]
+        public string frameRateMode { get { return streamCommon.frameRateMode; } }
+
+        #endregion
+
+        #region VideoTextImageCommon
+
+        ///<summary>Height in pixels.</summary>
+        [Description ("Height in pixels."), Category ("VideoTextImageCommon")]
+        public int height { get { return streamCommon.height; } }
+
+        ///<summary>Width in pixels.</summary>
+        [Description ("Width in pixels."), Category ("VideoTextImageCommon")]
+        public int width { get { return streamCommon.width; } }
+
+        #endregion
+    }
 }

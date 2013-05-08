@@ -19,18 +19,18 @@ using MediaInfoLib;
 namespace MediaInfoDotNet.Models
 {
     /// <summary>Functionality common to more than one stream type.</summary>
-    public class MultiStreamCommon : Media
+    class MultiStreamCommon : Media
     {
         /// <summary>MultiStreamCommon constructor.</summary>
         ///<param name="mediaInfo">A MediaInfo object.</param>
         /// <param name="kind">A MediaInfo StreamKind.</param>
         ///<param name="id">The MediaInfo ID for this audio stream.</param>
         public MultiStreamCommon (MediaInfo mediaInfo, StreamKind kind, int id)
-            : base (mediaInfo, id) {
-            this.kind = kind;
+            : base (mediaInfo, kind, id) {
         }
 
         #region AllStreamsCommon
+
         string _format;
         ///<summary>The format or container of this file or stream.</summary>
         public string format {
@@ -60,6 +60,7 @@ namespace MediaInfoDotNet.Models
                 return _uniqueId;
             }
         }
+
         #endregion
 
         #region GeneralVideoAudioTextImageCommon

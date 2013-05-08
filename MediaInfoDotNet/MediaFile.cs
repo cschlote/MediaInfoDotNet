@@ -25,21 +25,47 @@
  *    Do not try to add MediaInfo.dll to your "references". Wrong type of DLL.
  */
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using MediaInfoDotNet.Models;
+using MediaInfoLib;
 
 namespace MediaInfoDotNet
 {
 	///<summary>Represents a media file and all of its content streams.</summary>
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    public sealed class MediaFile : GeneralStream
+    public sealed class MediaFile
     {
         ///<summary>MediaFile constructor.</summary>
         ///<param name="filePath">Complete path and name of a file.</param>
         ///<example>"c:\pics\me.jpg", "/home/charles/me.mkv"</example>
-        public MediaFile (string filePath)
-            : base (filePath) {
+        public MediaFile (string filePath) {
+            if (filePath == null)
+                throw new ArgumentNullException ("File name cannot be null.");
+            this.mediaInfo = new MediaInfo ();
+            mediaInfo.Open (filePath);
+            this.filePath = filePath;
+        }
+
+        ///<summary>Complete path to the current media file.</summary>
+        [Description ("Complete path to the current media file."), Category ("MediaFile")]
+        public string filePath { get; private set; }
+
+        ///<summary>MediaInfo object</summary>
+        MediaInfo mediaInfo;
+
+        GeneralStream _General;
+        /// <summary>
+        /// General Stream for this media file
+        /// </summary>
+        [Description ("General information stream"), Category ("Streams")]
+        public GeneralStream General {
+            get {
+                if (_General == null) {
+                    _General = new GeneralStream (mediaInfo, 0); 
+                }
+                return _General;
+            }
         }
 
 		/// <summary>
@@ -49,7 +75,8 @@ namespace MediaInfoDotNet
 		[Description ("Determine, if there are any media streams in a file"), Category ("Streams")]
 		public bool hasStreams {
 			get {
-				return this.videoCount > 0 || this.audioCount > 0 || this.textCount > 0 || this.otherCount > 0 || this.imageCount > 0 || this.menuCount > 0;
+                return General.videoCount > 0 || General.audioCount > 0 || General.textCount > 0 ||
+                    General.chapterCount > 0 || General.imageCount > 0 || General.menuCount > 0;
 			}
 		}
 
@@ -59,8 +86,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, VideoStream> Video {
             get {
                 if (_Video == null) {
-                    _Video = new Dictionary<int, VideoStream> (videoCount);
-                    for (int id = 0; id < videoCount; ++id) {
+                    _Video = new Dictionary<int, VideoStream> (General.videoCount);
+                    for (int id = 0; id < General.videoCount; ++id) {
                         _Video.Add (id, new VideoStream (mediaInfo, id));
                     }
                 }
@@ -74,8 +101,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, AudioStream> Audio {
             get {
                 if (_Audio == null) {
-                    _Audio = new Dictionary<int, AudioStream> (audioCount);
-                    for (int id = 0; id < audioCount; ++id) {
+                    _Audio = new Dictionary<int, AudioStream> (General.audioCount);
+                    for (int id = 0; id < General.audioCount; ++id) {
                         _Audio.Add (id, new AudioStream (mediaInfo, id));
                     }
                 }
@@ -90,8 +117,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, TextStream> Text {
             get {
                 if (_Text == null) {
-                    _Text = new Dictionary<int, TextStream> (textCount);
-                    for (int id = 0; id < textCount; ++id) {
+                    _Text = new Dictionary<int, TextStream> (General.textCount);
+                    for (int id = 0; id < General.textCount; ++id) {
                         _Text.Add (id, new TextStream (mediaInfo, id));
                     }
                 }
@@ -106,8 +133,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, ImageStream> Image {
             get {
                 if (_Image == null) {
-                    _Image = new Dictionary<int, ImageStream> (imageCount);
-                    for (int id = 0; id < imageCount; ++id) {
+                    _Image = new Dictionary<int, ImageStream> (General.imageCount);
+                    for (int id = 0; id < General.imageCount; ++id) {
                         _Image.Add (id, new ImageStream (mediaInfo, id));
                     }
                 }
@@ -122,8 +149,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, OtherStream> Other {
             get {
                 if (_Other == null) {
-                    _Other = new Dictionary<int, OtherStream> (otherCount);
-                    for (int id = 0; id < otherCount; ++id) {
+                    _Other = new Dictionary<int, OtherStream> (General.chapterCount);
+                    for (int id = 0; id < General.chapterCount; ++id) {
                         _Other.Add (id, new OtherStream (mediaInfo, id));
                     }
                 }
@@ -138,8 +165,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, MenuStream> Menu {
             get {
                 if (_Menu == null) {
-                    _Menu = new Dictionary<int, MenuStream> (menuCount);
-                    for (int id = 0; id < menuCount; ++id) {
+                    _Menu = new Dictionary<int, MenuStream> (General.menuCount);
+                    for (int id = 0; id < General.menuCount; ++id) {
                         _Menu.Add (id, new MenuStream (mediaInfo, id));
                     }
                 }

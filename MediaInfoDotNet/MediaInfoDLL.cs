@@ -95,7 +95,7 @@ namespace MediaInfoLib
                 LOAD_WITH_ALTERED_SEARCH_PATH = 0x00000008
             }
             [DllImport("kernel32.dll")]
-            internal static extern IntPtr LoadLibraryEx(string lpFileName, IntPtr hReservedNull, LoadLibraryFlags dwFlags);
+            internal static extern IntPtr LoadLibraryEx (string lpFileName, IntPtr hReservedNull, LoadLibraryFlags dwFlags);
             [DllImport("kernel32.dll", SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
             internal static extern bool FreeLibrary(IntPtr hModule);
