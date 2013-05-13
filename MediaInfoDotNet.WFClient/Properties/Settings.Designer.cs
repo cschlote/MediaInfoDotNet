@@ -49,13 +49,37 @@ namespace MediaInfoDotNet.WFClient.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Blubber....")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\DS1010-CSC\\video\\")]
         public string LastLocation {
             get {
                 return ((string)(this["LastLocation"]));
             }
             set {
                 this["LastLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Public\\Videos\\Sample Videos\\Wildlife.wmv")]
+        public string LastFile {
+            get {
+                return ((string)(this["LastFile"]));
+            }
+            set {
+                this["LastFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SaveOnExit {
+            get {
+                return ((bool)(this["SaveOnExit"]));
+            }
+            set {
+                this["SaveOnExit"] = value;
             }
         }
     }

@@ -9,7 +9,13 @@
       <Value Profile="(Default)">624, 362</Value>
     </Setting>
     <Setting Name="LastLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Blubber....</Value>
+      <Value Profile="(Default)">\\DS1010-CSC\video\</Value>
+    </Setting>
+    <Setting Name="LastFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Public\Videos\Sample Videos\Wildlife.wmv</Value>
+    </Setting>
+    <Setting Name="SaveOnExit" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

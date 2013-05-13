@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetHistogram" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetHistogram" msdata:IsDataSet="true" msdata:Locale="en" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetHistogram" msprop:Generator_UserDSName="DataSetHistogram">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tabKeywords" msprop:Generator_TableClassName="tabKeywordsDataTable" msprop:Generator_TableVarName="tabletabKeywords" msprop:Generator_RowChangedName="tabKeywordsRowChanged" msprop:Generator_TablePropName="tabKeywords" msprop:Generator_RowDeletingName="tabKeywordsRowDeleting" msprop:Generator_RowChangingName="tabKeywordsRowChanging" msprop:Generator_RowEvHandlerName="tabKeywordsRowChangeEventHandler" msprop:Generator_RowDeletedName="tabKeywordsRowDeleted" msprop:Generator_RowClassName="tabKeywordsRow" msprop:Generator_UserTableName="tabKeywords" msprop:Generator_RowEvArgName="tabKeywordsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Keyword" msprop:Generator_ColumnVarNameInTable="columnKeyword" msprop:Generator_ColumnPropNameInRow="Keyword" msprop:Generator_ColumnPropNameInTable="KeywordColumn" msprop:Generator_UserColumnName="Keyword" type="xs:string" />
+              <xs:element name="GeneralHits" msprop:Generator_ColumnVarNameInTable="columnGeneralHits" msprop:Generator_ColumnPropNameInRow="GeneralHits" msprop:Generator_ColumnPropNameInTable="GeneralHitsColumn" msprop:Generator_UserColumnName="GeneralHits" type="xs:int" default="0" />
+              <xs:element name="VideoHits" msprop:Generator_ColumnVarNameInTable="columnVideoHits" msprop:Generator_ColumnPropNameInRow="VideoHits" msprop:Generator_ColumnPropNameInTable="VideoHitsColumn" msprop:Generator_UserColumnName="VideoHits" type="xs:int" default="0" />
+              <xs:element name="AudioHits" msprop:Generator_ColumnVarNameInTable="columnAudioHits" msprop:Generator_ColumnPropNameInRow="AudioHits" msprop:Generator_ColumnPropNameInTable="AudioHitsColumn" msprop:Generator_UserColumnName="AudioHits" type="xs:int" default="0" />
+              <xs:element name="TextHits" msprop:Generator_ColumnVarNameInTable="columnTextHits" msprop:Generator_ColumnPropNameInRow="TextHits" msprop:Generator_ColumnPropNameInTable="TextHitsColumn" msprop:Generator_UserColumnName="TextHits" type="xs:int" default="0" />
+              <xs:element name="ImageHits" msprop:Generator_ColumnVarNameInTable="columnImageHits" msprop:Generator_ColumnPropNameInRow="ImageHits" msprop:Generator_ColumnPropNameInTable="ImageHitsColumn" msprop:Generator_UserColumnName="ImageHits" type="xs:int" default="0" />
+              <xs:element name="OtherHits" msprop:Generator_ColumnVarNameInTable="columnOtherHits" msprop:Generator_ColumnPropNameInRow="OtherHits" msprop:Generator_ColumnPropNameInTable="OtherHitsColumn" msprop:Generator_UserColumnName="OtherHits" type="xs:int" default="0" />
+              <xs:element name="MenuHits" msprop:Generator_ColumnVarNameInTable="columnMenuHits" msprop:Generator_ColumnPropNameInRow="MenuHits" msprop:Generator_ColumnPropNameInTable="MenuHitsColumn" msprop:Generator_UserColumnName="MenuHits" type="xs:int" default="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="tabKeywordsKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tabKeywords" />
+      <xs:field xpath="mstns:Keyword" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

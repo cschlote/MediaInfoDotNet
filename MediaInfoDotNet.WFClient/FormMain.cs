@@ -1,4 +1,12 @@
-﻿using System;
+﻿/******************************************************************************
+ * MediaInfo.NET - A fast, easy-to-use .NET wrapper for MediaInfo.
+ * Use at your own risk, under the same license as MediaInfo itself.
+ * Copyright (C) 2013 Carsten Schlote
+ ******************************************************************************
+ * Test Application for MediaInfo.Net
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,14 +22,15 @@ namespace MediaInfoDotNet.WFClient
 {
     public partial class FormMain : Form
     {
-        List<MediaInfoDotNet.MediaFile> mediaFiles = new List<MediaFile> ();
+		BindingList<MediaFile> _mediafiles;
+		[ListBindable(true)]
+		public BindingList<MediaFile> MediaFileCollection {
+			get { if (_mediafiles == null) _mediafiles = new BindingList<MediaFile>(); return _mediafiles; }
+			protected set { _mediafiles = value; }
+		}
 
         public FormMain () {
             InitializeComponent ();
-            //bindingSource1.DataSource = mediaFiles;
-            Column1.DataPropertyName = "filePath";
-            Column1.Name = "FilePath";
-
             loadAllStreamProps (null);
         }
 
@@ -29,25 +38,18 @@ namespace MediaInfoDotNet.WFClient
             MediaInfoDotNet.MediaFile mf;
             DialogResult rc = openFileDialog1.ShowDialog ();
             if (rc == System.Windows.Forms.DialogResult.OK) {
+				Settings.Default.LastFile = openFileDialog1.FileName;
                 mf = new MediaFile (openFileDialog1.FileName);
-                mediaFiles.Add (mf);
-                bindingSource1.Add (mf);
+                //FIXME mediaFiles.Add (mf);
+                bindingSourceMediaFiles.Add (mf);
             }
         }
         private void loadMediaFiles (object sender, EventArgs e) {
-            MediaInfoDotNet.MediaFile mf;
+			folderBrowserDialog1.SelectedPath = Settings.Default.LastLocation;
             DialogResult rc = folderBrowserDialog1.ShowDialog ();
             if (rc == System.Windows.Forms.DialogResult.OK) {
-                string x = folderBrowserDialog1.SelectedPath;
-                string[] files = Directory.GetFiles (x, "*.*", SearchOption.AllDirectories);
-                foreach (string file in files) {
-                    mf = new MediaFile (file);
-                    if (mf.hasStreams) {
-                        mediaFiles.Add (mf);
-                        bindingSource1.Add (mf);
-                        //break;
-                    }
-                }
+				Settings.Default.LastLocation = folderBrowserDialog1.SelectedPath;
+				backgroundWorker1.RunWorkerAsync(folderBrowserDialog1.SelectedPath);
             }
         }
 
@@ -77,69 +79,69 @@ namespace MediaInfoDotNet.WFClient
         private void loadGeneralStreamProps () {
             MediaFile mf = selectedMediaFile; Object obj = null;
             if (mf != null) obj = mf.General;
-            loadPropertyGridWithStream (null, propertyGrid1, 0, obj);
+            loadPropertyGridWithStream (null, propertyGridGeneral, 0, obj);
         }
         private void loadVideoStreamProps () {
             MediaFile mf = selectedMediaFile;
             if (mf != null) {
-                int val = (int)numericUpDown1.Value; Object obj = null;
+                int val = (int)numericUpDownVideo.Value; Object obj = null;
                 if (mf.Video.ContainsKey (val))
                     obj = mf.Video[val];
-                loadPropertyGridWithStream (numericUpDown1, propertyGrid2, mf.Video.Count, obj);
+                loadPropertyGridWithStream (numericUpDownVideo, propertyGridVideo, mf.Video.Count, obj);
             }
         }
         private void loadAudioStreamProps () {
             MediaFile mf = selectedMediaFile;
             if (mf != null) {
-                int val = (int)numericUpDown2.Value; Object obj = null;
+                int val = (int)numericUpDownAudio.Value; Object obj = null;
                 if (mf.Audio.ContainsKey (val))
                     obj = mf.Audio[val];
-                loadPropertyGridWithStream (numericUpDown2, propertyGrid3, mf.Audio.Count, obj);
+                loadPropertyGridWithStream (numericUpDownAudio, propertyGridAudio, mf.Audio.Count, obj);
             }
         }
         private void loadTextStreamProps () {
             MediaFile mf = selectedMediaFile;
             if (mf != null) {
-                int val = (int)numericUpDown3.Value; Object obj = null;
+                int val = (int)numericUpDownText.Value; Object obj = null;
                 if (mf.Text.ContainsKey (val))
                     obj = mf.Text[val];
-                loadPropertyGridWithStream (numericUpDown3, propertyGrid4, mf.Text.Count, obj);
+                loadPropertyGridWithStream (numericUpDownText, propertyGridText, mf.Text.Count, obj);
             }
         }
         private void loadImageStreamProps () {
             MediaFile mf = selectedMediaFile;
             if (mf != null) {
-                int val = (int)numericUpDown4.Value; Object obj = null;
+                int val = (int)numericUpDownImage.Value; Object obj = null;
                 if (mf.Image.ContainsKey (val))
                     obj = mf.Image[val];
-                loadPropertyGridWithStream (numericUpDown4, propertyGrid5, mf.Image.Count, obj);
+                loadPropertyGridWithStream (numericUpDownImage, propertyGridImage, mf.Image.Count, obj);
             }
         }
         private void loadOtherStreamProps () {
             MediaFile mf = selectedMediaFile;
             if (mf != null) {
-                int val = (int)numericUpDown5.Value; Object obj = null;
+                int val = (int)numericUpDownOther.Value; Object obj = null;
                 if (mf.Other.ContainsKey (val))
                     obj = mf.Other[val];
-                loadPropertyGridWithStream (numericUpDown5, propertyGrid6, mf.Other.Count, obj);
+                loadPropertyGridWithStream (numericUpDownOther, propertyGridOther, mf.Other.Count, obj);
             }
         }
         private void loadMenuStreamProps () {
             MediaFile mf = selectedMediaFile;
             if (mf != null) {
-                int val = (int)numericUpDown6.Value; Object obj = null;
+                int val = (int)numericUpDownMenus.Value; Object obj = null;
                 if (mf.Menu.ContainsKey (val))
                     obj = mf.Menu[val];
-                loadPropertyGridWithStream (numericUpDown6, propertyGrid7, mf.Menu.Count, obj);
+                loadPropertyGridWithStream (numericUpDownMenus, propertyGridMenus, mf.Menu.Count, obj);
             }
         }
         private MediaFile selectedMediaFile; //FIXME
         private void loadAllStreamProps (MediaFile mf) {
             selectedMediaFile = mf;
-            textBox1.Text = mf != null ? mf.General.miInform () : "No data.";
+            textBoxInform.Text = mf != null ? mf.General.miInform () : "No data.";
 
-            propertyGrid8.SelectedObject = mf;
-            propertyGrid8.Enabled = (mf == null) ? false : true;
+            propertyGridMediaFile.SelectedObject = mf;
+            propertyGridMediaFile.Enabled = (mf == null) ? false : true;
 
             loadGeneralStreamProps ();
             loadVideoStreamProps ();
@@ -160,13 +162,21 @@ namespace MediaInfoDotNet.WFClient
             loadMediaFiles (sender, e);
         }
 
-        private void dataGridView1_RowEnter (object sender, DataGridViewCellEventArgs e) {
-            System.Diagnostics.Debug.Write ("Booh");
+		private void closeAllToolStripMenuItem_Click(object sender, EventArgs e) {
+			if (MessageBox.Show(
+				"Delete all scanned entries?",
+				"Delete all entries",
+				MessageBoxButtons.OKCancel,
+				MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK) {
+					this.bindingSourceMediaFiles.Clear();
+			}
+		}
 
-            MediaFile mf = mediaFiles[e.RowIndex];
-            loadAllStreamProps (mf);
-        }
-
+		private void closeFileToolStripMenuItem_Click(object sender, EventArgs e) {
+			if (listBox1.SelectedIndex >= 0) {
+				this.bindingSourceMediaFiles.Remove(MediaFileCollection[listBox1.SelectedIndex]);
+			}
+		}
 
         private void numericUpDown1_ValueChanged (object sender, EventArgs e) {
             loadVideoStreamProps ();
@@ -196,17 +206,105 @@ namespace MediaInfoDotNet.WFClient
             this.Close ();
         }
 
-        private void backgroundWorker1_DoWork (object sender, DoWorkEventArgs e) {
+		#region OpenDirectory Backgroundworker
 
+		private void backgroundWorker1_DoWork (object sender, DoWorkEventArgs e) {
+			MediaInfoDotNet.MediaFile mf;
+			string selpath = (string)e.Argument;
+			backgroundWorker1.ReportProgress(0, "Scanning directory...");
+			string[] files = Directory.GetFiles(selpath, "*.*", SearchOption.AllDirectories);
+			float progstep =  100.0f / files.Count(); float progress = 0.0f;
+			foreach (string file in files) {
+				progress += progstep;
+				mf = new MediaFile(file);
+				if (mf.hasStreams) {
+					backgroundWorker1.ReportProgress((int)(progress), mf);
+				}
+				else {
+					backgroundWorker1.ReportProgress((int)(progress), null);
+				}
+				if (backgroundWorker1.CancellationPending)
+					break;
+			}
+			
         }
+		List<MediaFile> newfiles = new List<MediaFile>();
 
         private void backgroundWorker1_ProgressChanged (object sender, ProgressChangedEventArgs e) {
-
-        }
+			if (e.UserState is String) {
+				toolStripStatusLabel1.Text = (string)e.UserState;
+			}
+			if (e.UserState is MediaFile) {
+				toolStripStatusLabel1.Text = String.Format("Scanned {0}", ((MediaFile)(e.UserState)).filePath);
+				newfiles.Add((MediaFile)e.UserState);
+			}
+			toolStripProgressBar1.Value = e.ProgressPercentage <= 100 ? e.ProgressPercentage : 100 ;
+			//this.Refresh();
+		}
 
         private void backgroundWorker1_RunWorkerCompleted (object sender, RunWorkerCompletedEventArgs e) {
-
+			toolStripProgressBar1.Value = 100;
+			foreach (MediaFile mf in newfiles)
+				bindingSourceMediaFiles.Add(mf);
+			newfiles.Clear();
+			toolStripStatusLabel1.Text = "Finished loading.";
         }
+
+		private void abortOperationToolStripMenuItem_Click(object sender, EventArgs e) {
+			backgroundWorker1.CancelAsync();
+		}
+
+		#endregion
+
+		private void exportToolStripMenuItem_Click(object sender, EventArgs e) {
+			System.Diagnostics.Debug.WriteLine("Booh");
+		}
+
+		private void editPreferencesToolStripMenuItem_Click(object sender, EventArgs e) {
+			FormPrefs prefs = new FormPrefs();
+			prefs.ShowDialog();
+		}
+
+		private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
+			MessageBox.Show(
+				"This is a simple demo app to test and develop the MediaInfo.Net\n" +
+				"classes.\n\n" +
+				"The original code was written by Charles N. Burns\n" +
+				"Modification and changes by Carsten Schlote\n\n",
+				"Demo App for MediaInfo.Net",
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		FormHistogram formHistogram;
+		private void histogramInformOutputToolStripMenuItem_Click(object sender, EventArgs e) {
+			System.Diagnostics.Debug.WriteLine("Booh");
+			formHistogram = new FormHistogram(this.MediaFileCollection);
+			formHistogram.Show();
+		}
+
+		private void FormMain_Load(object sender, EventArgs e) {
+			this.Size = Settings.Default.WinSize;
+		}
+		private void FormMain_FormClosing(object sender, FormClosingEventArgs e) {
+			Settings.Default.WinSize = this.Size;
+		}
+		private void FormMain_FormClosed(object sender, FormClosedEventArgs e) {
+			if (Settings.Default.SaveOnExit) {
+				Settings.Default.Save();
+			}
+		}
+
+		private void bindingSource1_ListChanged(object sender, ListChangedEventArgs e) {
+			MediaFileCollection = (BindingList<MediaFile>)(bindingSourceMediaFiles.List);
+		}
+
+		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
+			MediaFile mf = null;
+			if (bindingSourceMediaFiles.List.Count > 0 && listBox1.SelectedIndex >= 0 && listBox1.SelectedIndex < bindingSourceMediaFiles.List.Count) {
+				mf = MediaFileCollection[listBox1.SelectedIndex];
+			}
+			loadAllStreamProps(mf);
+		}
 
     }
 }
