@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using MediaInfoDotNet.Models;
 using MediaInfoLib;
+using System.Collections;
 
 namespace MediaInfoDotNet
 {
@@ -73,104 +74,104 @@ namespace MediaInfoDotNet
 		/// a file isn't a media file, if this method returns false.
 		/// </summary>
 		[Description ("Determine, if there are any media streams in a file"), Category ("Streams")]
-		public bool hasStreams {
+		public bool HasStreams {
 			get {
                 return General.VideoCount > 0 || General.AudioCount > 0 || General.TextCount > 0 ||
-                    General.ChapterCount > 0 || General.ImageCount > 0 || General.MenuCount > 0;
+                    General.OtherCount > 0 || General.ImageCount > 0 || General.MenuCount > 0;
 			}
 		}
 
-        IDictionary<int, VideoStream> _Video;
+		List<VideoStream> videoStreams;
         ///<summary>Video streams in this file.</summary>
         [Description ("Video streams in this file."), Category ("Streams")]
-        public IDictionary<int, VideoStream> Video {
+		public IList<VideoStream> Video {
             get {
-                if (_Video == null) {
-					_Video = new Dictionary<int, VideoStream>(General.VideoCount);
+                if (videoStreams == null) {
+					videoStreams = new List<VideoStream>(General.VideoCount);
 					for (int id = 0; id < General.VideoCount; ++id) {
-                        _Video.Add (id, new VideoStream (mediaInfo, id));
+                        videoStreams.Add (new VideoStream (mediaInfo, id));
                     }
                 }
-                return _Video;
+                return videoStreams;
             }
         }
 
-        IDictionary<int, AudioStream> _Audio;
+		List<AudioStream> audioStreams;
         ///<summary>Audio streams in this file.</summary>
         [Description ("Audio streams in this file."), Category ("Streams")]
-        public IDictionary<int, AudioStream> Audio {
+		public IList<AudioStream> Audio {
             get {
-                if (_Audio == null) {
-                    _Audio = new Dictionary<int, AudioStream> (General.AudioCount);
+                if (audioStreams == null) {
+					audioStreams = new List<AudioStream>(General.AudioCount);
 					for (int id = 0; id < General.AudioCount; ++id) {
-                        _Audio.Add (id, new AudioStream (mediaInfo, id));
+                        audioStreams.Add (new AudioStream (mediaInfo, id));
                     }
                 }
-                return _Audio;
+                return audioStreams;
             }
         }
 
 
-        IDictionary<int, TextStream> _Text;
+		IList<TextStream> textStreams;
         ///<summary>Text streams in this file.</summary>
         [Description ("Text streams in this file."), Category ("Streams")]
-        public IDictionary<int, TextStream> Text {
+		public IList<TextStream> Text {
             get {
-                if (_Text == null) {
-                    _Text = new Dictionary<int, TextStream> (General.TextCount);
+                if (textStreams == null) {
+					textStreams = new List<TextStream>(General.TextCount);
                     for (int id = 0; id < General.TextCount; ++id) {
-                        _Text.Add (id, new TextStream (mediaInfo, id));
+                        textStreams.Add (new TextStream (mediaInfo, id));
                     }
                 }
-                return _Text;
+                return textStreams;
             }
         }
 
 
-        IDictionary<int, ImageStream> _Image;
+		IList<ImageStream> imageStreams;
         ///<summary>Image streams in this file.</summary>
         [Description ("Image streams in this file."), Category ("Streams")]
-        public IDictionary<int, ImageStream> Image {
+		public IList<ImageStream> Image {
             get {
-                if (_Image == null) {
-                    _Image = new Dictionary<int, ImageStream> (General.ImageCount);
+                if (imageStreams == null) {
+					imageStreams = new List<ImageStream>(General.ImageCount);
                     for (int id = 0; id < General.ImageCount; ++id) {
-                        _Image.Add (id, new ImageStream (mediaInfo, id));
+                        imageStreams.Add (new ImageStream (mediaInfo, id));
                     }
                 }
-                return _Image;
+                return imageStreams;
             }
         }
 
 
-        IDictionary<int, OtherStream> _Other;
+		IList<OtherStream> otherStreams;
         ///<summary>Other streams in this file.</summary>
         [Description ("Other streams in this file. (e.g. chapters)"), Category ("Streams")]
-        public IDictionary<int, OtherStream> Other {
+		public IList<OtherStream> Other {
             get {
-                if (_Other == null) {
-                    _Other = new Dictionary<int, OtherStream> (General.ChapterCount);
-                    for (int id = 0; id < General.ChapterCount; ++id) {
-                        _Other.Add (id, new OtherStream (mediaInfo, id));
+                if (otherStreams == null) {
+					otherStreams = new List<OtherStream>(General.OtherCount);
+                    for (int id = 0; id < General.OtherCount; ++id) {
+                        otherStreams.Add (new OtherStream (mediaInfo, id));
                     }
                 }
-                return _Other;
+                return otherStreams;
             }
         }
 
 
-        IDictionary<int, MenuStream> _Menu;
+		IList<MenuStream> menuStreams;
         ///<summary>Menu streams in this file.</summary>
         [Description ("Menu streams in this file."), Category ("Streams")]
-        public IDictionary<int, MenuStream> Menu {
+		public IList<MenuStream> Menu {
             get {
-                if (_Menu == null) {
-                    _Menu = new Dictionary<int, MenuStream> (General.MenuCount);
+                if (menuStreams == null) {
+					menuStreams = new List<MenuStream>(General.MenuCount);
                     for (int id = 0; id < General.MenuCount; ++id) {
-                        _Menu.Add (id, new MenuStream (mediaInfo, id));
+                        menuStreams.Add (new MenuStream (mediaInfo, id));
                     }
                 }
-                return _Menu;
+                return menuStreams;
             }
         }
 

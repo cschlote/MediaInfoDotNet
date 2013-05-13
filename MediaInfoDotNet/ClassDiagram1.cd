@@ -10,18 +10,18 @@
         <Point X="15.25" Y="8.194" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="Audio" Type="MediaInfoDotNet.Models.AudioStream" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="5.5" Y="8.929" />
-        <Point X="11.812" Y="8.929" />
-        <Point X="11.812" Y="8.578" />
-      </Path>
-    </AssociationLine>
     <AssociationLine Name="Text" Type="MediaInfoDotNet.Models.TextStream" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="5.5" Y="8.497" />
         <Point X="10.062" Y="8.497" />
         <Point X="10.062" Y="8.127" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Image" Type="MediaInfoDotNet.Models.ImageStream" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.5" Y="7.562" />
+        <Point X="8.25" Y="7.562" />
+        <Point X="8.25" Y="6.204" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Other" Type="MediaInfoDotNet.Models.OtherStream" FixedFromPoint="true" FixedToPoint="true">
@@ -31,20 +31,27 @@
         <Point X="6.5" Y="3.319" />
       </Path>
     </AssociationLine>
+    <AssociationLine Name="Audio" Type="MediaInfoDotNet.Models.AudioStream" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.5" Y="9.25" />
+        <Point X="11.75" Y="9.25" />
+        <Point X="11.75" Y="8.578" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BAAACAAAAAAgAAAAAAEAICoABAAIEFQAAAAACAAAAAg=</HashCode>
+      <HashCode>BAAAAQAAAAAAAQIAAAEAACAABAAIAFAAQAAACAgACAg=</HashCode>
       <FileName>MediaFile.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="General" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="Video" />
       <Property Name="Audio" />
       <Property Name="Text" />
       <Property Name="Image" />
       <Property Name="Other" />
       <Property Name="Menu" />
+      <Property Name="Video" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="MediaInfoDotNet.Models.GeneralStream">
