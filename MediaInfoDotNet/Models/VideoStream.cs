@@ -19,15 +19,16 @@ using MediaInfoLib;
 
 namespace MediaInfoDotNet.Models
 {
-    ///<summary>Represents a single video stream.</summary>
+	///<summary>Represents a single video stream.</summary>
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public sealed class VideoStream : BaseStreamCommons
-    {
-        ///<summary>VideoStream constructor</summary>
-        ///<param name="mediaInfo">A MediaInfo object.</param>
-        ///<param name="id">The MediaInfo ID for this audio stream.</param>
-        public VideoStream (MediaInfo mediaInfo, int id)
-            : base (mediaInfo, StreamKind.Video, id) {
-        }
+	{
+		///<summary>VideoStream constructor</summary>
+		///<param name="mediaInfo">A MediaInfo object.</param>
+		///<param name="id">The MediaInfo ID for this audio stream.</param>
+		public VideoStream(MediaInfo mediaInfo, int id)
+			: base(mediaInfo, StreamKind.Video, id) {
+		}
 
 		#region AllStreamsCommon
 
@@ -160,13 +161,13 @@ namespace MediaInfoDotNet.Models
 
 		#endregion
 
-        #region VideoImageCommon
+		#region VideoImageCommon
 
-        ///<summary>Ratio of pixel width to pixel height.</summary>
-        [Description ("Ratio of pixel width to pixel height."), Category ("VideoImageCommon")]
-        public float PixelAspectRatio { get { return this.pixelAspectRatio; } }
+		///<summary>Ratio of pixel width to pixel height.</summary>
+		[Description("Ratio of pixel width to pixel height."), Category("VideoImageCommon")]
+		public float PixelAspectRatio { get { return this.pixelAspectRatio; } }
 
-        #endregion
+		#endregion
 
 		#region VideoTextCommon
 

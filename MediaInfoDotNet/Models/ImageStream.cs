@@ -21,15 +21,16 @@ using MediaInfoLib;
 
 namespace MediaInfoDotNet.Models
 {
-    ///<summary>Represents a single image stream.</summary>
+	///<summary>Represents a single image stream.</summary>
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public sealed class ImageStream : BaseStreamCommons
-    {
-        ///<summary>ImageStream constructor.</summary>
-        ///<param name="mediaInfo">A MediaInfo object.</param>
-        ///<param name="id">The MediaInfo ID for this image stream.</param>
-        public ImageStream (MediaInfo mediaInfo, int id)
-            : base (mediaInfo, StreamKind.Image, id) {
-        }
+	{
+		///<summary>ImageStream constructor.</summary>
+		///<param name="mediaInfo">A MediaInfo object.</param>
+		///<param name="id">The MediaInfo ID for this image stream.</param>
+		public ImageStream(MediaInfo mediaInfo, int id)
+			: base(mediaInfo, StreamKind.Image, id) {
+		}
 
 		#region AllStreamsCommon
 

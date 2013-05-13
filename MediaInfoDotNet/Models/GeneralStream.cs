@@ -20,16 +20,16 @@ using MediaInfoLib;
 
 namespace MediaInfoDotNet.Models
 {
-    ///<summary>For inheritance by classes representing media files.</summary>
-//    [TypeConverter (typeof (ExpandableObjectConverter))]
+	///<summary>For inheritance by classes representing media files.</summary>
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public sealed class GeneralStream : BaseStreamCommons
-    {
-        ///<summary>GeneralStream constructor.</summary>
-        ///<param name="mediaInfo">A MediaInfo object.</param>
-        ///<param name="id">The MediaInfo ID for this audio stream.</param>
-        public GeneralStream (MediaInfo mediaInfo, int id)
-            : base (mediaInfo, StreamKind.General, id) {
-        }
+	{
+		///<summary>GeneralStream constructor.</summary>
+		///<param name="mediaInfo">A MediaInfo object.</param>
+		///<param name="id">The MediaInfo ID for this audio stream.</param>
+		public GeneralStream(MediaInfo mediaInfo, int id)
+			: base(mediaInfo, StreamKind.General, id) {
+		}
 
 		#region AllStreamsCommon
 
@@ -103,164 +103,164 @@ namespace MediaInfoDotNet.Models
 
 		#region General
 
-        string _encodedBy;
-        ///<summary>Name of the person/group who encoded this file.</summary>
-        [Description ("Name of the person/group who encoded this file."), Category ("General")]
-        public string EncodedBy {
-            get {
-                if (_encodedBy == null)
-                    _encodedBy = miGetString ("EncodedBy");
-                return _encodedBy;
-            }
-        }
+		string _encodedBy;
+		///<summary>Name of the person/group who encoded this file.</summary>
+		[Description("Name of the person/group who encoded this file."), Category("General")]
+		public string EncodedBy {
+			get {
+				if (_encodedBy == null)
+					_encodedBy = miGetString("EncodedBy");
+				return _encodedBy;
+			}
+		}
 
-        string _album;
-        ///<summary>Album name, if the file represents an album.</summary>
-        [Description ("Album name, if the file represents an album."), Category ("General")]
-        public string Album {
-            get {
-                if (_album == null)
-                    _album = miGetString ("Album");
-                return _album;
-            }
-        }
+		string _album;
+		///<summary>Album name, if the file represents an album.</summary>
+		[Description("Album name, if the file represents an album."), Category("General")]
+		public string Album {
+			get {
+				if (_album == null)
+					_album = miGetString("Album");
+				return _album;
+			}
+		}
 
-        string _iTunesGrouping = null;
-        ///<summary>The grouping used by iTunes.</summary>
-        [Description ("The grouping used by iTunes."), Category ("General")]
-        public string iTunesGrouping {
-            get {
-                if (_iTunesGrouping == null)
-                    _iTunesGrouping = miGetString ("Grouping");
-                return _iTunesGrouping;
-            }
-        }
+		string _iTunesGrouping = null;
+		///<summary>The grouping used by iTunes.</summary>
+		[Description("The grouping used by iTunes."), Category("General")]
+		public string iTunesGrouping {
+			get {
+				if (_iTunesGrouping == null)
+					_iTunesGrouping = miGetString("Grouping");
+				return _iTunesGrouping;
+			}
+		}
 
-        string _iTunesCompilation = null;
-        ///<summary>The compilation used by iTunes.</summary>
-        [Description ("The compilation used by iTunes."), Category ("General")]
-        public string iTunesCompilation {
-            get {
-                if (_iTunesCompilation == null)
-                    _iTunesCompilation = miGetString ("Compilation");
-                return _iTunesCompilation;
-            }
-        }
+		string _iTunesCompilation = null;
+		///<summary>The compilation used by iTunes.</summary>
+		[Description("The compilation used by iTunes."), Category("General")]
+		public string iTunesCompilation {
+			get {
+				if (_iTunesCompilation == null)
+					_iTunesCompilation = miGetString("Compilation");
+				return _iTunesCompilation;
+			}
+		}
 
-        int _bitRate = int.MinValue;
-        ///<summary>Overall bitrate of all streams.</summary>
-        [Description ("Overall bitrate of all streams."), Category ("General")]
-        public int BitRate {
-            get {
-                if (_bitRate == int.MinValue)
-                    _bitRate = miGetInt ("OverallBitRate");
-                return _bitRate;
-            }
-        }
+		int _bitRate = int.MinValue;
+		///<summary>Overall bitrate of all streams.</summary>
+		[Description("Overall bitrate of all streams."), Category("General")]
+		public int BitRate {
+			get {
+				if (_bitRate == int.MinValue)
+					_bitRate = miGetInt("OverallBitRate");
+				return _bitRate;
+			}
+		}
 
-        int _bitRateMaximum = int.MinValue;
-        ///<summary>Maximum overall bitrate of all streams.</summary>
-        [Description ("Maximum overall bitrate of all streams."), Category ("General")]
-        public int BitRateMaximum {
-            get {
-                if (_bitRateMaximum == int.MinValue)
-                    _bitRateMaximum = miGetInt ("OverallBitRate_Maximum");
-                return _bitRateMaximum;
-            }
-        }
+		int _bitRateMaximum = int.MinValue;
+		///<summary>Maximum overall bitrate of all streams.</summary>
+		[Description("Maximum overall bitrate of all streams."), Category("General")]
+		public int BitRateMaximum {
+			get {
+				if (_bitRateMaximum == int.MinValue)
+					_bitRateMaximum = miGetInt("OverallBitRate_Maximum");
+				return _bitRateMaximum;
+			}
+		}
 
-        int _bitRateMinimum = int.MinValue;
-        ///<summary>Minimum overall bitrate of all streams.</summary>
-        [Description ("Minimum overall bitrate of all streams."), Category ("General")]
-        public int BitRateMinimum {
-            get {
-                if (_bitRateMinimum == int.MinValue)
-                    _bitRateMinimum = miGetInt ("OverallBitRate_Minimum");
-                return _bitRateMinimum;
-            }
-        }
+		int _bitRateMinimum = int.MinValue;
+		///<summary>Minimum overall bitrate of all streams.</summary>
+		[Description("Minimum overall bitrate of all streams."), Category("General")]
+		public int BitRateMinimum {
+			get {
+				if (_bitRateMinimum == int.MinValue)
+					_bitRateMinimum = miGetInt("OverallBitRate_Minimum");
+				return _bitRateMinimum;
+			}
+		}
 
-        int _bitRateNominal = int.MinValue;
-        ///<summary>Maximum allowed overall bitrate of all streams.</summary>
-        [Description ("Maximum allowed overall bitrate of all streams."), Category ("General")]
-        public int BitRateNominal {
-            get {
-                if (_bitRateNominal == int.MinValue)
-                    _bitRateNominal = miGetInt ("OverallBitRate_Nominal");
-                return _bitRateNominal;
-            }
-        }
- 
+		int _bitRateNominal = int.MinValue;
+		///<summary>Maximum allowed overall bitrate of all streams.</summary>
+		[Description("Maximum allowed overall bitrate of all streams."), Category("General")]
+		public int BitRateNominal {
+			get {
+				if (_bitRateNominal == int.MinValue)
+					_bitRateNominal = miGetInt("OverallBitRate_Nominal");
+				return _bitRateNominal;
+			}
+		}
+
 		#endregion
 
-        #region General/Counts
- 
+		#region General/Counts
+
 		int _videoCount = int.MinValue;
-        ///<summary>Number of video streams in this file.</summary>
-        [Description ("Number of video streams."), Category ("General/Counts")]
-        public int VideoCount {
-            get {
-                if (_videoCount == int.MinValue)
-                    _videoCount = miGetInt ("VideoCount");
-                return _videoCount;
-            }
-        }
+		///<summary>Number of video streams in this file.</summary>
+		[Description("Number of video streams."), Category("General/Counts")]
+		public int VideoCount {
+			get {
+				if (_videoCount == int.MinValue)
+					_videoCount = miGetInt("VideoCount");
+				return _videoCount;
+			}
+		}
 
-        int _audioCount = int.MinValue;
-        ///<summary>Number of audio streams in this file.</summary>
-        [Description ("Number of audio streams."), Category ("General/Counts")]
-        public int AudioCount {
-            get {
-                if (_audioCount == int.MinValue)
-                    _audioCount = miGetInt ("AudioCount");
-                return _audioCount;
-            }
-        }
+		int _audioCount = int.MinValue;
+		///<summary>Number of audio streams in this file.</summary>
+		[Description("Number of audio streams."), Category("General/Counts")]
+		public int AudioCount {
+			get {
+				if (_audioCount == int.MinValue)
+					_audioCount = miGetInt("AudioCount");
+				return _audioCount;
+			}
+		}
 
-        int _textCount = int.MinValue;
-        ///<summary>Number of subtitles or other texts in this file.</summary>
-        [Description ("Number of text streams."), Category ("General/Counts")]
-        public int TextCount {
-            get {
-                if (_textCount == int.MinValue)
-                    _textCount = miGetInt ("TextCount");
-                return _textCount;
-            }
-        }
+		int _textCount = int.MinValue;
+		///<summary>Number of subtitles or other texts in this file.</summary>
+		[Description("Number of text streams."), Category("General/Counts")]
+		public int TextCount {
+			get {
+				if (_textCount == int.MinValue)
+					_textCount = miGetInt("TextCount");
+				return _textCount;
+			}
+		}
 
-        int _imageCount = int.MinValue;
-        ///<summary>Number of images in this file.</summary>
-        [Description ("Number of image streams."), Category ("General/Counts")]
-        public int ImageCount {
-            get {
-                if (_imageCount == int.MinValue)
-                    _imageCount = miGetInt ("ImageCount");
-                return _imageCount;
-            }
-        }
+		int _imageCount = int.MinValue;
+		///<summary>Number of images in this file.</summary>
+		[Description("Number of image streams."), Category("General/Counts")]
+		public int ImageCount {
+			get {
+				if (_imageCount == int.MinValue)
+					_imageCount = miGetInt("ImageCount");
+				return _imageCount;
+			}
+		}
 
-        int _chapterCount = int.MinValue;
-        ///<summary>Number of others in this file.</summary>
-        [Description ("Number of other streams."), Category ("General/Counts")]
-        public int ChapterCount {
-            get {
-                if (_chapterCount == int.MinValue)
-                    _chapterCount = miGetInt ("ChapterCount");
-                return _chapterCount;
-            }
-        }
+		int _chapterCount = int.MinValue;
+		///<summary>Number of others in this file.</summary>
+		[Description("Number of other streams."), Category("General/Counts")]
+		public int ChapterCount {
+			get {
+				if (_chapterCount == int.MinValue)
+					_chapterCount = miGetInt("ChapterCount");
+				return _chapterCount;
+			}
+		}
 
-        int _menuCount = int.MinValue;
-        ///<summary>Number of menu streams in this file.</summary>
-        [Description ("Number of menu streams."), Category ("General/Counts")]
-        public int MenuCount {
-            get {
-                if (_menuCount == int.MinValue)
-                    _menuCount = miGetInt ("MenuCount");
-                return _menuCount;
-            }
-        }
+		int _menuCount = int.MinValue;
+		///<summary>Number of menu streams in this file.</summary>
+		[Description("Number of menu streams."), Category("General/Counts")]
+		public int MenuCount {
+			get {
+				if (_menuCount == int.MinValue)
+					_menuCount = miGetInt("MenuCount");
+				return _menuCount;
+			}
+		}
 
 		#endregion
-    }
+	}
 }

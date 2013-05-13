@@ -66,14 +66,18 @@ namespace MediaInfoDotNet.WFClient
 				progressarg.keyword = "";
 				foreach (string line in lines) {
 					if (!String.IsNullOrEmpty(line)) {
-						if (line.IndexOf(':') > 0) {
-							string[] keyword = line.Split(':');
-							progressarg.keyword = keyword[0].Trim();
-							backgroundWorker1.ReportProgress(0, (object)progressarg);
-						}
-						else {
+						if (line.IndexOf(':') > 2) {   // Ignore : in (MENU)chapter positions
+							if (progressarg.category.StartsWith("Menu", StringComparison.InvariantCultureIgnoreCase) == false) {
+								string[] keyword = line.Split(new[] { ':' }, 2);
+								progressarg.keyword = keyword[0].Trim();
+								backgroundWorker1.ReportProgress(0, (object)progressarg);
+							}
+						} else {
 							progressarg.category = line.Trim();
 						}
+					} else {
+						progressarg.category = "";
+						progressarg.keyword = "";
 					}
 				}
 			}
@@ -90,26 +94,18 @@ namespace MediaInfoDotNet.WFClient
 
 			row.BeginEdit();
 			row.Keyword = arg.keyword;
-			string cat2 = arg.category + "Hits";
-			cat2 = cat2.Replace(" #10", "");
-			cat2 = cat2.Replace(" #11", "");
-			cat2 = cat2.Replace(" #12", "");
-			cat2 = cat2.Replace(" #13", "");
-			cat2 = cat2.Replace(" #14", "");
-			cat2 = cat2.Replace(" #15", "");
-			cat2 = cat2.Replace(" #1", "");
-			cat2 = cat2.Replace(" #2", "");
-			cat2 = cat2.Replace(" #3", "");
-			cat2 = cat2.Replace(" #4", "");
-			cat2 = cat2.Replace(" #5", "");
-			cat2 = cat2.Replace(" #6", "");
-			cat2 = cat2.Replace(" #7", "");
-			cat2 = cat2.Replace(" #8", "");
-			cat2 = cat2.Replace(" #9", "");
+
+			string cat2 = arg.category;
+			if (cat2.Contains(" ")) {
+				string[] xx = cat2.Split(' ');
+				cat2 = xx[0];
+			}
+			cat2 = cat2 + "Hits";
 			if (row.Table.Columns.Contains(cat2))
 				row[cat2] = (int)row[cat2] + 1;
 			else
 				System.Diagnostics.Debug.WriteLine("Booh");
+
 			row.EndEdit();
 			row.AcceptChanges();
 		}
@@ -117,6 +113,7 @@ namespace MediaInfoDotNet.WFClient
 		private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
 			System.Diagnostics.Debug.WriteLine("Booh");
 			dataSetHistogram.tabKeywords.AcceptChanges();
+
 			this.tabKeywordsBindingSource.DataSource = dataSetHistogram;
 			this.tabKeywordsBindingSource.DataMember = "tabKeywords";
 		}

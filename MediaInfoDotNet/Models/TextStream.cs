@@ -20,6 +20,7 @@ using System.ComponentModel;
 namespace MediaInfoDotNet.Models
 {
 	///<summary>Represents a single text stream.</summary>
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public sealed class TextStream : BaseStreamCommons
 	{
 		///<summary>TextStream constructor.</summary>

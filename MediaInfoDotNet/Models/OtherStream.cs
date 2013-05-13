@@ -20,15 +20,16 @@ using MediaInfoLib;
 
 namespace MediaInfoDotNet.Models
 {
-    ///<summary>Represents a single 'other' stream.</summary>
+	///<summary>Represents a single 'other' stream.</summary>
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public sealed class OtherStream : BaseStreamCommons
-    {
-        ///<summary>OtherStream constructor.</summary>
-        ///<param name="mediaInfo">A MediaInfo object.</param>
-        ///<param name="id">The MediaInfo ID for this other stream.</param>
-        public OtherStream (MediaInfo mediaInfo, int id)
-            : base (mediaInfo, StreamKind.Other, id) {
-        }
+	{
+		///<summary>OtherStream constructor.</summary>
+		///<param name="mediaInfo">A MediaInfo object.</param>
+		///<param name="id">The MediaInfo ID for this other stream.</param>
+		public OtherStream(MediaInfo mediaInfo, int id)
+			: base(mediaInfo, StreamKind.Other, id) {
+		}
 
 		#region AllStreamsCommon
 

@@ -20,12 +20,13 @@ using MediaInfoLib;
 
 namespace MediaInfoDotNet.Models
 {
-    ///<summary>Represents a single audio stream.</summary>
+	///<summary>Represents a single audio stream.</summary>
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public sealed class AudioStream : BaseStreamCommons
-    {
-        ///<summary>AudioStream constructor.</summary>
-        ///<param name="mediaInfo">A MediaInfo object.</param>
-        ///<param name="id">The MediaInfo ID for this audio stream.</param>
+	{
+		///<summary>AudioStream constructor.</summary>
+		///<param name="mediaInfo">A MediaInfo object.</param>
+		///<param name="id">The MediaInfo ID for this audio stream.</param>
 		public AudioStream(MediaInfo mediaInfo, int id)
 			: base(mediaInfo, StreamKind.Audio, id) {
 		}
@@ -161,30 +162,30 @@ namespace MediaInfoDotNet.Models
 
 		#endregion
 
-        #region Audio
+		#region Audio
 
-        int _channels = int.MinValue;
-        ///<summary>Number of audio channels, e.g. 6 for 5.1 audio.</summary>
-        [Description ("Number of audio channels, e.g. 6 for 5.1 audio."), Category ("Audio")]
-        public int Channels {
-            get {
-                if (_channels == int.MinValue)
-                    _channels = miGetInt ("Channel(s)");
-                return _channels;
-            }
-        }
+		int _channels = int.MinValue;
+		///<summary>Number of audio channels, e.g. 6 for 5.1 audio.</summary>
+		[Description("Number of audio channels, e.g. 6 for 5.1 audio."), Category("Audio")]
+		public int Channels {
+			get {
+				if (_channels == int.MinValue)
+					_channels = miGetInt("Channel(s)");
+				return _channels;
+			}
+		}
 
-        int _sampleRate = int.MinValue;
-        ///<summary>Audio sample rate, e.g. 44100 for CD audio.</summary>
-        [Description ("Audio sample rate, e.g. 44100 for CD audio."), Category ("Audio")]
-        public int SampleRate {
-            get {
-                if (_sampleRate == int.MinValue)
-                    _sampleRate = miGetInt ("SamplingRate");
-                return _sampleRate;
-            }
-        }
+		int _sampleRate = int.MinValue;
+		///<summary>Audio sample rate, e.g. 44100 for CD audio.</summary>
+		[Description("Audio sample rate, e.g. 44100 for CD audio."), Category("Audio")]
+		public int SampleRate {
+			get {
+				if (_sampleRate == int.MinValue)
+					_sampleRate = miGetInt("SamplingRate");
+				return _sampleRate;
+			}
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

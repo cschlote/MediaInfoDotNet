@@ -19,15 +19,16 @@ using System.ComponentModel;
 
 namespace MediaInfoDotNet.Models
 {
-    ///<summary>Represents a single menu stream.</summary>
+	///<summary>Represents a single menu stream.</summary>
+	[TypeConverter(typeof(ExpandableObjectConverter))]
 	public sealed class MenuStream : BaseStreamCommons
-    {
-        ///<summary>MenuStream constructor.</summary>
-        ///<param name="mediaInfo">A MediaInfo object which has already opened a media file.</param>
-        ///<param name="id">The MediaInfo ID for this menu stream.</param>
-        public MenuStream (MediaInfo mediaInfo, int id)
-            : base (mediaInfo, StreamKind.Menu, id) {
-        }
+	{
+		///<summary>MenuStream constructor.</summary>
+		///<param name="mediaInfo">A MediaInfo object which has already opened a media file.</param>
+		///<param name="id">The MediaInfo ID for this menu stream.</param>
+		public MenuStream(MediaInfo mediaInfo, int id)
+			: base(mediaInfo, StreamKind.Menu, id) {
+		}
 
 		#region AllStreamsCommon
 
