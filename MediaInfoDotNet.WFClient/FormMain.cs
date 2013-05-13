@@ -52,7 +52,6 @@ namespace MediaInfoDotNet.WFClient
 			if (rc == System.Windows.Forms.DialogResult.OK) {
 				Settings.Default.LastFile = openFileDialog1.FileName;
 				mf = new MediaFile(openFileDialog1.FileName);
-				//FIXME mediaFiles.Add (mf);
 				int rc2 = bindingSourceMediaFiles.Add(mf);
 				//listBox1.SelectedIndex = rc2;
 				bindingSourceMediaFiles.Position = rc2;
@@ -93,80 +92,35 @@ namespace MediaInfoDotNet.WFClient
 			}
 		}
 
-		private void loadGeneralStreamProps() {
-			MediaFile mf = selectedMediaFile; Object obj = null;
-			if (mf != null) obj = mf.General;
-			loadPropertyGridWithStream(null, propertyGridGeneral, 0, obj);
-		}
-		private void loadVideoStreamProps() {
-			MediaFile mf = selectedMediaFile;
-			if (mf != null) {
-				int val = (int)numericUpDownVideo.Value; Object obj = null;
-				if (mf.Video.ContainsKey(val))
-					obj = mf.Video[val];
-				loadPropertyGridWithStream(numericUpDownVideo, propertyGridVideo, mf.Video.Count, obj);
-			}
-		}
-		private void loadAudioStreamProps() {
-			MediaFile mf = selectedMediaFile;
-			if (mf != null) {
-				int val = (int)numericUpDownAudio.Value; Object obj = null;
-				if (mf.Audio.ContainsKey(val))
-					obj = mf.Audio[val];
-				loadPropertyGridWithStream(numericUpDownAudio, propertyGridAudio, mf.Audio.Count, obj);
-			}
-		}
-		private void loadTextStreamProps() {
-			MediaFile mf = selectedMediaFile;
-			if (mf != null) {
-				int val = (int)numericUpDownText.Value; Object obj = null;
-				if (mf.Text.ContainsKey(val))
-					obj = mf.Text[val];
-				loadPropertyGridWithStream(numericUpDownText, propertyGridText, mf.Text.Count, obj);
-			}
-		}
-		private void loadImageStreamProps() {
-			MediaFile mf = selectedMediaFile;
-			if (mf != null) {
-				int val = (int)numericUpDownImage.Value; Object obj = null;
-				if (mf.Image.ContainsKey(val))
-					obj = mf.Image[val];
-				loadPropertyGridWithStream(numericUpDownImage, propertyGridImage, mf.Image.Count, obj);
-			}
-		}
-		private void loadOtherStreamProps() {
-			MediaFile mf = selectedMediaFile;
-			if (mf != null) {
-				int val = (int)numericUpDownOther.Value; Object obj = null;
-				if (mf.Other.ContainsKey(val))
-					obj = mf.Other[val];
-				loadPropertyGridWithStream(numericUpDownOther, propertyGridOther, mf.Other.Count, obj);
-			}
-		}
-		private void loadMenuStreamProps() {
-			MediaFile mf = selectedMediaFile;
-			if (mf != null) {
-				int val = (int)numericUpDownMenus.Value; Object obj = null;
-				if (mf.Menu.ContainsKey(val))
-					obj = mf.Menu[val];
-				loadPropertyGridWithStream(numericUpDownMenus, propertyGridMenus, mf.Menu.Count, obj);
-			}
-		}
-		private MediaFile selectedMediaFile; //FIXME
 		private void loadAllStreamProps(MediaFile mf) {
-			selectedMediaFile = mf;
+			if (mf != null)
+				mf.General.miOption("Complete", checkBoxCOmpleteInform.Checked ? "Yes" : "");
+
 			textBoxInform.Text = mf != null ? mf.General.miInform() : "No data.";
+			textBoxInfoParms.Text = mf != null ? mf.General.miOption("Info_Parameters") : "No parameter data.";
+			textBoxCodecs.Text = mf != null ? mf.General.miOption("Info_Codecs") : "No codec data.";
+			labelMediaInfoLibVersion.Text = mf != null ? mf.General.miOption("Info_Version") : "No version data.";
+			labelUrl.Text = mf != null ? mf.General.miOption("Info_Url") : "No URL data.";
 
 			propertyGridMediaFile.SelectedObject = mf;
-			propertyGridMediaFile.Enabled = (mf == null) ? false : true;
-
-			loadGeneralStreamProps();
-			loadVideoStreamProps();
-			loadAudioStreamProps();
-			loadTextStreamProps();
-			loadImageStreamProps();
-			loadOtherStreamProps();
-			loadMenuStreamProps();
+			if (mf != null) {
+				propertyGridGeneral.SelectedObject = mf.General;
+				userControlStreamsViewerVideo.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Video);
+				userControlStreamsViewerAudio.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Audio);
+				userControlStreamsViewerText.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Text);
+				userControlStreamsViewerImage.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Image);
+				userControlStreamsViewerOther.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Other);
+				userControlStreamsViewerMenus.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Menu);
+			}
+			else {
+				propertyGridGeneral.SelectedObject = null;
+				userControlStreamsViewerVideo.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
+				userControlStreamsViewerAudio.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
+				userControlStreamsViewerText.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
+				userControlStreamsViewerImage.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
+				userControlStreamsViewerOther.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
+				userControlStreamsViewerMenus.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
+			}
 		}
 
 		#endregion
@@ -197,24 +151,6 @@ namespace MediaInfoDotNet.WFClient
 			}
 		}
 
-		private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
-			loadVideoStreamProps();
-		}
-		private void numericUpDown2_ValueChanged(object sender, EventArgs e) {
-			loadAudioStreamProps();
-		}
-		private void numericUpDown3_ValueChanged(object sender, EventArgs e) {
-			loadTextStreamProps();
-		}
-		private void numericUpDown4_ValueChanged(object sender, EventArgs e) {
-			loadImageStreamProps();
-		}
-		private void numericUpDown5_ValueChanged(object sender, EventArgs e) {
-			loadOtherStreamProps();
-		}
-		private void numericUpDown6_ValueChanged(object sender, EventArgs e) {
-			loadMenuStreamProps();
-		}
 		private void saveSettingsNowToolStripMenuItem_Click(object sender, EventArgs e) {
 			Settings.Default.Save();
 		}
@@ -256,10 +192,12 @@ namespace MediaInfoDotNet.WFClient
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
 			MediaFile mf = null;
 			if (bindingSourceMediaFiles.List.Count > 0 && listBox1.SelectedIndex >= 0 && listBox1.SelectedIndex < bindingSourceMediaFiles.List.Count) {
-				//mf = MediaFileCollection[listBox1.SelectedIndex];
 				mf = (MediaFile)listBox1.SelectedItem;
 			}
 			loadAllStreamProps(mf);
+		}
+		private void checkBoxCOmpleteInform_CheckedChanged(object sender, EventArgs e) {
+			listBox1_SelectedIndexChanged(sender, e);
 		}
 
 		#endregion
@@ -275,7 +213,7 @@ namespace MediaInfoDotNet.WFClient
 			foreach (string file in files) {
 				progress += progstep;
 				mf = new MediaFile(file);
-				if (mf.hasStreams) {
+				if (mf.HasStreams) {
 					backgroundWorker1.ReportProgress((int)(progress), mf);
 				} else {
 					backgroundWorker1.ReportProgress((int)(progress), null);
@@ -301,6 +239,7 @@ namespace MediaInfoDotNet.WFClient
 
 		private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
 			toolStripProgressBar1.Value = 100;
+			toolStripStatusLabel1.Text = "Adding files to listbox - for many files this can take a long time!";
 			listBox1.BeginUpdate();
 			foreach (MediaFile mf in newfiles)
 				bindingSourceMediaFiles.Add(mf);
@@ -314,6 +253,7 @@ namespace MediaInfoDotNet.WFClient
 		}
 
 		#endregion
+
 
 	}
 }

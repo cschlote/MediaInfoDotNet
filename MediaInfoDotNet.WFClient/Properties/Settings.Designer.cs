@@ -82,5 +82,65 @@ namespace MediaInfoDotNet.WFClient.Properties {
                 this["SaveOnExit"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20, 20")]
+        public global::System.Drawing.Point WinPositionHisto {
+            get {
+                return ((global::System.Drawing.Point)(this["WinPositionHisto"]));
+            }
+            set {
+                this["WinPositionHisto"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("600, 360")]
+        public global::System.Drawing.Size WinSizeHisto {
+            get {
+                return ((global::System.Drawing.Size)(this["WinSizeHisto"]));
+            }
+            set {
+                this["WinSizeHisto"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CompleteInform {
+            get {
+                return ((bool)(this["CompleteInform"]));
+            }
+            set {
+                this["CompleteInform"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("300, 300")]
+        public global::System.Drawing.Size WinSizePrefs {
+            get {
+                return ((global::System.Drawing.Size)(this["WinSizePrefs"]));
+            }
+            set {
+                this["WinSizePrefs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30, 30")]
+        public global::System.Drawing.Point WinPosPrefs {
+            get {
+                return ((global::System.Drawing.Point)(this["WinPosPrefs"]));
+            }
+            set {
+                this["WinPosPrefs"] = value;
+            }
+        }
     }
 }

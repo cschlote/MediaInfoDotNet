@@ -17,5 +17,20 @@
     <Setting Name="SaveOnExit" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="WinPositionHisto" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">20, 20</Value>
+    </Setting>
+    <Setting Name="WinSizeHisto" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">600, 360</Value>
+    </Setting>
+    <Setting Name="CompleteInform" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="WinSizePrefs" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">300, 300</Value>
+    </Setting>
+    <Setting Name="WinPosPrefs" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">30, 30</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

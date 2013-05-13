@@ -19,6 +19,11 @@ namespace MediaInfoDotNet.WFClient
 
 		private void FormPrefs_Load(object sender, EventArgs e) {
 			propertyGrid1.SelectedObject = Settings.Default;
+			this.Size = Settings.Default.WinSizePrefs;
+		}
+
+		private void FormPrefs_FormClosing(object sender, FormClosingEventArgs e) {
+			Settings.Default.WinSizePrefs = this.Size;
 		}
 	}
 }

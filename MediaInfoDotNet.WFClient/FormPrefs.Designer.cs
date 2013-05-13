@@ -57,9 +57,12 @@
 			this.ClientSize = new System.Drawing.Size(284, 262);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.propertyGrid1);
+			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::MediaInfoDotNet.WFClient.Properties.Settings.Default, "WinPosPrefs", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.Location = global::MediaInfoDotNet.WFClient.Properties.Settings.Default.WinPosPrefs;
 			this.MinimumSize = new System.Drawing.Size(300, 300);
 			this.Name = "FormPrefs";
 			this.Text = "Preferences";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrefs_FormClosing);
 			this.Load += new System.EventHandler(this.FormPrefs_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

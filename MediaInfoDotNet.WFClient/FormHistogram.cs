@@ -6,6 +6,7 @@
  * Histogramm of used tags 
  */
 
+using MediaInfoDotNet.WFClient.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -116,6 +117,14 @@ namespace MediaInfoDotNet.WFClient
 
 			this.tabKeywordsBindingSource.DataSource = dataSetHistogram;
 			this.tabKeywordsBindingSource.DataMember = "tabKeywords";
+		}
+
+		private void FormHistogram_FormClosing(object sender, FormClosingEventArgs e) {
+			Settings.Default.WinSizeHisto = this.Size;
+		}
+
+		private void FormHistogram_Load(object sender, EventArgs e) {
+			this.Size = Settings.Default.WinSizeHisto;
 		}
 	}
 }

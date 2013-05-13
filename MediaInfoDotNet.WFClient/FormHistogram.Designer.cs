@@ -28,24 +28,23 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHistogram));
 			this.tabKeywordsBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+			this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+			this.tabKeywordsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.dataSetHistogram = new MediaInfoDotNet.WFClient.DataSetHistogram();
+			this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+			this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
 			this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-			this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
 			this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
 			this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-			this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
 			this.tabKeywordsBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-			this.tabKeywordsDataGridView = new System.Windows.Forms.DataGridView();
 			this.toolStripButtonStartAnalysis = new System.Windows.Forms.ToolStripButton();
-			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-			this.tabKeywordsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.dataSetHistogram = new MediaInfoDotNet.WFClient.DataSetHistogram();
+			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+			this.tabKeywordsDataGridView = new System.Windows.Forms.DataGridView();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,13 +53,14 @@
 			this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			((System.ComponentModel.ISupportInitialize)(this.tabKeywordsBindingNavigator)).BeginInit();
 			this.tabKeywordsBindingNavigator.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tabKeywordsDataGridView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabKeywordsBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataSetHistogram)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tabKeywordsDataGridView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabKeywordsBindingNavigator
@@ -95,6 +95,42 @@
 			this.tabKeywordsBindingNavigator.TabIndex = 0;
 			this.tabKeywordsBindingNavigator.Text = "bindingNavigator1";
 			// 
+			// bindingNavigatorAddNewItem
+			// 
+			this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+			this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+			this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorAddNewItem.Text = "Add new";
+			// 
+			// tabKeywordsBindingSource
+			// 
+			this.tabKeywordsBindingSource.DataMember = "tabKeywords";
+			this.tabKeywordsBindingSource.DataSource = this.dataSetHistogram;
+			// 
+			// dataSetHistogram
+			// 
+			this.dataSetHistogram.DataSetName = "DataSetHistogram";
+			this.dataSetHistogram.Locale = new System.Globalization.CultureInfo("en");
+			this.dataSetHistogram.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// bindingNavigatorCountItem
+			// 
+			this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+			this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+			this.bindingNavigatorCountItem.Text = "of {0}";
+			this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+			// 
+			// bindingNavigatorDeleteItem
+			// 
+			this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+			this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+			this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+			this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+			this.bindingNavigatorDeleteItem.Text = "Delete";
+			// 
 			// bindingNavigatorMoveFirstItem
 			// 
 			this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -127,16 +163,9 @@
 			this.bindingNavigatorPositionItem.Text = "0";
 			this.bindingNavigatorPositionItem.ToolTipText = "Current position";
 			// 
-			// bindingNavigatorCountItem
-			// 
-			this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-			this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-			this.bindingNavigatorCountItem.Text = "of {0}";
-			this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-			// 
 			// bindingNavigatorSeparator1
 			// 
-			this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+			this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
 			this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
 			// 
 			// bindingNavigatorMoveNextItem
@@ -159,26 +188,8 @@
 			// 
 			// bindingNavigatorSeparator2
 			// 
-			this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+			this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
 			this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-			// 
-			// bindingNavigatorAddNewItem
-			// 
-			this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-			this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-			this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-			this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-			this.bindingNavigatorAddNewItem.Text = "Add new";
-			// 
-			// bindingNavigatorDeleteItem
-			// 
-			this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-			this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-			this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-			this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-			this.bindingNavigatorDeleteItem.Text = "Delete";
 			// 
 			// tabKeywordsBindingNavigatorSaveItem
 			// 
@@ -188,6 +199,23 @@
 			this.tabKeywordsBindingNavigatorSaveItem.Text = "Load Data";
 			this.tabKeywordsBindingNavigatorSaveItem.ToolTipText = "Load Data";
 			this.tabKeywordsBindingNavigatorSaveItem.Click += new System.EventHandler(this.tabKeywordsBindingNavigatorLoadItem_Click);
+			// 
+			// toolStripButtonStartAnalysis
+			// 
+			this.toolStripButtonStartAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStartAnalysis.Image")));
+			this.toolStripButtonStartAnalysis.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButtonStartAnalysis.Name = "toolStripButtonStartAnalysis";
+			this.toolStripButtonStartAnalysis.Size = new System.Drawing.Size(113, 22);
+			this.toolStripButtonStartAnalysis.Text = "Build Histogram";
+			this.toolStripButtonStartAnalysis.Click += new System.EventHandler(this.toolStripButtonStartAnalysis_Click);
+			// 
+			// toolStripButton1
+			// 
+			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+			this.toolStripButton1.Name = "toolStripButton1";
+			this.toolStripButton1.Size = new System.Drawing.Size(78, 22);
+			this.toolStripButton1.Text = "Save Data";
+			this.toolStripButton1.Click += new System.EventHandler(this.tabKeywordsBindingNavigatorSaveItem_Click);
 			// 
 			// tabKeywordsDataGridView
 			// 
@@ -210,33 +238,6 @@
 			this.tabKeywordsDataGridView.Name = "tabKeywordsDataGridView";
 			this.tabKeywordsDataGridView.Size = new System.Drawing.Size(748, 355);
 			this.tabKeywordsDataGridView.TabIndex = 1;
-			// 
-			// toolStripButtonStartAnalysis
-			// 
-			this.toolStripButtonStartAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStartAnalysis.Image")));
-			this.toolStripButtonStartAnalysis.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButtonStartAnalysis.Name = "toolStripButtonStartAnalysis";
-			this.toolStripButtonStartAnalysis.Size = new System.Drawing.Size(113, 22);
-			this.toolStripButtonStartAnalysis.Text = "Build Histogram";
-			this.toolStripButtonStartAnalysis.Click += new System.EventHandler(this.toolStripButtonStartAnalysis_Click);
-			// 
-			// backgroundWorker1
-			// 
-			this.backgroundWorker1.WorkerReportsProgress = true;
-			this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-			this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-			this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-			// 
-			// tabKeywordsBindingSource
-			// 
-			this.tabKeywordsBindingSource.DataMember = "tabKeywords";
-			this.tabKeywordsBindingSource.DataSource = this.dataSetHistogram;
-			// 
-			// dataSetHistogram
-			// 
-			this.dataSetHistogram.DataSetName = "DataSetHistogram";
-			this.dataSetHistogram.Locale = new System.Globalization.CultureInfo("en");
-			this.dataSetHistogram.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// dataGridViewTextBoxColumn1
 			// 
@@ -302,13 +303,12 @@
 			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
 			this.dataGridViewTextBoxColumn8.Width = 59;
 			// 
-			// toolStripButton1
+			// backgroundWorker1
 			// 
-			this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-			this.toolStripButton1.Name = "toolStripButton1";
-			this.toolStripButton1.Size = new System.Drawing.Size(78, 22);
-			this.toolStripButton1.Text = "Save Data";
-			this.toolStripButton1.Click += new System.EventHandler(this.tabKeywordsBindingNavigatorSaveItem_Click);
+			this.backgroundWorker1.WorkerReportsProgress = true;
+			this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+			this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+			this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
 			// 
 			// openFileDialog1
 			// 
@@ -321,15 +321,19 @@
 			this.ClientSize = new System.Drawing.Size(748, 380);
 			this.Controls.Add(this.tabKeywordsDataGridView);
 			this.Controls.Add(this.tabKeywordsBindingNavigator);
+			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::MediaInfoDotNet.WFClient.Properties.Settings.Default, "WinPositionHisto", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.Location = global::MediaInfoDotNet.WFClient.Properties.Settings.Default.WinPositionHisto;
 			this.Name = "FormHistogram";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "FormHistogram";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHistogram_FormClosing);
+			this.Load += new System.EventHandler(this.FormHistogram_Load);
 			((System.ComponentModel.ISupportInitialize)(this.tabKeywordsBindingNavigator)).EndInit();
 			this.tabKeywordsBindingNavigator.ResumeLayout(false);
 			this.tabKeywordsBindingNavigator.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tabKeywordsDataGridView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tabKeywordsBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataSetHistogram)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tabKeywordsDataGridView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
