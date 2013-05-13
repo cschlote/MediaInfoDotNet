@@ -50,7 +50,7 @@ namespace MediaInfoDotNet.Models
         protected MediaInfo mediaInfo { get; private set; }
 
         ///<summary>MediaInfo stream kind.</summary>
-        protected StreamKind kind = StreamKind.None;
+        protected StreamKind kind { get; private set; }
 
         ///<summary>MediaInfo ID for this stream kind.</summary>
         protected int id { get; private set; }
@@ -134,7 +134,8 @@ namespace MediaInfoDotNet.Models
         }
 
         #endregion
-        #region MediaInfo Version check and Version info
+        
+		#region MediaInfo Version check and Version info
         /// <summary>Cached return value for option Info_Version. Represents
         /// the MediaInfoLib Version</summary>
         protected string miLibVersion = null;

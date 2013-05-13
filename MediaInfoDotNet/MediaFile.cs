@@ -75,8 +75,8 @@ namespace MediaInfoDotNet
 		[Description ("Determine, if there are any media streams in a file"), Category ("Streams")]
 		public bool hasStreams {
 			get {
-                return General.videoCount > 0 || General.audioCount > 0 || General.textCount > 0 ||
-                    General.chapterCount > 0 || General.imageCount > 0 || General.menuCount > 0;
+                return General.VideoCount > 0 || General.AudioCount > 0 || General.TextCount > 0 ||
+                    General.ChapterCount > 0 || General.ImageCount > 0 || General.MenuCount > 0;
 			}
 		}
 
@@ -86,8 +86,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, VideoStream> Video {
             get {
                 if (_Video == null) {
-                    _Video = new Dictionary<int, VideoStream> (General.videoCount);
-                    for (int id = 0; id < General.videoCount; ++id) {
+					_Video = new Dictionary<int, VideoStream>(General.VideoCount);
+					for (int id = 0; id < General.VideoCount; ++id) {
                         _Video.Add (id, new VideoStream (mediaInfo, id));
                     }
                 }
@@ -101,8 +101,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, AudioStream> Audio {
             get {
                 if (_Audio == null) {
-                    _Audio = new Dictionary<int, AudioStream> (General.audioCount);
-                    for (int id = 0; id < General.audioCount; ++id) {
+                    _Audio = new Dictionary<int, AudioStream> (General.AudioCount);
+					for (int id = 0; id < General.AudioCount; ++id) {
                         _Audio.Add (id, new AudioStream (mediaInfo, id));
                     }
                 }
@@ -117,8 +117,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, TextStream> Text {
             get {
                 if (_Text == null) {
-                    _Text = new Dictionary<int, TextStream> (General.textCount);
-                    for (int id = 0; id < General.textCount; ++id) {
+                    _Text = new Dictionary<int, TextStream> (General.TextCount);
+                    for (int id = 0; id < General.TextCount; ++id) {
                         _Text.Add (id, new TextStream (mediaInfo, id));
                     }
                 }
@@ -133,8 +133,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, ImageStream> Image {
             get {
                 if (_Image == null) {
-                    _Image = new Dictionary<int, ImageStream> (General.imageCount);
-                    for (int id = 0; id < General.imageCount; ++id) {
+                    _Image = new Dictionary<int, ImageStream> (General.ImageCount);
+                    for (int id = 0; id < General.ImageCount; ++id) {
                         _Image.Add (id, new ImageStream (mediaInfo, id));
                     }
                 }
@@ -149,8 +149,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, OtherStream> Other {
             get {
                 if (_Other == null) {
-                    _Other = new Dictionary<int, OtherStream> (General.chapterCount);
-                    for (int id = 0; id < General.chapterCount; ++id) {
+                    _Other = new Dictionary<int, OtherStream> (General.ChapterCount);
+                    for (int id = 0; id < General.ChapterCount; ++id) {
                         _Other.Add (id, new OtherStream (mediaInfo, id));
                     }
                 }
@@ -165,8 +165,8 @@ namespace MediaInfoDotNet
         public IDictionary<int, MenuStream> Menu {
             get {
                 if (_Menu == null) {
-                    _Menu = new Dictionary<int, MenuStream> (General.menuCount);
-                    for (int id = 0; id < General.menuCount; ++id) {
+                    _Menu = new Dictionary<int, MenuStream> (General.MenuCount);
+                    for (int id = 0; id < General.MenuCount; ++id) {
                         _Menu.Add (id, new MenuStream (mediaInfo, id));
                     }
                 }

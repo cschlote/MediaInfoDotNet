@@ -1,26 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MediaInfoDotNet.MediaFile">
-    <Position X="4" Y="5.75" Width="1.5" />
+    <Position X="4" Y="6.5" Width="1.5" />
     <AssociationLine Name="General" Type="MediaInfoDotNet.Models.GeneralStream" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="4.75" Y="9.295" />
-        <Point X="4.75" Y="9.522" />
-        <Point X="15.25" Y="9.522" />
+        <Point X="4.75" Y="10.045" />
+        <Point X="4.75" Y="10.42" />
+        <Point X="15.25" Y="10.42" />
         <Point X="15.25" Y="8.194" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Other" Type="MediaInfoDotNet.Models.OtherStream" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="5.5" Y="6.106" />
-        <Point X="6.5" Y="6.106" />
-        <Point X="6.5" Y="3.578" />
-      </Path>
-    </AssociationLine>
-    <AssociationLine Name="Menu" Type="MediaInfoDotNet.Models.MenuStream" FixedFromPoint="true">
-      <Path>
-        <Point X="4.75" Y="5.75" />
-        <Point X="4.75" Y="4.54" />
+        <Point X="4.75" Y="6.5" />
+        <Point X="4.75" Y="6.125" />
+        <Point X="5.104" Y="6.125" Type="JumpStart" />
+        <Point X="5.271" Y="6.125" Type="JumpEnd" />
+        <Point X="6.5" Y="6.125" />
+        <Point X="6.5" Y="3.319" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -44,16 +41,16 @@
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
-    <InheritanceLine Type="MediaInfoDotNet.Models.Media" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <InheritanceLine Type="MediaInfoDotNet.Models.BaseStreamCommons" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="17" Y="1.25" />
-        <Point X="17" Y="1.045" />
-        <Point X="15.562" Y="1.045" />
-        <Point X="15.562" Y="1.25" />
+        <Point X="1.5" Y="2" />
+        <Point X="1.5" Y="0.297" />
+        <Point X="15.25" Y="0.297" />
+        <Point X="15.25" Y="1.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>IAAZAEINwAAgAGAIAICCKIgAEJIAoAYMAgIAAmAxAgA=</HashCode>
+      <HashCode>ABEbACAEgAgCiGAgAACAAIAAABoIoBAEYgEGCkAiQIA=</HashCode>
       <FileName>Models\GeneralStream.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -70,31 +67,31 @@
   </Class>
   <Class Name="MediaInfoDotNet.Models.AudioStream">
     <Position X="11" Y="1.25" Width="1.5" />
-    <InheritanceLine Type="MediaInfoDotNet.Models.Media" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <InheritanceLine Type="MediaInfoDotNet.Models.BaseStreamCommons" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="17.438" Y="1.25" />
-        <Point X="17.438" Y="0.916" />
-        <Point X="11.688" Y="0.916" />
+        <Point X="1.75" Y="2" />
+        <Point X="1.75" Y="0.558" />
+        <Point X="11.688" Y="0.558" />
         <Point X="11.688" Y="1.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AEAJQEYAQAAgBEgKIIECKAgAEIAAIAYAEAAQACAgAAA=</HashCode>
+      <HashCode>BEADACAACAgCgEAgMAQAAAAhAAgIABBA4CAGAAAAUIA=</HashCode>
       <FileName>Models\AudioStream.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MediaInfoDotNet.Models.ImageStream">
     <Position X="7.5" Y="1.25" Width="1.5" />
-    <InheritanceLine Type="MediaInfoDotNet.Models.Media" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <InheritanceLine Type="MediaInfoDotNet.Models.BaseStreamCommons" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="17.75" Y="1.25" />
-        <Point X="17.75" Y="0.672" />
-        <Point X="8.25" Y="0.672" />
-        <Point X="8.25" Y="1.25" />
+        <Point X="2" Y="2" />
+        <Point X="2" Y="0.8" />
+        <Point X="8.375" Y="0.8" />
+        <Point X="8.375" Y="1.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>ABAJAAAAQAAgBEwKQIAAKAAAEAAAAAQAEAAAACAAAAA=</HashCode>
+      <HashCode>AAABACAQDAgAgEAgEAQAAEAAAAgAABAAoAAEAAAAQAA=</HashCode>
       <FileName>Models\ImageStream.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -103,16 +100,16 @@
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
-    <InheritanceLine Type="MediaInfoDotNet.Models.Media" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <InheritanceLine Type="MediaInfoDotNet.Models.BaseStreamCommons" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="17.25" Y="1.25" />
-        <Point X="17.25" Y="1" />
-        <Point X="13.5" Y="1" />
-        <Point X="13.5" Y="1.25" />
+        <Point X="1.625" Y="2" />
+        <Point X="1.625" Y="0.415" />
+        <Point X="13.562" Y="0.415" />
+        <Point X="13.562" Y="1.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>ABAJQEIAQAAgBEwKRIECKAgAEIAAIAYAEAAAACAgAAA=</HashCode>
+      <HashCode>AAADACAQDAgCgEAgEAQAQEAhAAgIABBA4CAGAAAAQIA=</HashCode>
       <FileName>Models\VideoStream.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -121,16 +118,16 @@
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
-    <InheritanceLine Type="MediaInfoDotNet.Models.Media" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <InheritanceLine Type="MediaInfoDotNet.Models.BaseStreamCommons" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="18" Y="1.25" />
-        <Point X="18" Y="0.394" />
-        <Point X="4.75" Y="0.394" />
-        <Point X="4.75" Y="1.25" />
+        <Point X="2.25" Y="2" />
+        <Point X="2.25" Y="1.127" />
+        <Point X="4.938" Y="1.127" />
+        <Point X="4.938" Y="1.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAIAAIAQAAAAEgIAAAACAgAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAACAgCAEAAAAAAAAAAAAgIABAAAAAAAAAAQAA=</HashCode>
       <FileName>Models\MenuStream.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -139,16 +136,16 @@
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
-    <InheritanceLine Type="MediaInfoDotNet.Models.Media" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <InheritanceLine Type="MediaInfoDotNet.Models.BaseStreamCommons" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="17.875" Y="1.25" />
-        <Point X="17.875" Y="0.508" />
-        <Point X="6.562" Y="0.508" />
+        <Point X="2.125" Y="2" />
+        <Point X="2.125" Y="0.944" />
+        <Point X="6.562" Y="0.944" />
         <Point X="6.562" Y="1.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAIAAAAQAAAAEAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAgAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Models\OtherStream.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -157,16 +154,16 @@
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
-    <InheritanceLine Type="MediaInfoDotNet.Models.Media" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <InheritanceLine Type="MediaInfoDotNet.Models.BaseStreamCommons" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="17.625" Y="1.25" />
-        <Point X="17.625" Y="0.796" />
-        <Point X="10" Y="0.796" />
+        <Point X="1.875" Y="2" />
+        <Point X="1.875" Y="0.711" />
+        <Point X="10" Y="0.711" />
         <Point X="10" Y="1.25" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>ABAJQEIAQAAgBEwKQIECKAgAEIAAIAYAEAAAACAgAAA=</HashCode>
+      <HashCode>AAADACAQDAgCgEAgEAQAAEAhAAgIABBA4CAGAAAAQIA=</HashCode>
       <FileName>Models\TextStream.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -190,6 +187,24 @@
       <FileName>MediaInfoDLL.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MediaInfoDotNet.Models.BaseStreamCommons">
+    <Position X="1" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="MediaInfoDotNet.Models.Media" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="17.25" Y="1.25" />
+        <Point X="17.25" Y="0.2" />
+        <Point X="1.188" Y="0.2" />
+        <Point X="1.188" Y="2" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>IBgBQEIE4ICgVGwKRJECCAwAEJJIIAYEmJgAAyIoAEA=</HashCode>
+      <FileName>Models\BaseStreamCommons.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

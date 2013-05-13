@@ -69,7 +69,7 @@
     <Compile Include="Models\OtherStream.cs" />
     <Compile Include="Models\GeneralStream.cs" />
     <Compile Include="Models\ImageStream.cs" />
-    <Compile Include="Models\MultiStreamCommon.cs" />
+    <Compile Include="Models\BaseStreamCommons.cs" />
     <Compile Include="Models\MenuStream.cs" />
     <Compile Include="Models\Media.cs" />
     <Compile Include="Models\TextStream.cs" />

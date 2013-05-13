@@ -22,94 +22,91 @@ namespace MediaInfoDotNet.Models
 {
     ///<summary>For inheritance by classes representing media files.</summary>
 //    [TypeConverter (typeof (ExpandableObjectConverter))]
-    public sealed class GeneralStream : Media
+	public sealed class GeneralStream : BaseStreamCommons
     {
-        readonly MultiStreamCommon streamCommon;
-
         ///<summary>GeneralStream constructor.</summary>
         ///<param name="mediaInfo">A MediaInfo object.</param>
         ///<param name="id">The MediaInfo ID for this audio stream.</param>
         public GeneralStream (MediaInfo mediaInfo, int id)
             : base (mediaInfo, StreamKind.General, id) {
-            streamCommon = new MultiStreamCommon (mediaInfo, kind, id);
         }
 
-        #region AllStreamsCommon
+		#region AllStreamsCommon
 
-        ///<summary>The format or container of this file or stream.</summary>
-        [Description ("The format or container of this file or stream."), Category ("AllStreamCommon")]
-        public string format { get { return streamCommon.format; } }
+		///<summary>The format or container of this file or stream.</summary>
+		[Description("The format or container of this file or stream."), Category("AllStreamsCommon")]
+		public string Format { get { return this.format; } }
 
-        ///<summary>The title of this stream.</summary>
-        [Description ("The title of this stream."), Category ("AllStreamCommon")]
-        public string title { get { return streamCommon.title; } }
+		///<summary>The title of this stream.</summary>
+		[Description("The title of this stream."), Category("AllStreamsCommon")]
+		public string Title { get { return this.title; } }
 
-        ///<summary>This stream's globally unique ID (GUID).</summary>
-        [Description ("This stream's globally unique ID (GUID)."), Category ("AllStreamCommon")]
-        public string uniqueId { get { return streamCommon.uniqueId; } }
+		///<summary>This stream's globally unique ID (GUID).</summary>
+		[Description("This stream's globally unique ID (GUID)."), Category("AllStreamsCommon")]
+		public string UniqueId { get { return this.uniqueId; } }
 
-        #endregion
+		#endregion
 
-        #region GeneralVideoAudioTextImageCommon
+		#region GeneralVideoAudioTextImageMenuCommon
 
-        ///<summary>Date and time stream encoding completed.</summary>
-        [Description ("Date and time stream encoding completed."), Category ("GeneralVideoAudioTextImageCommon")]
-        public DateTime encodedDate { get { return streamCommon.encodedDate; } }
+		///<summary>Codec ID available from some codecs.</summary>
+		///<example>AAC audio:A_AAC, h.264 video:V_MPEG4/ISO/AVC</example>
+		[Description("Codec ID available from some codecs."), Category("GeneralVideoAudioTextImageMenuCommon")]
+		public string CodecId { get { return this.codecId; } }
 
-        ///<summary>Software used to encode this stream.</summary>
-        [Description ("Software used to encode this stream."), Category ("GeneralVideoAudioTextImageCommon")]
-        public string encodedLibrary { get { return streamCommon.encoderLibrary; } }
+		///<summary>Common name of the codec.</summary>
+		[Description("Common name of the codec."), Category("GeneralVideoAudioTextImageMenuCommon")]
+		public string CodecCommonName { get { return this.codecCommonName; } }
 
-        ///<summary>Media type of stream, formerly called MIME type.</summary>
-        [Description (">Media type of stream, formerly called MIME type."), Category ("GeneralVideoAudioTextImageCommon")]
-        public string internetMediaType { get { return streamCommon.internetMediaType; } }
+		#endregion
 
-        ///<summary>Size in bytes.</summary>
-        [Description ("Size in bytes."), Category ("GeneralVideoAudioTextImageCommon")]
-        public long size { get { return streamCommon.size; } }
+		#region GeneralVideoAudioTextImageCommon
 
-        ///<summary>Encoder settings used for encoding this stream.
-        ///String format: name=value / name=value / ...</summary>
-        [Description ("Raw encoder settings used for encoding this stream."), Category ("GeneralVideoAudioTextImageCommon")]
-        public string encoderSettingsRaw { get { return streamCommon.encoderSettingsRaw; } }
+		///<summary>Date and time stream encoding completed.</summary>
+		[Description("Date and time stream encoding completed."), Category("GeneralVideoAudioTextImageCommon")]
+		public DateTime EncodedDate { get { return this.encodedDate; } }
 
-        ///<summary>Encoder settings used for encoding this stream.</summary>
-        [Description ("Encoder settings used for encoding this stream."), Category ("GeneralVideoAudioTextImageCommon")]
-        public IDictionary<string, string> encoderSettings { get { return streamCommon.encoderSettings; } }
+		///<summary>Software used to encode this stream.</summary>
+		[Description("Software used to encode this stream."), Category("GeneralVideoAudioTextImageCommon")]
+		public string EncodedLibrary { get { return this.encoderLibrary; } }
 
-        #endregion
+		///<summary>Media type of stream, formerly called MIME type.</summary>
+		[Description("Media type of stream, formerly called MIME type."), Category("GeneralVideoAudioTextImageCommon")]
+		public string InternetMediaType { get { return this.internetMediaType; } }
 
-        #region GeneralVideoAudioTextImageMenuCommon
+		///<summary>Size in bytes.</summary>
+		[Description("Size in bytes."), Category("GeneralVideoAudioTextImageCommon")]
+		public long Size { get { return this.size; } }
 
-        ///<summary>Codec ID available from some codecs.</summary>
-        ///<example>AAC audio:A_AAC, h.264 video:V_MPEG4/ISO/AVC</example>
-        [Description ("Codec ID available from some codecs."), Category ("GeneralVideoAudioTextImageMenuCommon")]
-        public string codecId { get { return streamCommon.codecId; } }
+		///<summary>Encoder settings used for encoding this stream.
+		///String format: name=value / name=value / ...</summary>
+		[Description("Encoder settings used for encoding this stream. (Raw String)"), Category("GeneralVideoAudioTextImageCommon")]
+		public string EncoderSettingsRaw { get { return this.encoderSettingsRaw; } }
 
-        ///<summary>Common name of the codec.</summary>
-        [Description ("Common name of the codec."), Category ("GeneralVideoAudioTextImageMenuCommon")]
-        public string codecCommonName { get { return streamCommon.codecCommonName; } }
+		///<summary>Encoder settings used for encoding this stream (as dictionary).</summary>
+		[Description("Encoder settings used for encoding this stream. (Dictionary)"), Category("GeneralVideoAudioTextImageCommon")]
+		public IDictionary<string, string> EncoderSettings { get { return this.encoderSettings; } }
 
-        #endregion
+		#endregion
 
-        #region GeneralVideoAudioTextMenu
+		#region GeneralVideoAudioTextMenu
 
-        ///<summary>Stream delay (e.g. to sync audio/video) in ms.</summary>
-        [Description ("Stream delay (e.g. to sync audio/video) in ms."), Category ("GeneralVideoAudioTextMenu")]
-        public int delay { get { return streamCommon.delay; } }
+		///<summary>Stream delay (e.g. to sync audio/video) in ms.</summary>
+		[Description("Stream delay (e.g. to sync audio/video) in ms."), Category("GeneralVideoAudioTextMenu")]
+		public int Delay { get { return this.delay; } }
 
-        ///<summary>Duration of the stream in milliseconds.</summary>
-        [Description ("Duration of the stream in milliseconds."), Category ("GeneralVideoAudioTextMenu")]
-        public int duration { get { return streamCommon.duration; } }
+		///<summary>Duration of the stream in milliseconds.</summary>
+		[Description("Duration of the stream in milliseconds."), Category("GeneralVideoAudioTextMenu")]
+		public int Duration { get { return this.duration; } }
 
-        #endregion
+		#endregion
 
-        #region General
+		#region General
 
         string _encodedBy;
         ///<summary>Name of the person/group who encoded this file.</summary>
         [Description ("Name of the person/group who encoded this file."), Category ("General")]
-        public string encodedBy {
+        public string EncodedBy {
             get {
                 if (_encodedBy == null)
                     _encodedBy = miGetString ("EncodedBy");
@@ -120,7 +117,7 @@ namespace MediaInfoDotNet.Models
         string _album;
         ///<summary>Album name, if the file represents an album.</summary>
         [Description ("Album name, if the file represents an album."), Category ("General")]
-        public string album {
+        public string Album {
             get {
                 if (_album == null)
                     _album = miGetString ("Album");
@@ -153,7 +150,7 @@ namespace MediaInfoDotNet.Models
         int _bitRate = int.MinValue;
         ///<summary>Overall bitrate of all streams.</summary>
         [Description ("Overall bitrate of all streams."), Category ("General")]
-        public int bitRate {
+        public int BitRate {
             get {
                 if (_bitRate == int.MinValue)
                     _bitRate = miGetInt ("OverallBitRate");
@@ -164,7 +161,7 @@ namespace MediaInfoDotNet.Models
         int _bitRateMaximum = int.MinValue;
         ///<summary>Maximum overall bitrate of all streams.</summary>
         [Description ("Maximum overall bitrate of all streams."), Category ("General")]
-        public int bitRateMaximum {
+        public int BitRateMaximum {
             get {
                 if (_bitRateMaximum == int.MinValue)
                     _bitRateMaximum = miGetInt ("OverallBitRate_Maximum");
@@ -175,7 +172,7 @@ namespace MediaInfoDotNet.Models
         int _bitRateMinimum = int.MinValue;
         ///<summary>Minimum overall bitrate of all streams.</summary>
         [Description ("Minimum overall bitrate of all streams."), Category ("General")]
-        public int bitRateMinimum {
+        public int BitRateMinimum {
             get {
                 if (_bitRateMinimum == int.MinValue)
                     _bitRateMinimum = miGetInt ("OverallBitRate_Minimum");
@@ -186,20 +183,22 @@ namespace MediaInfoDotNet.Models
         int _bitRateNominal = int.MinValue;
         ///<summary>Maximum allowed overall bitrate of all streams.</summary>
         [Description ("Maximum allowed overall bitrate of all streams."), Category ("General")]
-        public int bitRateNominal {
+        public int BitRateNominal {
             get {
                 if (_bitRateNominal == int.MinValue)
                     _bitRateNominal = miGetInt ("OverallBitRate_Nominal");
                 return _bitRateNominal;
             }
         }
-        #endregion
+ 
+		#endregion
 
         #region General/Counts
-        int _videoCount = int.MinValue;
+ 
+		int _videoCount = int.MinValue;
         ///<summary>Number of video streams in this file.</summary>
         [Description ("Number of video streams."), Category ("General/Counts")]
-        public int videoCount {
+        public int VideoCount {
             get {
                 if (_videoCount == int.MinValue)
                     _videoCount = miGetInt ("VideoCount");
@@ -210,7 +209,7 @@ namespace MediaInfoDotNet.Models
         int _audioCount = int.MinValue;
         ///<summary>Number of audio streams in this file.</summary>
         [Description ("Number of audio streams."), Category ("General/Counts")]
-        public int audioCount {
+        public int AudioCount {
             get {
                 if (_audioCount == int.MinValue)
                     _audioCount = miGetInt ("AudioCount");
@@ -221,7 +220,7 @@ namespace MediaInfoDotNet.Models
         int _textCount = int.MinValue;
         ///<summary>Number of subtitles or other texts in this file.</summary>
         [Description ("Number of text streams."), Category ("General/Counts")]
-        public int textCount {
+        public int TextCount {
             get {
                 if (_textCount == int.MinValue)
                     _textCount = miGetInt ("TextCount");
@@ -232,7 +231,7 @@ namespace MediaInfoDotNet.Models
         int _imageCount = int.MinValue;
         ///<summary>Number of images in this file.</summary>
         [Description ("Number of image streams."), Category ("General/Counts")]
-        public int imageCount {
+        public int ImageCount {
             get {
                 if (_imageCount == int.MinValue)
                     _imageCount = miGetInt ("ImageCount");
@@ -243,7 +242,7 @@ namespace MediaInfoDotNet.Models
         int _chapterCount = int.MinValue;
         ///<summary>Number of others in this file.</summary>
         [Description ("Number of other streams."), Category ("General/Counts")]
-        public int chapterCount {
+        public int ChapterCount {
             get {
                 if (_chapterCount == int.MinValue)
                     _chapterCount = miGetInt ("ChapterCount");
@@ -254,13 +253,14 @@ namespace MediaInfoDotNet.Models
         int _menuCount = int.MinValue;
         ///<summary>Number of menu streams in this file.</summary>
         [Description ("Number of menu streams."), Category ("General/Counts")]
-        public int menuCount {
+        public int MenuCount {
             get {
                 if (_menuCount == int.MinValue)
                     _menuCount = miGetInt ("MenuCount");
                 return _menuCount;
             }
         }
-        #endregion
+
+		#endregion
     }
 }
