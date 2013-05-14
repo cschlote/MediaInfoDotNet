@@ -46,7 +46,7 @@ namespace MediaInfoDotNet.Models
 		protected string title {
 			get {
 				if (_title == null)
-					_title = miGetString("Title");
+					_title = miGetString("TITLE"); //FIXME Why must this be uppercase? Bug?
 				return _title;
 			}
 		}
