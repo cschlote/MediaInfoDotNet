@@ -61,7 +61,7 @@
 			this.tabPageCodecs = new System.Windows.Forms.TabPage();
 			this.textBoxCodecs = new System.Windows.Forms.TextBox();
 			this.tabPageInform2 = new System.Windows.Forms.TabPage();
-			this.checkBoxCOmpleteInform = new System.Windows.Forms.CheckBox();
+			this.checkBoxCompleteInform = new System.Windows.Forms.CheckBox();
 			this.labelUrl = new System.Windows.Forms.Label();
 			this.labelMediaInfoLibVersion = new System.Windows.Forms.Label();
 			this.textBoxInform = new System.Windows.Forms.TextBox();
@@ -397,7 +397,7 @@
 			// 
 			// tabPageInform2
 			// 
-			this.tabPageInform2.Controls.Add(this.checkBoxCOmpleteInform);
+			this.tabPageInform2.Controls.Add(this.checkBoxCompleteInform);
 			this.tabPageInform2.Controls.Add(this.labelUrl);
 			this.tabPageInform2.Controls.Add(this.labelMediaInfoLibVersion);
 			this.tabPageInform2.Controls.Add(this.textBoxInform);
@@ -411,18 +411,18 @@
 			// 
 			// checkBoxCOmpleteInform
 			// 
-			this.checkBoxCOmpleteInform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.checkBoxCOmpleteInform.AutoSize = true;
-			this.checkBoxCOmpleteInform.Checked = global::MediaInfoDotNet.WFClient.Properties.Settings.Default.CompleteInform;
-			this.checkBoxCOmpleteInform.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxCOmpleteInform.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MediaInfoDotNet.WFClient.Properties.Settings.Default, "CompleteInform", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-			this.checkBoxCOmpleteInform.Location = new System.Drawing.Point(299, 6);
-			this.checkBoxCOmpleteInform.Name = "checkBoxCOmpleteInform";
-			this.checkBoxCOmpleteInform.Size = new System.Drawing.Size(102, 17);
-			this.checkBoxCOmpleteInform.TabIndex = 3;
-			this.checkBoxCOmpleteInform.Text = "Complete Inform";
-			this.checkBoxCOmpleteInform.UseVisualStyleBackColor = true;
-			this.checkBoxCOmpleteInform.CheckedChanged += new System.EventHandler(this.checkBoxCOmpleteInform_CheckedChanged);
+			this.checkBoxCompleteInform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.checkBoxCompleteInform.AutoSize = true;
+			this.checkBoxCompleteInform.Checked = global::MediaInfoDotNet.WFClient.Properties.Settings.Default.CompleteInform;
+			this.checkBoxCompleteInform.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxCompleteInform.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MediaInfoDotNet.WFClient.Properties.Settings.Default, "CompleteInform", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.checkBoxCompleteInform.Location = new System.Drawing.Point(299, 6);
+			this.checkBoxCompleteInform.Name = "checkBoxCompleteInform";
+			this.checkBoxCompleteInform.Size = new System.Drawing.Size(102, 17);
+			this.checkBoxCompleteInform.TabIndex = 3;
+			this.checkBoxCompleteInform.Text = "Complete Inform";
+			this.checkBoxCompleteInform.UseVisualStyleBackColor = true;
+			this.checkBoxCompleteInform.CheckedChanged += new System.EventHandler(this.checkBoxCOmpleteInform_CheckedChanged);
 			// 
 			// labelUrl
 			// 
@@ -853,7 +853,7 @@
 		private System.Windows.Forms.Label labelMediaInfoLibVersion;
 		private System.Windows.Forms.TextBox textBoxInfoParms;
 		private System.Windows.Forms.TextBox textBoxCodecs;
-		private System.Windows.Forms.CheckBox checkBoxCOmpleteInform;
+		private System.Windows.Forms.CheckBox checkBoxCompleteInform;
     }
 }
 

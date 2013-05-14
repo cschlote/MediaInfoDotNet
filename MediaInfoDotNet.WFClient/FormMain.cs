@@ -94,7 +94,7 @@ namespace MediaInfoDotNet.WFClient
 
 		private void loadAllStreamProps(MediaFile mf) {
 			if (mf != null)
-				mf.General.miOption("Complete", checkBoxCOmpleteInform.Checked ? "Yes" : "");
+				mf.General.miOption("Complete", checkBoxCompleteInform.Checked ? "Yes" : String.Empty);
 
 			textBoxInform.Text = mf != null ? mf.General.miInform() : "No data.";
 			textBoxInfoParms.Text = mf != null ? mf.General.miOption("Info_Parameters") : "No parameter data.";
@@ -239,7 +239,7 @@ namespace MediaInfoDotNet.WFClient
 
 		private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
 			toolStripProgressBar1.Value = 100;
-			toolStripStatusLabel1.Text = "Adding files to listbox - for many files this can take a long time!";
+			toolStripStatusLabel1.Text = "Adding files to listbox control - for many files this can take a long time!";
 			listBox1.BeginUpdate();
 			foreach (MediaFile mf in newfiles)
 				bindingSourceMediaFiles.Add(mf);
