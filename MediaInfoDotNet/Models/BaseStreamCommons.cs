@@ -349,6 +349,7 @@ namespace MediaInfoDotNet.Models
 			get {
 				if (_compressionRatio == null)
 					_compressionRatio = miGetString("Compression_Ratio");
+				//FIXME Never seen in tests. Derive from Streamsize_* parameters?
 				return _compressionRatio;
 			}
 		}
