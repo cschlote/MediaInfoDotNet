@@ -213,6 +213,14 @@ namespace MediaInfoDotNet.Models
 		[Description("Width in pixels."), Category("VideoTextImageCommon")]
 		public int Width { get { return this.width; } }
 
+		///<summary>Colorspace used for pixel encoding.</summary>
+		[Description("Colorspace used for pixel encoding."), Category("VideoTextImageCommon")]
+		public string ColorSpace { get { return this.colorspace; } }
+
+		///<summary>ChromaSubsampling used for pixel encoding.</summary>
+		[Description("ChromaSubsampling used for pixel encoding."), Category("VideoTextImageCommon")]
+		public string ChromaSubsampling { get { return this.chromasubsampling; } }
+
 		#endregion
 	}
 }

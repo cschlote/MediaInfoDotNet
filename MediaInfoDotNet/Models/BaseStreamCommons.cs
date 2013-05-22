@@ -418,6 +418,7 @@ namespace MediaInfoDotNet.Models
 		#endregion
 
 		#region VideoTextImageCommon
+
 		int _height = int.MinValue;
 		///<summary>Height in pixels.</summary>
 		protected int height {
@@ -437,6 +438,27 @@ namespace MediaInfoDotNet.Models
 				return _width;
 			}
 		}
+
+		string _colorspace;
+		///<summary>Colorspace used for encoding.</summary>
+		protected string colorspace {
+			get {
+				if (String.IsNullOrEmpty(_colorspace))
+					_colorspace = miGetString("ColorSpace");
+				return _colorspace;
+			}
+		}
+
+		string _chromasubsampling;
+		///<summary>Colorspace used for encoding.</summary>
+		protected string chromasubsampling {
+			get {
+				if (String.IsNullOrEmpty(_chromasubsampling))
+					_chromasubsampling = miGetString("ChromaSubsampling");
+				return _chromasubsampling;
+			}
+		}
+
 		#endregion
 	}
 }
