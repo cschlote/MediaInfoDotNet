@@ -104,6 +104,20 @@ namespace MediaInfoDotNet.Models
 
 		#endregion
 
+		#region GeneralVideoCommon
+
+		string _encodedApplication;
+		/// <summary>Encoding application for this file or stream.</summary>
+		protected string encodedApplication {
+			get {
+				if (String.IsNullOrEmpty(_encodedApplication))
+					_encodedApplication = miGetString("Encoded_Application");
+				return _encodedApplication;
+			}
+		}
+
+		#endregion
+
 		#region GeneralVideoAudioTextImageCommon
 
 		DateTime _encodedDate = DateTime.MinValue;

@@ -114,6 +114,14 @@ namespace MediaInfoDotNet.Models
 
 		#endregion
 
+		#region GeneralVideoCommon
+
+		///<summary>Encoding application of file or stream.</summary>
+		[Description("Encoding application of file or stream."), Category("GeneralVideoCommon")]
+		public string EncodedApplication { get { return this.encodedApplication; } }
+
+		#endregion
+
 		#region VideoAudioTextCommon
 
 		///<summary>The bit rate of this stream, in bits per second</summary>
