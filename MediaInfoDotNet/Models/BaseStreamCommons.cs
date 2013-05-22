@@ -3,12 +3,10 @@
  * Use at your own risk, under the same license as MediaInfo itself.
  * Copyright (C) 2012 Charles N. Burns
  * Copyright (C) 2013 Carsten Schlote
- * 
  ******************************************************************************
  * MultiStreamCommon.cs
- * 
+ *
  * Provides methods common to more then one stream type
- * 
  ******************************************************************************
  */
 
@@ -21,15 +19,25 @@ namespace MediaInfoDotNet.Models
 	/// <summary>Functionality common to more than one stream type.</summary>
 	public class BaseStreamCommons : Media
 	{
-		/// <summary>MultiStreamCommon constructor.</summary>
+		///<summary>MultiStreamCommon constructor.</summary>
 		///<param name="mediaInfo">A MediaInfo object.</param>
-		/// <param name="kind">A MediaInfo StreamKind.</param>
+		///<param name="kind">A MediaInfo StreamKind.</param>
 		///<param name="id">The MediaInfo ID for this audio stream.</param>
 		public BaseStreamCommons(MediaInfo mediaInfo, StreamKind kind, int id)
 			: base(mediaInfo, kind, id) {
 		}
 
 		#region AllStreamsCommon
+
+		int _streamid = Int32.MinValue;
+		///<summary>The ID of this stream in the file.</summary>
+		protected int streamid {
+			get {
+				if (_streamid == Int32.MinValue)
+					_streamid = miGetInt("ID");
+				return _streamid;
+			}
+		}
 
 		string _format;
 		///<summary>The format or container of this file or stream.</summary>
@@ -41,12 +49,45 @@ namespace MediaInfoDotNet.Models
 			}
 		}
 
+		string _format_info;
+		///<summary>Additional format information for this stream.</summary>
+		protected string format_info {
+			get {
+				if (_format_info == null)
+					_format_info = miGetString("Format/Info");
+				return _format_info;
+			}
+		}
+
+		string _format_profile;
+		///<summary>Additional format information for this stream.</summary>
+		protected string format_profile {
+			get {
+				if (_format_profile == null)
+					_format_profile = miGetString("Format_Profile");
+				return _format_profile;
+			}
+		}
+
+		string _format_version;
+		///<summary>Additional format information for this stream.</summary>
+		protected string format_version {
+			get {
+				if (_format_version == null)
+					_format_version = miGetString("Format_Version");
+				return _format_version;
+			}
+		}
+
 		string _title;
 		///<summary>The title of this stream.</summary>
 		protected string title {
 			get {
 				if (_title == null)
-					_title = miGetString("Title");
+					_title = miGetString("Title"); //FIXME Why must this be uppercase? Bug?
+				if (String.IsNullOrEmpty(_title)) {
+					_title = miGetString("TITLE"); //FIXME Why must this be uppercase? Bug?
+				}
 				return _title;
 			}
 		}
@@ -58,6 +99,20 @@ namespace MediaInfoDotNet.Models
 				if (_uniqueId == null)
 					_uniqueId = miGetString("UniqueID");
 				return _uniqueId;
+			}
+		}
+
+		#endregion
+
+		#region GeneralVideoCommon
+
+		string _encodedApplication;
+		/// <summary>Encoding application for this file or stream.</summary>
+		protected string encodedApplication {
+			get {
+				if (String.IsNullOrEmpty(_encodedApplication))
+					_encodedApplication = miGetString("Encoded_Application");
+				return _encodedApplication;
 			}
 		}
 
@@ -294,6 +349,7 @@ namespace MediaInfoDotNet.Models
 			get {
 				if (_compressionRatio == null)
 					_compressionRatio = miGetString("Compression_Ratio");
+				//FIXME Never seen in tests. Derive from Streamsize_* parameters?
 				return _compressionRatio;
 			}
 		}
@@ -326,6 +382,16 @@ namespace MediaInfoDotNet.Models
 
 		#region VideoImageCommon
 
+		float _displayAspectRatio = float.MinValue;
+		///<summary>Ratio of pixel width to pixel height.</summary>
+		protected float displayAspectRatio {
+			get {
+				if (_displayAspectRatio == float.MinValue)
+					_displayAspectRatio = miGetFloat("DisplayAspectRatio");
+				return _displayAspectRatio;
+			}
+		}
+
 		float _pixelAspectRatio = float.MinValue;
 		///<summary>Ratio of pixel width to pixel height.</summary>
 		protected float pixelAspectRatio {
@@ -353,6 +419,7 @@ namespace MediaInfoDotNet.Models
 		#endregion
 
 		#region VideoTextImageCommon
+
 		int _height = int.MinValue;
 		///<summary>Height in pixels.</summary>
 		protected int height {
@@ -372,6 +439,27 @@ namespace MediaInfoDotNet.Models
 				return _width;
 			}
 		}
+
+		string _colorspace;
+		///<summary>Colorspace used for encoding.</summary>
+		protected string colorspace {
+			get {
+				if (String.IsNullOrEmpty(_colorspace))
+					_colorspace = miGetString("ColorSpace");
+				return _colorspace;
+			}
+		}
+
+		string _chromasubsampling;
+		///<summary>Colorspace used for encoding.</summary>
+		protected string chromasubsampling {
+			get {
+				if (String.IsNullOrEmpty(_chromasubsampling))
+					_chromasubsampling = miGetString("ChromaSubsampling");
+				return _chromasubsampling;
+			}
+		}
+
 		#endregion
 	}
 }

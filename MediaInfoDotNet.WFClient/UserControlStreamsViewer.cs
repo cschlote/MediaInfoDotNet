@@ -47,16 +47,22 @@ namespace MediaInfoDotNet.WFClient
 			set {
 				selectedStreamList = (List<BaseStreamCommons>)value;
 				int streamCount = 0;
-				if (selectedStreamList != null) {
+				if (selectedStreamList != null && selectedStreamList.Count > 0) {
 					streamCount = selectedStreamList.Count;
+					propertyGridStreamElement.SelectedObject = selectedStreamList[0];
+					propertyGridStreamElement.Enabled = true;
 					numericUpDownStreamIndex.Minimum = 0;
 					numericUpDownStreamIndex.Value = 0;
 					numericUpDownStreamIndex.Maximum = streamCount - 1;
+					numericUpDownStreamIndex.Enabled = true;
 				}
 				else {
+					propertyGridStreamElement.SelectedObject = null;
+					propertyGridStreamElement.Enabled = false;
 					numericUpDownStreamIndex.Minimum = 0;
 					numericUpDownStreamIndex.Value = 0;
 					numericUpDownStreamIndex.Maximum = 0;
+					numericUpDownStreamIndex.Enabled = false;
 				}
 				labelStream.Text = String.Format("There are {0} streams.", streamCount);
 			}
@@ -64,11 +70,9 @@ namespace MediaInfoDotNet.WFClient
 
 		private void numericUpDownStreamIndex_ValueChanged(object sender, EventArgs e) {
 			decimal idx = numericUpDownStreamIndex.Value;
-			object obj = null;
-			if (idx >= 0 && selectedStreamList != null && selectedStreamList.Count > idx) {
-				obj = selectedStreamList[(int)idx];
+			if (idx >= 0 && selectedStreamList != null && idx < selectedStreamList.Count) {
+				propertyGridStreamElement.SelectedObject = selectedStreamList[(int)idx];
 			}
-			propertyGridStreamElement.SelectedObject = obj;
 		}
 
 	}

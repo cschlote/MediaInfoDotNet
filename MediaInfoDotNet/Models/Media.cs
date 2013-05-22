@@ -67,9 +67,9 @@ namespace MediaInfoDotNet.Models
 
 		/// <summary>Returns information about MediaInfo.</summary>
 		/// <param name="parameter">Option such as Info_Parameters</param>
-		/// <param name="arg">Argument for parameter</param>
-		public string miOption(string parameter, string arg = "") {
-			string miResult = mediaInfo.Option(parameter, arg);
+		/// <param name="val">Optional argument for parameter, e.g. Opetion("Complete", "Yes") to enable debug Inform() output.</param>
+		public string miOption(string parameter, string val = "") {
+			string miResult = mediaInfo.Option(parameter, val);
 			return miResult == null ? string.Empty : miResult;
 		}
 

@@ -1,7 +1,7 @@
 Info_Parameters
 
-General
-Count             : Number of objects available in this stream
+General 
+Count				: Number of objects available in this stream
 StreamCount Number of streams of this kind available
 StreamKind Stream type name
 StreamKind/String Stream type name
@@ -267,7 +267,7 @@ Played_Count Number of times an item was played
 EPG_Positions_Begin
 EPG_Positions_End
 
-Video
+Video 
 Count Number of objects available in this stream
 StreamCount Number of streams of this kind available
 StreamKind Stream type name
