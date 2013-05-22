@@ -53,7 +53,8 @@ namespace MediaInfoDotNet.WFClient
 				Settings.Default.LastFile = openFileDialog1.FileName;
 				mf = new MediaFile(openFileDialog1.FileName);
 				int rc2 = bindingSourceMediaFiles.Add(mf);
-				//listBox1.SelectedIndex = rc2;
+				listBox1.SelectedIndex = rc2;
+				updateTreeView();
 				bindingSourceMediaFiles.Position = rc2;
 			}
 		}
@@ -69,28 +70,6 @@ namespace MediaInfoDotNet.WFClient
 
 		#region LoadThePropertyGrids stuff
 
-		private void loadPropertyGridWithStream(NumericUpDown nudobj, PropertyGrid pgobj, decimal max, Object obj) {
-			if (nudobj != null) {
-				if (max > 0) {
-					nudobj.Enabled = true;
-					nudobj.Maximum = max - 1;
-					if (nudobj.Value < 0 || nudobj.Value >= max) nudobj.Value = 0;
-				} else {
-					nudobj.Value = 0;
-					nudobj.Maximum = 0;
-					nudobj.Enabled = false;
-				}
-			}
-			if (pgobj != null) {
-				if (obj != null) {
-					pgobj.SelectedObject = obj;
-					pgobj.Enabled = true;
-				} else {
-					pgobj.SelectedObject = null;
-					pgobj.Enabled = false;
-				}
-			}
-		}
 
 		private void loadAllStreamProps(MediaFile mf) {
 			if (mf != null)
@@ -240,12 +219,15 @@ namespace MediaInfoDotNet.WFClient
 		private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
 			toolStripProgressBar1.Value = 100;
 			toolStripStatusLabel1.Text = "Adding files to listbox - for many files this can take a long time!";
+			listBox1.Visible = false;
 			listBox1.BeginUpdate();
 			foreach (MediaFile mf in newfiles)
 				bindingSourceMediaFiles.Add(mf);
 			listBox1.EndUpdate();
+			listBox1.Visible = true; 
 			newfiles.Clear();
 			toolStripStatusLabel1.Text = "Finished loading.";
+			updateTreeView();
 		}
 
 		private void abortOperationToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -254,6 +236,46 @@ namespace MediaInfoDotNet.WFClient
 
 		#endregion
 
+		private void updateTreeView() {
+			TreeNodeCollection tmpcol;
+			TreeNode tmpnode;
+
+			// Display a wait cursor while the TreeNodes are being created.
+			//Cursor.Current = new Cursor("MyWait.cur");
+
+			// Suppress repainting the TreeView until all the objects have been created.
+			treeViewFiles.BeginUpdate();
+
+			// Clear the TreeView each time the method is called.
+			treeViewFiles.Nodes.Clear();
+
+			foreach (MediaFile mf in MediaFileCollection) {
+				string path = Path.GetDirectoryName(mf.filePath);
+				string[] patharray = path.Split(new [] {'\\'}, 
+					StringSplitOptions.RemoveEmptyEntries);
+
+				tmpcol = treeViewFiles.Nodes;
+				foreach (string dir in patharray) {
+					if (tmpcol.ContainsKey(dir) == false) {
+						tmpnode = new TreeNode(dir);
+						tmpnode.Name = dir;
+						tmpcol.Add(tmpnode);
+					}
+					else
+						tmpnode = tmpcol[dir];
+					tmpcol = tmpnode.Nodes;
+				}
+			}
+			// Reset the cursor to the default for all controls.
+			//Cursor.Current = Cursors.Default;
+
+			// Begin repainting the TreeView.
+			treeViewFiles.EndUpdate();
+		}
+
+		private void treeViewFiles_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
+			System.Diagnostics.Debug.Write("Booh");
+		}
 
 	}
 }
