@@ -127,11 +127,15 @@ namespace MediaInfoDotNet.Models
 
 		#endregion
 
-		#region VideoTextCommon
+		#region VideoImageCommon
 
-		///<summary>Frame rate mode (CFR, VFR) of stream.</summary>
-		[Description("Frame rate mode (CFR, VFR) of stream."), Category("VideoTextCommon")]
-		public string FrameRateMode { get { return this.frameRateMode; } }
+		///<summary>Ratio of display width to display height.</summary>
+		[Description("Ratio of display width to display height."), Category("VideoImageCommon")]
+		public float DisplayAspectRatio { get { return this.displayAspectRatio; } }
+
+		///<summary>Ratio of pixel width to pixel height.</summary>
+		[Description("Ratio of pixel width to pixel height."), Category("VideoImageCommon")]
+		public float PixelAspectRatio { get { return this.pixelAspectRatio; } }
 
 		#endregion
 

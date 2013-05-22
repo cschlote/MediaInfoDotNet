@@ -185,6 +185,10 @@ namespace MediaInfoDotNet.Models
 
 		#region VideoImageCommon
 
+		///<summary>Ratio of display width to display height.</summary>
+		[Description("Ratio of display width to display height."), Category("VideoImageCommon")]
+		public float DisplayAspectRatio { get { return this.displayAspectRatio; } }
+
 		///<summary>Ratio of pixel width to pixel height.</summary>
 		[Description("Ratio of pixel width to pixel height."), Category("VideoImageCommon")]
 		public float PixelAspectRatio { get { return this.pixelAspectRatio; } }

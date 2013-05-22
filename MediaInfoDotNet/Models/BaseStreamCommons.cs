@@ -381,6 +381,16 @@ namespace MediaInfoDotNet.Models
 
 		#region VideoImageCommon
 
+		float _displayAspectRatio = float.MinValue;
+		///<summary>Ratio of pixel width to pixel height.</summary>
+		protected float displayAspectRatio {
+			get {
+				if (_displayAspectRatio == float.MinValue)
+					_displayAspectRatio = miGetFloat("DisplayAspectRatio");
+				return _displayAspectRatio;
+			}
+		}
+
 		float _pixelAspectRatio = float.MinValue;
 		///<summary>Ratio of pixel width to pixel height.</summary>
 		protected float pixelAspectRatio {
