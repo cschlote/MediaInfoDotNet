@@ -29,6 +29,16 @@ namespace MediaInfoDotNet.Models
 
 		#region AllStreamsCommon
 
+		int _streamid = Int32.MinValue;
+		///<summary>The ID of this stream in the file.</summary>
+		protected int streamid {
+			get {
+				if (_streamid == Int32.MinValue)
+					_streamid = miGetInt("ID");
+				return _streamid;
+			}
+		}
+
 		string _format;
 		///<summary>The format or container of this file or stream.</summary>
 		protected string format {
@@ -39,12 +49,45 @@ namespace MediaInfoDotNet.Models
 			}
 		}
 
+		string _format_info;
+		///<summary>Additional format information for this stream.</summary>
+		protected string format_info {
+			get {
+				if (_format_info == null)
+					_format_info = miGetString("Format/Info");
+				return _format_info;
+			}
+		}
+
+		string _format_profile;
+		///<summary>Additional format information for this stream.</summary>
+		protected string format_profile {
+			get {
+				if (_format_profile == null)
+					_format_profile = miGetString("Format_Profile");
+				return _format_profile;
+			}
+		}
+
+		string _format_version;
+		///<summary>Additional format information for this stream.</summary>
+		protected string format_version {
+			get {
+				if (_format_version == null)
+					_format_version = miGetString("Format_Version");
+				return _format_version;
+			}
+		}
+
 		string _title;
 		///<summary>The title of this stream.</summary>
 		protected string title {
 			get {
 				if (_title == null)
+					_title = miGetString("Title"); //FIXME Why must this be uppercase? Bug?
+				if (String.IsNullOrEmpty(_title)) {
 					_title = miGetString("TITLE"); //FIXME Why must this be uppercase? Bug?
+				}
 				return _title;
 			}
 		}
