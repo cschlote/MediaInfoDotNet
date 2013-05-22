@@ -3,12 +3,10 @@
  * Use at your own risk, under the same license as MediaInfo itself.
  * Copyright (C) 2012 Charles N. Burns
  * Copyright (C) 2013 Carsten Schlote
- * 
  ******************************************************************************
  * MultiStreamCommon.cs
- * 
+ *
  * Provides methods common to more then one stream type
- * 
  ******************************************************************************
  */
 
@@ -21,9 +19,9 @@ namespace MediaInfoDotNet.Models
 	/// <summary>Functionality common to more than one stream type.</summary>
 	public class BaseStreamCommons : Media
 	{
-		/// <summary>MultiStreamCommon constructor.</summary>
+		///<summary>MultiStreamCommon constructor.</summary>
 		///<param name="mediaInfo">A MediaInfo object.</param>
-		/// <param name="kind">A MediaInfo StreamKind.</param>
+		///<param name="kind">A MediaInfo StreamKind.</param>
 		///<param name="id">The MediaInfo ID for this audio stream.</param>
 		public BaseStreamCommons(MediaInfo mediaInfo, StreamKind kind, int id)
 			: base(mediaInfo, kind, id) {

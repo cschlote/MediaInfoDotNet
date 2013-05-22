@@ -3,13 +3,10 @@
  * Use at your own risk, under the same license as MediaInfo itself.
  * Copyright (C) 2012 Charles N. Burns
  * Copyright (C) 2013 Carsten Schlote
- * 
  ******************************************************************************
- *
  * AudioStream.cs
  * 
  * Presents information and functionality specific to an audio stream.
- * 
  ******************************************************************************
  */
 
