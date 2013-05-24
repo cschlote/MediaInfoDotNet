@@ -52,7 +52,38 @@ namespace MediaInfoDotNet
         [Description ("Complete path to the current media file."), Category ("MediaFile")]
         public string filePath { get; private set; }
 
-        ///<summary>MediaInfo object</summary>
+		/// <summary>Gets the summary text for this object</summary>
+		[Description("Gets the summary text for this object."), Category("MediaFile")]
+		public string Inform { get { return General.miInform(); } }
+
+		/// <summary>Gets the summary text for this object</summary>
+		[Description("Gets the summary text for this object."), Category("MediaFile")]
+		public bool InformComplete {
+			get {
+				return String.IsNullOrEmpty(General.miOption("Complete")) ? true : false;
+			}
+			set {
+				General.miOption("Complete", value ? "1" : String.Empty);
+			}
+		}
+
+		/// <summary>Gets the summary text of parameters provided by MediaInfo.dll.</summary>
+		[Description("Gets the summary text of parameters provided by MediaInfo.dll."), Category("MediaFile")]
+		public string InfoParameters { get { return General.miOption("Info_Parameters"); } }
+
+		/// <summary>Gets the summary text of codecs known by MediaInfo.dll.</summary>
+		[Description("Gets the summary text of codecs known by MediaInfo.dll."), Category("MediaFile")]
+		public string InfoCodecs { get { return General.miOption("Info_Codecs"); } }
+
+		/// <summary>Gets the version of MediaInfo.dll.</summary>
+		[Description("Gets the version of MediaInfo.dll."), Category("MediaFile")]
+		public string InfoVersion { get { return General.miOption("Info_Version"); } }
+
+		/// <summary>Gets the project URL of MediaInfo.dll.</summary>
+		[Description("Gets the project URL of MediaInfo.dll."), Category("MediaFile")]
+		public string InfoUrl { get { return General.miOption("Info_Url"); } }
+
+		///<summary>MediaInfo object</summary>
         MediaInfo mediaInfo;
 
         GeneralStream _General;
