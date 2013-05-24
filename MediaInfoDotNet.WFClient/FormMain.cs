@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaInfoDotNet.WFClient.Properties;
 using System.IO;
+using System.Collections;
 
 namespace MediaInfoDotNet.WFClient
 {
@@ -29,9 +30,14 @@ namespace MediaInfoDotNet.WFClient
 
 		private void FormMain_Load(object sender, EventArgs e) {
 			this.Size = Settings.Default.WinSize;
+			this.Refresh();
+			this.splitContainer1.SplitterDistance = Settings.Default.SplitterH;
+			this.splitContainer2.SplitterDistance = Settings.Default.SplitterV;
 		}
 		private void FormMain_FormClosing(object sender, FormClosingEventArgs e) {
 			Settings.Default.WinSize = this.Size;
+			Settings.Default.SplitterH = this.splitContainer1.SplitterDistance;
+			Settings.Default.SplitterV = this.splitContainer2.SplitterDistance;
 		}
 		private void FormMain_FormClosed(object sender, FormClosedEventArgs e) {
 			if (Settings.Default.SaveOnExit) {
@@ -45,10 +51,17 @@ namespace MediaInfoDotNet.WFClient
 			if (rc == System.Windows.Forms.DialogResult.OK) {
 				Settings.Default.LastFile = openFileDialog1.FileName;
 				mf = new MediaFile(openFileDialog1.FileName);
-				int rc2 = bindingSourceMediaFiles.Add(mf);
-				listBox1.SelectedIndex = rc2;
+				try { // FIXME: Workaround problem with Exception
+					bindingSourceMediaFiles.Position = bindingSourceMediaFiles.Add(mf);
+				}
+				catch (Exception e2) {
+					var xx = listBox1.SelectedIndex;
+					var yy = listBox1.SelectedItem;
+					System.Diagnostics.Debug.WriteLine(
+						"Got Exception while adding new item to bindingSource\n" +
+						"Exception: {0}", e2.Message);
+				}
 				updateTreeView();
-				bindingSourceMediaFiles.Position = rc2;
 			}
 		}
 
@@ -63,13 +76,13 @@ namespace MediaInfoDotNet.WFClient
 
 		#region LoadThePropertyGrids stuff
 
-
 		private void loadAllStreamProps(MediaFile mf) {
 			if (mf != null)
 				mf.General.miOption("Complete", checkBoxCOmpleteInform.Checked ? "1" : "");
 
 			propertyGridMediaFile.SelectedObject = mf;
 
+			// USES DATABINDING....
 			//textBoxInform.Text = mf != null ? mf.Inform : "No data.";
 			//textBoxInfoParms.Text = mf != null ? mf.InfoParameters : "No parameter data.";
 			//textBoxCodecs.Text = mf != null ? mf.InfoCodecs : "No codec data.";
@@ -78,21 +91,21 @@ namespace MediaInfoDotNet.WFClient
 
 			if (mf != null) {
 				//propertyGridGeneral.SelectedObject = mf.General;
-				userControlStreamsViewerVideo.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Video);
-				userControlStreamsViewerAudio.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Audio);
-				userControlStreamsViewerText.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Text);
-				userControlStreamsViewerImage.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Image);
-				userControlStreamsViewerOther.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Other);
-				userControlStreamsViewerMenus.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Menu);
+				userControlStreamsViewerVideo.DataSource = new List<Models.BaseStreamCommons>(mf.Video);
+				userControlStreamsViewerAudio.DataSource = new List<Models.BaseStreamCommons>(mf.Audio);
+				userControlStreamsViewerText.DataSource = new List<Models.BaseStreamCommons>(mf.Text);
+				userControlStreamsViewerImage.DataSource = new List<Models.BaseStreamCommons>(mf.Image);
+				userControlStreamsViewerOther.DataSource = new List<Models.BaseStreamCommons>(mf.Other);
+				userControlStreamsViewerMenus.DataSource = new List<Models.BaseStreamCommons>(mf.Menu);
 			}
 			else {
 				//propertyGridGeneral.SelectedObject = null;
-				userControlStreamsViewerVideo.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
-				userControlStreamsViewerAudio.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
-				userControlStreamsViewerText.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
-				userControlStreamsViewerImage.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
-				userControlStreamsViewerOther.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
-				userControlStreamsViewerMenus.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
+				userControlStreamsViewerVideo.DataSource = null;
+				userControlStreamsViewerAudio.DataSource = null;
+				userControlStreamsViewerText.DataSource = null;
+				userControlStreamsViewerImage.DataSource = null;
+				userControlStreamsViewerOther.DataSource = null;
+				userControlStreamsViewerMenus.DataSource = null;
 			}
 		}
 
@@ -121,7 +134,8 @@ namespace MediaInfoDotNet.WFClient
 		private void closeFileToolStripMenuItem_Click(object sender, EventArgs e) {
 			if (listBox1.SelectedIndex >= 0) {
 				var selnode = bindingSourceMediaFiles.Current;
-				this.bindingSourceMediaFiles.Remove(selnode);
+				if (selnode != null)
+					this.bindingSourceMediaFiles.Remove(selnode);
 			}
 		}
 
@@ -163,6 +177,9 @@ namespace MediaInfoDotNet.WFClient
 
 		private void bindingSource1_ListChanged(object sender, ListChangedEventArgs e) {
 			System.Diagnostics.Debug.WriteLine("Booh");
+			//if (e.ListChangedType == ListChangedType.Reset) {
+				updateTreeView();
+			//}
 		}
 
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
@@ -191,7 +208,8 @@ namespace MediaInfoDotNet.WFClient
 				mf = new MediaFile(file);
 				if (mf.HasStreams) {
 					backgroundWorker1.ReportProgress((int)(progress), mf);
-				} else {
+				}
+				else {
 					backgroundWorker1.ReportProgress((int)(progress), null);
 				}
 				if (backgroundWorker1.CancellationPending)
@@ -235,40 +253,41 @@ namespace MediaInfoDotNet.WFClient
 
 		#endregion
 
+		#region TreeViewF Code
+
 		private void updateTreeView() {
 			TreeNodeCollection tmpcol;
 			TreeNode tmpnode;
 
-			// Display a wait cursor while the TreeNodes are being created.
 			//Cursor.Current = new Cursor("MyWait.cur");
-
-			// Suppress repainting the TreeView until all the objects have been created.
 			treeViewFiles.BeginUpdate();
-
-			// Clear the TreeView each time the method is called.
 			treeViewFiles.Nodes.Clear();
 
 			foreach (MediaFile mf in bindingSourceMediaFiles.List) {
 				string path = Path.GetDirectoryName(mf.filePath);
-				string[] patharray = path.Split(new [] {'\\'}, 
-					StringSplitOptions.RemoveEmptyEntries);
+				if (path.StartsWith("\\\\") == true)
+					path = path.Replace("\\\\", "Network\\");
+				string[] patharray = path.Split(new[] { Path.DirectorySeparatorChar },
+					StringSplitOptions.None);
 
 				tmpcol = treeViewFiles.Nodes;
+				tmpnode = null;
 				foreach (string dir in patharray) {
+					TreeNode[] tmpnodes = tmpcol.Find(dir, false);
 					if (tmpcol.ContainsKey(dir) == false) {
 						tmpnode = new TreeNode(dir);
 						tmpnode.Name = dir;
+						tmpnode.Tag = dir;
 						tmpcol.Add(tmpnode);
 					}
 					else
 						tmpnode = tmpcol[dir];
+
+					tmpnode.Expand();
 					tmpcol = tmpnode.Nodes;
 				}
 			}
-			// Reset the cursor to the default for all controls.
 			//Cursor.Current = Cursors.Default;
-
-			// Begin repainting the TreeView.
 			treeViewFiles.EndUpdate();
 		}
 
@@ -282,5 +301,56 @@ namespace MediaInfoDotNet.WFClient
 			}
 		}
 
+		#endregion
+
+		#region ListBox Context Menu
+
+		private void toolStripMenuItemOpen_Click(object sender, EventArgs e) {
+			if (bindingSourceMediaFiles.Current != null) {
+				MediaFile selnode = bindingSourceMediaFiles.Current as MediaFile;
+				if (selnode != null && File.Exists(selnode.filePath))
+					System.Diagnostics.Process.Start(selnode.filePath);
+			}
+		}
+
+		private void toolStripMenuItemOpenFolder_Click(object sender, EventArgs e) {
+			if (bindingSourceMediaFiles.Current != null) {
+				MediaFile selnode = bindingSourceMediaFiles.Current as MediaFile;
+				if (selnode != null && File.Exists(selnode.filePath))
+					System.Diagnostics.Process.Start(Path.GetDirectoryName(selnode.filePath));
+			}
+		}
+
+		private void toolStripMenuItemMMG_Click(object sender, EventArgs e) {
+			if (bindingSourceMediaFiles.Current != null) {
+				MediaFile selnode = bindingSourceMediaFiles.Current as MediaFile;
+				if (selnode != null) {
+					System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+					string cmd = Path.Combine(Settings.Default.MKVPath, "mmg.exe");
+					startInfo.FileName = cmd;
+					startInfo.Arguments = " \"" + selnode.filePath + "\"";
+					startInfo.WorkingDirectory = Settings.Default.MKVPath;
+					try { System.Diagnostics.Process.Start(startInfo); }
+					catch (Exception ex) { MessageBox.Show(ex.Message); };
+				}
+			}
+		}
+
+		private void toolStripMenuItemHandbrake_Click(object sender, EventArgs e) {
+			if (bindingSourceMediaFiles.Current != null) {
+				MediaFile selnode = bindingSourceMediaFiles.Current as MediaFile;
+				if (selnode != null) {
+					System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+					string cmd = Path.Combine(Settings.Default.HandbrakePath, "Handbrake.exe");
+					startInfo.FileName = cmd;
+					startInfo.Arguments = " \"" + selnode.filePath + "\"";
+					startInfo.WorkingDirectory = Settings.Default.HandbrakePath; 
+					try { System.Diagnostics.Process.Start(startInfo); }
+					catch (Exception ex) { MessageBox.Show(ex.Message); };
+				}
+			}
+		}
+
+		#endregion
 	}
 }
