@@ -25,10 +25,13 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			this.propertyGridStreamElement = new System.Windows.Forms.PropertyGrid();
 			this.labelStream = new System.Windows.Forms.Label();
 			this.numericUpDownStreamIndex = new System.Windows.Forms.NumericUpDown();
+			this.bsCollection = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownStreamIndex)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsCollection)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// propertyGridStreamElement
@@ -43,9 +46,8 @@
 			// 
 			// labelStream
 			// 
-			this.labelStream.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelStream.AutoSize = true;
-			this.labelStream.Location = new System.Drawing.Point(142, 5);
+			this.labelStream.Location = new System.Drawing.Point(3, 5);
 			this.labelStream.Name = "labelStream";
 			this.labelStream.Size = new System.Drawing.Size(73, 13);
 			this.labelStream.TabIndex = 0;
@@ -61,6 +63,10 @@
 			this.numericUpDownStreamIndex.TabIndex = 3;
 			this.numericUpDownStreamIndex.ValueChanged += new System.EventHandler(this.numericUpDownStreamIndex_ValueChanged);
 			// 
+			// bsCollection
+			// 
+			this.bsCollection.AllowNew = false;
+			// 
 			// UserControlStreamsViewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -71,6 +77,7 @@
 			this.Name = "UserControlStreamsViewer";
 			this.Size = new System.Drawing.Size(344, 289);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownStreamIndex)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.bsCollection)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -81,5 +88,6 @@
 		private System.Windows.Forms.PropertyGrid propertyGridStreamElement;
 		private System.Windows.Forms.Label labelStream;
 		private System.Windows.Forms.NumericUpDown numericUpDownStreamIndex;
+		public System.Windows.Forms.BindingSource bsCollection;
 	}
 }

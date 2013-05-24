@@ -301,8 +301,7 @@
 			// bindingSourceMediaFiles
 			// 
 			this.bindingSourceMediaFiles.AllowNew = true;
-			this.bindingSourceMediaFiles.DataMember = "MediaFileCollection";
-			this.bindingSourceMediaFiles.DataSource = typeof(MediaInfoDotNet.WFClient.FormMain);
+			this.bindingSourceMediaFiles.DataSource = typeof(MediaInfoDotNet.MediaFile);
 			this.bindingSourceMediaFiles.Sort = "";
 			this.bindingSourceMediaFiles.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.bindingSource1_ListChanged);
 			// 
@@ -373,6 +372,7 @@
 			this.checkBoxCOmpleteInform.Checked = global::MediaInfoDotNet.WFClient.Properties.Settings.Default.CompleteInform;
 			this.checkBoxCOmpleteInform.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBoxCOmpleteInform.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::MediaInfoDotNet.WFClient.Properties.Settings.Default, "CompleteInform", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+			this.checkBoxCOmpleteInform.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.bindingSourceMediaFiles, "InformComplete", true));
 			this.checkBoxCOmpleteInform.Location = new System.Drawing.Point(420, 6);
 			this.checkBoxCOmpleteInform.Name = "checkBoxCOmpleteInform";
 			this.checkBoxCOmpleteInform.Size = new System.Drawing.Size(102, 17);
@@ -384,6 +384,7 @@
 			// labelUrl
 			// 
 			this.labelUrl.AutoSize = true;
+			this.labelUrl.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceMediaFiles, "InfoUrl", true));
 			this.labelUrl.Location = new System.Drawing.Point(6, 27);
 			this.labelUrl.Name = "labelUrl";
 			this.labelUrl.Size = new System.Drawing.Size(20, 13);
@@ -393,6 +394,7 @@
 			// labelMediaInfoLibVersion
 			// 
 			this.labelMediaInfoLibVersion.AutoSize = true;
+			this.labelMediaInfoLibVersion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceMediaFiles, "InfoVersion", true));
 			this.labelMediaInfoLibVersion.Location = new System.Drawing.Point(6, 3);
 			this.labelMediaInfoLibVersion.Name = "labelMediaInfoLibVersion";
 			this.labelMediaInfoLibVersion.Size = new System.Drawing.Size(42, 13);
@@ -404,6 +406,7 @@
 			this.textBoxInform.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBoxInform.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceMediaFiles, "Inform", true));
 			this.textBoxInform.Font = new System.Drawing.Font("Courier New", 8.25F);
 			this.textBoxInform.Location = new System.Drawing.Point(3, 43);
 			this.textBoxInform.Multiline = true;
@@ -429,6 +432,7 @@
 			this.textBoxInfoParms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBoxInfoParms.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceMediaFiles, "InfoParameters", true));
 			this.textBoxInfoParms.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBoxInfoParms.Location = new System.Drawing.Point(6, 6);
 			this.textBoxInfoParms.Multiline = true;
@@ -454,6 +458,7 @@
 			this.textBoxCodecs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBoxCodecs.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceMediaFiles, "InfoCodecs", true));
 			this.textBoxCodecs.Font = new System.Drawing.Font("Courier New", 8.25F);
 			this.textBoxCodecs.Location = new System.Drawing.Point(6, 6);
 			this.textBoxCodecs.Multiline = true;
@@ -482,7 +487,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.propertyGridMediaFile.Location = new System.Drawing.Point(6, 6);
 			this.propertyGridMediaFile.Name = "propertyGridMediaFile";
-			this.propertyGridMediaFile.Size = new System.Drawing.Size(415, 303);
+			this.propertyGridMediaFile.Size = new System.Drawing.Size(539, 303);
 			this.propertyGridMediaFile.TabIndex = 1;
 			// 
 			// tabPageGeneral
@@ -502,9 +507,10 @@
 			this.propertyGridGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.propertyGridGeneral.DataBindings.Add(new System.Windows.Forms.Binding("SelectedObject", this.bindingSourceMediaFiles, "General", true));
 			this.propertyGridGeneral.Location = new System.Drawing.Point(6, 6);
 			this.propertyGridGeneral.Name = "propertyGridGeneral";
-			this.propertyGridGeneral.Size = new System.Drawing.Size(415, 303);
+			this.propertyGridGeneral.Size = new System.Drawing.Size(539, 303);
 			this.propertyGridGeneral.TabIndex = 0;
 			// 
 			// tabPageVideo
@@ -523,11 +529,12 @@
 			this.userControlStreamsViewerVideo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.userControlStreamsViewerVideo.DataBindings.Add(new System.Windows.Forms.Binding("SelectedStreamList", this.bindingSourceMediaFiles, "Video", true));
 			this.userControlStreamsViewerVideo.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerVideo.Name = "userControlStreamsViewerVideo";
 			this.userControlStreamsViewerVideo.SelectedMediaFile = null;
 			this.userControlStreamsViewerVideo.SelectedStreamList = null;
-			this.userControlStreamsViewerVideo.Size = new System.Drawing.Size(421, 309);
+			this.userControlStreamsViewerVideo.Size = new System.Drawing.Size(542, 309);
 			this.userControlStreamsViewerVideo.TabIndex = 4;
 			// 
 			// tabPageAudio
@@ -546,11 +553,12 @@
 			this.userControlStreamsViewerAudio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.userControlStreamsViewerAudio.DataBindings.Add(new System.Windows.Forms.Binding("SelectedStreamList", this.bindingSourceMediaFiles, "Audio", true));
 			this.userControlStreamsViewerAudio.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerAudio.Name = "userControlStreamsViewerAudio";
 			this.userControlStreamsViewerAudio.SelectedMediaFile = null;
 			this.userControlStreamsViewerAudio.SelectedStreamList = null;
-			this.userControlStreamsViewerAudio.Size = new System.Drawing.Size(421, 309);
+			this.userControlStreamsViewerAudio.Size = new System.Drawing.Size(542, 309);
 			this.userControlStreamsViewerAudio.TabIndex = 5;
 			// 
 			// tabPageText
@@ -569,11 +577,12 @@
 			this.userControlStreamsViewerText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.userControlStreamsViewerText.DataBindings.Add(new System.Windows.Forms.Binding("SelectedStreamList", this.bindingSourceMediaFiles, "Text", true));
 			this.userControlStreamsViewerText.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerText.Name = "userControlStreamsViewerText";
 			this.userControlStreamsViewerText.SelectedMediaFile = null;
 			this.userControlStreamsViewerText.SelectedStreamList = null;
-			this.userControlStreamsViewerText.Size = new System.Drawing.Size(421, 309);
+			this.userControlStreamsViewerText.Size = new System.Drawing.Size(542, 309);
 			this.userControlStreamsViewerText.TabIndex = 6;
 			// 
 			// tabPageImage
@@ -592,11 +601,12 @@
 			this.userControlStreamsViewerImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.userControlStreamsViewerImage.DataBindings.Add(new System.Windows.Forms.Binding("SelectedStreamList", this.bindingSourceMediaFiles, "Image", true));
 			this.userControlStreamsViewerImage.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerImage.Name = "userControlStreamsViewerImage";
 			this.userControlStreamsViewerImage.SelectedMediaFile = null;
 			this.userControlStreamsViewerImage.SelectedStreamList = null;
-			this.userControlStreamsViewerImage.Size = new System.Drawing.Size(421, 309);
+			this.userControlStreamsViewerImage.Size = new System.Drawing.Size(542, 309);
 			this.userControlStreamsViewerImage.TabIndex = 6;
 			// 
 			// tabPageOther
@@ -615,11 +625,12 @@
 			this.userControlStreamsViewerOther.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.userControlStreamsViewerOther.DataBindings.Add(new System.Windows.Forms.Binding("SelectedStreamList", this.bindingSourceMediaFiles, "Other", true));
 			this.userControlStreamsViewerOther.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerOther.Name = "userControlStreamsViewerOther";
 			this.userControlStreamsViewerOther.SelectedMediaFile = null;
 			this.userControlStreamsViewerOther.SelectedStreamList = null;
-			this.userControlStreamsViewerOther.Size = new System.Drawing.Size(421, 309);
+			this.userControlStreamsViewerOther.Size = new System.Drawing.Size(542, 309);
 			this.userControlStreamsViewerOther.TabIndex = 6;
 			// 
 			// tabPageMenus
@@ -638,11 +649,12 @@
 			this.userControlStreamsViewerMenus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.userControlStreamsViewerMenus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedStreamList", this.bindingSourceMediaFiles, "Menu", true));
 			this.userControlStreamsViewerMenus.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerMenus.Name = "userControlStreamsViewerMenus";
 			this.userControlStreamsViewerMenus.SelectedMediaFile = null;
 			this.userControlStreamsViewerMenus.SelectedStreamList = null;
-			this.userControlStreamsViewerMenus.Size = new System.Drawing.Size(421, 309);
+			this.userControlStreamsViewerMenus.Size = new System.Drawing.Size(542, 309);
 			this.userControlStreamsViewerMenus.TabIndex = 6;
 			// 
 			// splitContainer1

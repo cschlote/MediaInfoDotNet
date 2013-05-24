@@ -22,13 +22,6 @@ namespace MediaInfoDotNet.WFClient
 {
 	public partial class FormMain : Form
 	{
-		BindingList<MediaFile> _mediafiles;
-		[ListBindable(true)]
-		public BindingList<MediaFile> MediaFileCollection {
-			get { if (_mediafiles == null) _mediafiles = new BindingList<MediaFile>(); return _mediafiles; }
-			protected set { _mediafiles = value; }
-		}
-
 		public FormMain() {
 			InitializeComponent();
 			loadAllStreamProps(null);
@@ -73,17 +66,18 @@ namespace MediaInfoDotNet.WFClient
 
 		private void loadAllStreamProps(MediaFile mf) {
 			if (mf != null)
-				mf.General.miOption("Complete", checkBoxCOmpleteInform.Checked ? "Yes" : "");
-
-			textBoxInform.Text = mf != null ? mf.General.miInform() : "No data.";
-			textBoxInfoParms.Text = mf != null ? mf.General.miOption("Info_Parameters") : "No parameter data.";
-			textBoxCodecs.Text = mf != null ? mf.General.miOption("Info_Codecs") : "No codec data.";
-			labelMediaInfoLibVersion.Text = mf != null ? mf.General.miOption("Info_Version") : "No version data.";
-			labelUrl.Text = mf != null ? mf.General.miOption("Info_Url") : "No URL data.";
+				mf.General.miOption("Complete", checkBoxCOmpleteInform.Checked ? "1" : "");
 
 			propertyGridMediaFile.SelectedObject = mf;
+
+			//textBoxInform.Text = mf != null ? mf.Inform : "No data.";
+			//textBoxInfoParms.Text = mf != null ? mf.InfoParameters : "No parameter data.";
+			//textBoxCodecs.Text = mf != null ? mf.InfoCodecs : "No codec data.";
+			//labelMediaInfoLibVersion.Text = mf != null ? mf.General.miOption("Info_Version") : "No version data.";
+			//labelUrl.Text = mf != null ? mf.General.miOption("Info_Url") : "No URL data.";
+
 			if (mf != null) {
-				propertyGridGeneral.SelectedObject = mf.General;
+				//propertyGridGeneral.SelectedObject = mf.General;
 				userControlStreamsViewerVideo.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Video);
 				userControlStreamsViewerAudio.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Audio);
 				userControlStreamsViewerText.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Text);
@@ -92,7 +86,7 @@ namespace MediaInfoDotNet.WFClient
 				userControlStreamsViewerMenus.SelectedStreamList = new List<Models.BaseStreamCommons>(mf.Menu);
 			}
 			else {
-				propertyGridGeneral.SelectedObject = null;
+				//propertyGridGeneral.SelectedObject = null;
 				userControlStreamsViewerVideo.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
 				userControlStreamsViewerAudio.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
 				userControlStreamsViewerText.SelectedStreamList = (IList<Models.BaseStreamCommons>)null;
@@ -126,7 +120,8 @@ namespace MediaInfoDotNet.WFClient
 
 		private void closeFileToolStripMenuItem_Click(object sender, EventArgs e) {
 			if (listBox1.SelectedIndex >= 0) {
-				this.bindingSourceMediaFiles.Remove(MediaFileCollection[listBox1.SelectedIndex]);
+				var selnode = bindingSourceMediaFiles.Current;
+				this.bindingSourceMediaFiles.Remove(selnode);
 			}
 		}
 
@@ -160,12 +155,14 @@ namespace MediaInfoDotNet.WFClient
 		FormHistogram formHistogram;
 		private void histogramInformOutputToolStripMenuItem_Click(object sender, EventArgs e) {
 			System.Diagnostics.Debug.WriteLine("Booh");
-			formHistogram = new FormHistogram(this.MediaFileCollection);
+			if (formHistogram != null) {
+				formHistogram = new FormHistogram(bindingSourceMediaFiles);
+			}
 			formHistogram.Show();
 		}
 
 		private void bindingSource1_ListChanged(object sender, ListChangedEventArgs e) {
-			MediaFileCollection = (BindingList<MediaFile>)(bindingSourceMediaFiles.List);
+			System.Diagnostics.Debug.WriteLine("Booh");
 		}
 
 		private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
@@ -220,11 +217,13 @@ namespace MediaInfoDotNet.WFClient
 			toolStripProgressBar1.Value = 100;
 			toolStripStatusLabel1.Text = "Adding files to listbox - for many files this can take a long time!";
 			listBox1.Visible = false;
+			this.Refresh();
 			listBox1.BeginUpdate();
 			foreach (MediaFile mf in newfiles)
 				bindingSourceMediaFiles.Add(mf);
 			listBox1.EndUpdate();
-			listBox1.Visible = true; 
+			listBox1.Visible = true;
+			this.Refresh();
 			newfiles.Clear();
 			toolStripStatusLabel1.Text = "Finished loading.";
 			updateTreeView();
@@ -249,7 +248,7 @@ namespace MediaInfoDotNet.WFClient
 			// Clear the TreeView each time the method is called.
 			treeViewFiles.Nodes.Clear();
 
-			foreach (MediaFile mf in MediaFileCollection) {
+			foreach (MediaFile mf in bindingSourceMediaFiles.List) {
 				string path = Path.GetDirectoryName(mf.filePath);
 				string[] patharray = path.Split(new [] {'\\'}, 
 					StringSplitOptions.RemoveEmptyEntries);
@@ -275,6 +274,12 @@ namespace MediaInfoDotNet.WFClient
 
 		private void treeViewFiles_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
 			System.Diagnostics.Debug.Write("Booh");
+			var xxx = sender;
+			if (sender != null && sender is TreeView && e != null && e.Button == System.Windows.Forms.MouseButtons.Left) {
+				TreeView tn = (TreeView)sender;
+				string fullpath = tn.SelectedNode != null ? tn.SelectedNode.FullPath : "";
+				bindingSourceMediaFiles.Filter = String.Format("filePath like '*{0}*'", fullpath);
+			}
 		}
 
 	}

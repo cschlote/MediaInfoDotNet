@@ -39,17 +39,18 @@ namespace MediaInfoDotNet.WFClient
 			}
 		}
 
-		protected List<BaseStreamCommons> selectedStreamList;
+		protected object datasource;
 		[Bindable(true)]
 		[Description("MediaFile Streamlist to display"), Category("Data")]
-		public IList<BaseStreamCommons> SelectedStreamList {
-			get { return (IList<BaseStreamCommons>)selectedStreamList; }
+		public object SelectedStreamList {
+			get { return datasource; }
 			set {
-				selectedStreamList = (List<BaseStreamCommons>)value;
+				bsCollection.DataSource = value;
+
 				int streamCount = 0;
-				if (selectedStreamList != null && selectedStreamList.Count > 0) {
-					streamCount = selectedStreamList.Count;
-					propertyGridStreamElement.SelectedObject = selectedStreamList[0];
+				if (bsCollection.List != null && bsCollection.List.Count > 0) {
+					streamCount = bsCollection.List.Count;
+					propertyGridStreamElement.SelectedObject = bsCollection.List[0];
 					propertyGridStreamElement.Enabled = true;
 					numericUpDownStreamIndex.Minimum = 0;
 					numericUpDownStreamIndex.Value = 0;
@@ -70,8 +71,8 @@ namespace MediaInfoDotNet.WFClient
 
 		private void numericUpDownStreamIndex_ValueChanged(object sender, EventArgs e) {
 			decimal idx = numericUpDownStreamIndex.Value;
-			if (idx >= 0 && selectedStreamList != null && idx < selectedStreamList.Count) {
-				propertyGridStreamElement.SelectedObject = selectedStreamList[(int)idx];
+			if (idx >= 0 && bsCollection.List != null && idx < bsCollection.List.Count) {
+				propertyGridStreamElement.SelectedObject = bsCollection.List[(int)idx];
 			}
 		}
 
