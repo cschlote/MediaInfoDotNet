@@ -54,16 +54,23 @@ namespace MediaInfoDotNet
 
 		/// <summary>Gets the summary text for this object</summary>
 		[Description("Gets the summary text for this object."), Category("MediaFile")]
-		public string Inform { get { return General.miInform(); } }
+		public string Inform {
+			get {
+				General.miOption("Complete", informComplete ? "1" : String.Empty);
+				return General.miInform();
+			}
+		}
 
+		bool informComplete;
 		/// <summary>Gets the summary text for this object</summary>
 		[Description("Gets the summary text for this object."), Category("MediaFile")]
 		public bool InformComplete {
 			get {
-				return String.IsNullOrEmpty(General.miOption("Complete")) ? true : false;
+				//return String.IsNullOrEmpty(General.miOption("Complete")) ? true : false;
+				return informComplete;
 			}
 			set {
-				General.miOption("Complete", value ? "1" : String.Empty);
+				informComplete = value;
 			}
 		}
 
@@ -115,7 +122,7 @@ namespace MediaInfoDotNet
 		List<VideoStream> videoStreams;
         ///<summary>Video streams in this file.</summary>
         [Description ("Video streams in this file."), Category ("Streams")]
-		public IList<VideoStream> Video {
+		public List<VideoStream> Video {
             get {
                 if (videoStreams == null) {
 					videoStreams = new List<VideoStream>(General.VideoCount);
@@ -130,7 +137,7 @@ namespace MediaInfoDotNet
 		List<AudioStream> audioStreams;
         ///<summary>Audio streams in this file.</summary>
         [Description ("Audio streams in this file."), Category ("Streams")]
-		public IList<AudioStream> Audio {
+		public List<AudioStream> Audio {
             get {
                 if (audioStreams == null) {
 					audioStreams = new List<AudioStream>(General.AudioCount);
@@ -143,10 +150,10 @@ namespace MediaInfoDotNet
         }
 
 
-		IList<TextStream> textStreams;
+		List<TextStream> textStreams;
         ///<summary>Text streams in this file.</summary>
         [Description ("Text streams in this file."), Category ("Streams")]
-		public IList<TextStream> Text {
+		public List<TextStream> Text {
             get {
                 if (textStreams == null) {
 					textStreams = new List<TextStream>(General.TextCount);
@@ -159,10 +166,10 @@ namespace MediaInfoDotNet
         }
 
 
-		IList<ImageStream> imageStreams;
+		List<ImageStream> imageStreams;
         ///<summary>Image streams in this file.</summary>
         [Description ("Image streams in this file."), Category ("Streams")]
-		public IList<ImageStream> Image {
+		public List<ImageStream> Image {
             get {
                 if (imageStreams == null) {
 					imageStreams = new List<ImageStream>(General.ImageCount);
@@ -175,10 +182,10 @@ namespace MediaInfoDotNet
         }
 
 
-		IList<OtherStream> otherStreams;
+		List<OtherStream> otherStreams;
         ///<summary>Other streams in this file.</summary>
         [Description ("Other streams in this file. (e.g. chapters)"), Category ("Streams")]
-		public IList<OtherStream> Other {
+		public List<OtherStream> Other {
             get {
                 if (otherStreams == null) {
 					otherStreams = new List<OtherStream>(General.OtherCount);
@@ -191,10 +198,10 @@ namespace MediaInfoDotNet
         }
 
 
-		IList<MenuStream> menuStreams;
+		List<MenuStream> menuStreams;
         ///<summary>Menu streams in this file.</summary>
         [Description ("Menu streams in this file."), Category ("Streams")]
-		public IList<MenuStream> Menu {
+		public List<MenuStream> Menu {
             get {
                 if (menuStreams == null) {
 					menuStreams = new List<MenuStream>(General.MenuCount);
