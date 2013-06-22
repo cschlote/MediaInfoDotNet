@@ -333,7 +333,7 @@
 			this.tabControlMediaFileProps.Location = new System.Drawing.Point(3, 3);
 			this.tabControlMediaFileProps.Name = "tabControlMediaFileProps";
 			this.tabControlMediaFileProps.SelectedIndex = 0;
-			this.tabControlMediaFileProps.Size = new System.Drawing.Size(425, 304);
+			this.tabControlMediaFileProps.Size = new System.Drawing.Size(434, 304);
 			this.tabControlMediaFileProps.TabIndex = 4;
 			// 
 			// tabPageInform
@@ -342,7 +342,7 @@
 			this.tabPageInform.Location = new System.Drawing.Point(4, 22);
 			this.tabPageInform.Name = "tabPageInform";
 			this.tabPageInform.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageInform.Size = new System.Drawing.Size(418, 278);
+			this.tabPageInform.Size = new System.Drawing.Size(426, 278);
 			this.tabPageInform.TabIndex = 0;
 			this.tabPageInform.Text = "Inform";
 			this.tabPageInform.ToolTipText = "Output from Inform()";
@@ -359,7 +359,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(6, 6);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(406, 266);
+			this.tabControl1.Size = new System.Drawing.Size(417, 266);
 			this.tabControl1.TabIndex = 1;
 			// 
 			// tabPageInform2
@@ -371,7 +371,7 @@
 			this.tabPageInform2.Location = new System.Drawing.Point(4, 22);
 			this.tabPageInform2.Name = "tabPageInform2";
 			this.tabPageInform2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageInform2.Size = new System.Drawing.Size(398, 240);
+			this.tabPageInform2.Size = new System.Drawing.Size(409, 240);
 			this.tabPageInform2.TabIndex = 0;
 			this.tabPageInform2.Text = "Inform";
 			this.tabPageInform2.UseVisualStyleBackColor = true;
@@ -394,7 +394,7 @@
 			this.checkBoxCOmpleteInform.Checked = true;
 			this.checkBoxCOmpleteInform.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBoxCOmpleteInform.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.bindingSourceMediaFiles, "InformComplete", true));
-			this.checkBoxCOmpleteInform.Location = new System.Drawing.Point(290, 6);
+			this.checkBoxCOmpleteInform.Location = new System.Drawing.Point(301, 6);
 			this.checkBoxCOmpleteInform.Name = "checkBoxCOmpleteInform";
 			this.checkBoxCOmpleteInform.Size = new System.Drawing.Size(102, 17);
 			this.checkBoxCOmpleteInform.TabIndex = 3;
@@ -424,8 +424,9 @@
 			this.textBoxInform.Name = "textBoxInform";
 			this.textBoxInform.ReadOnly = true;
 			this.textBoxInform.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxInform.Size = new System.Drawing.Size(377, 202);
+			this.textBoxInform.Size = new System.Drawing.Size(397, 202);
 			this.textBoxInform.TabIndex = 0;
+			this.textBoxInform.WordWrap = false;
 			// 
 			// tabPageAttrInfo
 			// 
@@ -433,7 +434,7 @@
 			this.tabPageAttrInfo.Location = new System.Drawing.Point(4, 22);
 			this.tabPageAttrInfo.Name = "tabPageAttrInfo";
 			this.tabPageAttrInfo.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageAttrInfo.Size = new System.Drawing.Size(402, 240);
+			this.tabPageAttrInfo.Size = new System.Drawing.Size(409, 240);
 			this.tabPageAttrInfo.TabIndex = 1;
 			this.tabPageAttrInfo.Text = "Info_Parameters";
 			this.tabPageAttrInfo.UseVisualStyleBackColor = true;
@@ -450,8 +451,9 @@
 			this.textBoxInfoParms.Name = "textBoxInfoParms";
 			this.textBoxInfoParms.ReadOnly = true;
 			this.textBoxInfoParms.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxInfoParms.Size = new System.Drawing.Size(380, 228);
+			this.textBoxInfoParms.Size = new System.Drawing.Size(397, 228);
 			this.textBoxInfoParms.TabIndex = 1;
+			this.textBoxInfoParms.WordWrap = false;
 			// 
 			// tabPageCodecs
 			// 
@@ -459,7 +461,7 @@
 			this.tabPageCodecs.Location = new System.Drawing.Point(4, 22);
 			this.tabPageCodecs.Name = "tabPageCodecs";
 			this.tabPageCodecs.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageCodecs.Size = new System.Drawing.Size(398, 240);
+			this.tabPageCodecs.Size = new System.Drawing.Size(409, 240);
 			this.tabPageCodecs.TabIndex = 2;
 			this.tabPageCodecs.Text = "Info_Codecs";
 			this.tabPageCodecs.UseVisualStyleBackColor = true;
@@ -476,8 +478,9 @@
 			this.textBoxCodecs.Name = "textBoxCodecs";
 			this.textBoxCodecs.ReadOnly = true;
 			this.textBoxCodecs.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxCodecs.Size = new System.Drawing.Size(376, 228);
+			this.textBoxCodecs.Size = new System.Drawing.Size(397, 228);
 			this.textBoxCodecs.TabIndex = 2;
+			this.textBoxCodecs.WordWrap = false;
 			// 
 			// tabPageMediaFile
 			// 
@@ -485,7 +488,7 @@
 			this.tabPageMediaFile.Location = new System.Drawing.Point(4, 22);
 			this.tabPageMediaFile.Name = "tabPageMediaFile";
 			this.tabPageMediaFile.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageMediaFile.Size = new System.Drawing.Size(418, 278);
+			this.tabPageMediaFile.Size = new System.Drawing.Size(426, 278);
 			this.tabPageMediaFile.TabIndex = 1;
 			this.tabPageMediaFile.Text = "MediaFile";
 			this.tabPageMediaFile.ToolTipText = "MediaFile properties";
@@ -498,7 +501,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.propertyGridMediaFile.Location = new System.Drawing.Point(6, 6);
 			this.propertyGridMediaFile.Name = "propertyGridMediaFile";
-			this.propertyGridMediaFile.Size = new System.Drawing.Size(406, 266);
+			this.propertyGridMediaFile.Size = new System.Drawing.Size(414, 266);
 			this.propertyGridMediaFile.TabIndex = 1;
 			// 
 			// tabPageGeneral
@@ -507,7 +510,7 @@
 			this.tabPageGeneral.Location = new System.Drawing.Point(4, 22);
 			this.tabPageGeneral.Name = "tabPageGeneral";
 			this.tabPageGeneral.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageGeneral.Size = new System.Drawing.Size(418, 278);
+			this.tabPageGeneral.Size = new System.Drawing.Size(426, 278);
 			this.tabPageGeneral.TabIndex = 2;
 			this.tabPageGeneral.Text = "General";
 			this.tabPageGeneral.ToolTipText = "GeneralStream properties";
@@ -521,7 +524,7 @@
 			this.propertyGridGeneral.DataBindings.Add(new System.Windows.Forms.Binding("SelectedObject", this.bindingSourceMediaFiles, "General", true));
 			this.propertyGridGeneral.Location = new System.Drawing.Point(6, 6);
 			this.propertyGridGeneral.Name = "propertyGridGeneral";
-			this.propertyGridGeneral.Size = new System.Drawing.Size(406, 266);
+			this.propertyGridGeneral.Size = new System.Drawing.Size(414, 266);
 			this.propertyGridGeneral.TabIndex = 0;
 			// 
 			// tabPageVideo
@@ -529,7 +532,7 @@
 			this.tabPageVideo.Controls.Add(this.userControlStreamsViewerVideo);
 			this.tabPageVideo.Location = new System.Drawing.Point(4, 22);
 			this.tabPageVideo.Name = "tabPageVideo";
-			this.tabPageVideo.Size = new System.Drawing.Size(417, 278);
+			this.tabPageVideo.Size = new System.Drawing.Size(426, 278);
 			this.tabPageVideo.TabIndex = 3;
 			this.tabPageVideo.Text = "Video";
 			this.tabPageVideo.ToolTipText = "Video streams and their properties";
@@ -543,7 +546,7 @@
 			this.userControlStreamsViewerVideo.DataSource = null;
 			this.userControlStreamsViewerVideo.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerVideo.Name = "userControlStreamsViewerVideo";
-			this.userControlStreamsViewerVideo.Size = new System.Drawing.Size(411, 272);
+			this.userControlStreamsViewerVideo.Size = new System.Drawing.Size(418, 272);
 			this.userControlStreamsViewerVideo.TabIndex = 4;
 			// 
 			// tabPageAudio
@@ -551,7 +554,7 @@
 			this.tabPageAudio.Controls.Add(this.userControlStreamsViewerAudio);
 			this.tabPageAudio.Location = new System.Drawing.Point(4, 22);
 			this.tabPageAudio.Name = "tabPageAudio";
-			this.tabPageAudio.Size = new System.Drawing.Size(417, 278);
+			this.tabPageAudio.Size = new System.Drawing.Size(426, 278);
 			this.tabPageAudio.TabIndex = 4;
 			this.tabPageAudio.Text = "Audio";
 			this.tabPageAudio.ToolTipText = "Audio streams and their properties";
@@ -565,7 +568,7 @@
 			this.userControlStreamsViewerAudio.DataSource = null;
 			this.userControlStreamsViewerAudio.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerAudio.Name = "userControlStreamsViewerAudio";
-			this.userControlStreamsViewerAudio.Size = new System.Drawing.Size(411, 272);
+			this.userControlStreamsViewerAudio.Size = new System.Drawing.Size(418, 272);
 			this.userControlStreamsViewerAudio.TabIndex = 5;
 			// 
 			// tabPageText
@@ -573,7 +576,7 @@
 			this.tabPageText.Controls.Add(this.userControlStreamsViewerText);
 			this.tabPageText.Location = new System.Drawing.Point(4, 22);
 			this.tabPageText.Name = "tabPageText";
-			this.tabPageText.Size = new System.Drawing.Size(417, 278);
+			this.tabPageText.Size = new System.Drawing.Size(426, 278);
 			this.tabPageText.TabIndex = 5;
 			this.tabPageText.Text = "Text";
 			this.tabPageText.ToolTipText = "Text streams and their properties";
@@ -587,7 +590,7 @@
 			this.userControlStreamsViewerText.DataSource = null;
 			this.userControlStreamsViewerText.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerText.Name = "userControlStreamsViewerText";
-			this.userControlStreamsViewerText.Size = new System.Drawing.Size(411, 272);
+			this.userControlStreamsViewerText.Size = new System.Drawing.Size(418, 272);
 			this.userControlStreamsViewerText.TabIndex = 6;
 			// 
 			// tabPageImage
@@ -595,7 +598,7 @@
 			this.tabPageImage.Controls.Add(this.userControlStreamsViewerImage);
 			this.tabPageImage.Location = new System.Drawing.Point(4, 22);
 			this.tabPageImage.Name = "tabPageImage";
-			this.tabPageImage.Size = new System.Drawing.Size(417, 278);
+			this.tabPageImage.Size = new System.Drawing.Size(426, 278);
 			this.tabPageImage.TabIndex = 6;
 			this.tabPageImage.Text = "Image";
 			this.tabPageImage.ToolTipText = "Image streams and their properties";
@@ -609,7 +612,7 @@
 			this.userControlStreamsViewerImage.DataSource = null;
 			this.userControlStreamsViewerImage.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerImage.Name = "userControlStreamsViewerImage";
-			this.userControlStreamsViewerImage.Size = new System.Drawing.Size(411, 272);
+			this.userControlStreamsViewerImage.Size = new System.Drawing.Size(418, 272);
 			this.userControlStreamsViewerImage.TabIndex = 6;
 			// 
 			// tabPageOther
@@ -617,7 +620,7 @@
 			this.tabPageOther.Controls.Add(this.userControlStreamsViewerOther);
 			this.tabPageOther.Location = new System.Drawing.Point(4, 22);
 			this.tabPageOther.Name = "tabPageOther";
-			this.tabPageOther.Size = new System.Drawing.Size(417, 278);
+			this.tabPageOther.Size = new System.Drawing.Size(426, 278);
 			this.tabPageOther.TabIndex = 7;
 			this.tabPageOther.Text = "Other";
 			this.tabPageOther.ToolTipText = "Other streams and their properties";
@@ -631,7 +634,7 @@
 			this.userControlStreamsViewerOther.DataSource = null;
 			this.userControlStreamsViewerOther.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerOther.Name = "userControlStreamsViewerOther";
-			this.userControlStreamsViewerOther.Size = new System.Drawing.Size(411, 272);
+			this.userControlStreamsViewerOther.Size = new System.Drawing.Size(418, 272);
 			this.userControlStreamsViewerOther.TabIndex = 6;
 			// 
 			// tabPageMenus
@@ -639,7 +642,7 @@
 			this.tabPageMenus.Controls.Add(this.userControlStreamsViewerMenus);
 			this.tabPageMenus.Location = new System.Drawing.Point(4, 22);
 			this.tabPageMenus.Name = "tabPageMenus";
-			this.tabPageMenus.Size = new System.Drawing.Size(417, 278);
+			this.tabPageMenus.Size = new System.Drawing.Size(426, 278);
 			this.tabPageMenus.TabIndex = 8;
 			this.tabPageMenus.Text = "Menus";
 			this.tabPageMenus.ToolTipText = "Menu streams and their properties";
@@ -653,7 +656,7 @@
 			this.userControlStreamsViewerMenus.DataSource = null;
 			this.userControlStreamsViewerMenus.Location = new System.Drawing.Point(3, 3);
 			this.userControlStreamsViewerMenus.Name = "userControlStreamsViewerMenus";
-			this.userControlStreamsViewerMenus.Size = new System.Drawing.Size(411, 272);
+			this.userControlStreamsViewerMenus.Size = new System.Drawing.Size(418, 272);
 			this.userControlStreamsViewerMenus.TabIndex = 6;
 			// 
 			// splitContainer1

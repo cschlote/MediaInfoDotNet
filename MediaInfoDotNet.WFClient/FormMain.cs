@@ -186,6 +186,7 @@ namespace MediaInfoDotNet.WFClient
 			MediaFile mf = null;
 			if (bindingSourceMediaFiles.List.Count > 0 && listBox1.SelectedIndex >= 0 && listBox1.SelectedIndex < bindingSourceMediaFiles.List.Count) {
 				mf = (MediaFile)listBox1.SelectedItem;
+				//bindingSourceMediaFiles.Current = mf;
 			}
 			loadAllStreamProps(mf);
 		}
@@ -306,29 +307,29 @@ namespace MediaInfoDotNet.WFClient
 		#region ListBox Context Menu
 
 		private void toolStripMenuItemOpen_Click(object sender, EventArgs e) {
-			if (bindingSourceMediaFiles.Current != null) {
-				MediaFile selnode = bindingSourceMediaFiles.Current as MediaFile;
+			if (bindingSourceMediaFiles.List.Count > 0 && listBox1.SelectedIndex >= 0 && listBox1.SelectedIndex < bindingSourceMediaFiles.List.Count) {
+				MediaFile selnode = (MediaFile)listBox1.SelectedItem;
 				if (selnode != null && File.Exists(selnode.filePath))
 					System.Diagnostics.Process.Start(selnode.filePath);
 			}
 		}
 
 		private void toolStripMenuItemOpenFolder_Click(object sender, EventArgs e) {
-			if (bindingSourceMediaFiles.Current != null) {
-				MediaFile selnode = bindingSourceMediaFiles.Current as MediaFile;
+			if (bindingSourceMediaFiles.List.Count > 0 && listBox1.SelectedIndex >= 0 && listBox1.SelectedIndex < bindingSourceMediaFiles.List.Count) {
+				MediaFile selnode = (MediaFile)listBox1.SelectedItem;
 				if (selnode != null && File.Exists(selnode.filePath))
 					System.Diagnostics.Process.Start(Path.GetDirectoryName(selnode.filePath));
 			}
 		}
 
 		private void toolStripMenuItemMMG_Click(object sender, EventArgs e) {
-			if (bindingSourceMediaFiles.Current != null) {
-				MediaFile selnode = bindingSourceMediaFiles.Current as MediaFile;
+			if (bindingSourceMediaFiles.List.Count > 0 && listBox1.SelectedIndex >= 0 && listBox1.SelectedIndex < bindingSourceMediaFiles.List.Count) {
+				MediaFile selnode = (MediaFile)listBox1.SelectedItem;
 				if (selnode != null) {
 					System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
 					string cmd = Path.Combine(Settings.Default.MKVPath, "mmg.exe");
 					startInfo.FileName = cmd;
-					startInfo.Arguments = " \"" + selnode.filePath + "\"";
+					startInfo.Arguments = "\"" + selnode.filePath + "\"";
 					startInfo.WorkingDirectory = Settings.Default.MKVPath;
 					try { System.Diagnostics.Process.Start(startInfo); }
 					catch (Exception ex) { MessageBox.Show(ex.Message); };
@@ -337,13 +338,13 @@ namespace MediaInfoDotNet.WFClient
 		}
 
 		private void toolStripMenuItemHandbrake_Click(object sender, EventArgs e) {
-			if (bindingSourceMediaFiles.Current != null) {
-				MediaFile selnode = bindingSourceMediaFiles.Current as MediaFile;
+			if (bindingSourceMediaFiles.List.Count > 0 && listBox1.SelectedIndex >= 0 && listBox1.SelectedIndex < bindingSourceMediaFiles.List.Count) {
+				MediaFile selnode = (MediaFile)listBox1.SelectedItem;
 				if (selnode != null) {
 					System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
 					string cmd = Path.Combine(Settings.Default.HandbrakePath, "Handbrake.exe");
 					startInfo.FileName = cmd;
-					startInfo.Arguments = " \"" + selnode.filePath + "\"";
+					startInfo.Arguments = "\"" + selnode.filePath + "\"";
 					startInfo.WorkingDirectory = Settings.Default.HandbrakePath; 
 					try { System.Diagnostics.Process.Start(startInfo); }
 					catch (Exception ex) { MessageBox.Show(ex.Message); };

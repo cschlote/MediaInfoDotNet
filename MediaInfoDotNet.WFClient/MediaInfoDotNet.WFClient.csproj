@@ -170,9 +170,6 @@
     <None Include="Resources\SearchClr.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\VideoDBPreferences.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Preferences.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
