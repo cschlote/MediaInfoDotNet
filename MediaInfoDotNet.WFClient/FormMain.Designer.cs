@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node0");
+			System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node0");
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,13 +86,14 @@
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.treeViewFiles = new System.Windows.Forms.TreeView();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-			this.listBox1 = new System.Windows.Forms.ListBox();
+			this.listBoxMediaFiles = new System.Windows.Forms.ListBox();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemOpen = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemDeleteFile = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemMMG = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItemHandbrake = new System.Windows.Forms.ToolStripMenuItem();
+			this.bindingSourceFilteredList = new System.Windows.Forms.BindingSource(this.components);
 			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
@@ -124,6 +125,7 @@
 			this.splitContainer2.Panel2.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilteredList)).BeginInit();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -333,7 +335,7 @@
 			this.tabControlMediaFileProps.Location = new System.Drawing.Point(3, 3);
 			this.tabControlMediaFileProps.Name = "tabControlMediaFileProps";
 			this.tabControlMediaFileProps.SelectedIndex = 0;
-			this.tabControlMediaFileProps.Size = new System.Drawing.Size(434, 304);
+			this.tabControlMediaFileProps.Size = new System.Drawing.Size(422, 304);
 			this.tabControlMediaFileProps.TabIndex = 4;
 			// 
 			// tabPageInform
@@ -342,7 +344,7 @@
 			this.tabPageInform.Location = new System.Drawing.Point(4, 22);
 			this.tabPageInform.Name = "tabPageInform";
 			this.tabPageInform.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageInform.Size = new System.Drawing.Size(426, 278);
+			this.tabPageInform.Size = new System.Drawing.Size(414, 278);
 			this.tabPageInform.TabIndex = 0;
 			this.tabPageInform.Text = "Inform";
 			this.tabPageInform.ToolTipText = "Output from Inform()";
@@ -488,7 +490,7 @@
 			this.tabPageMediaFile.Location = new System.Drawing.Point(4, 22);
 			this.tabPageMediaFile.Name = "tabPageMediaFile";
 			this.tabPageMediaFile.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageMediaFile.Size = new System.Drawing.Size(426, 278);
+			this.tabPageMediaFile.Size = new System.Drawing.Size(414, 278);
 			this.tabPageMediaFile.TabIndex = 1;
 			this.tabPageMediaFile.Text = "MediaFile";
 			this.tabPageMediaFile.ToolTipText = "MediaFile properties";
@@ -510,7 +512,7 @@
 			this.tabPageGeneral.Location = new System.Drawing.Point(4, 22);
 			this.tabPageGeneral.Name = "tabPageGeneral";
 			this.tabPageGeneral.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageGeneral.Size = new System.Drawing.Size(426, 278);
+			this.tabPageGeneral.Size = new System.Drawing.Size(414, 278);
 			this.tabPageGeneral.TabIndex = 2;
 			this.tabPageGeneral.Text = "General";
 			this.tabPageGeneral.ToolTipText = "GeneralStream properties";
@@ -532,7 +534,7 @@
 			this.tabPageVideo.Controls.Add(this.userControlStreamsViewerVideo);
 			this.tabPageVideo.Location = new System.Drawing.Point(4, 22);
 			this.tabPageVideo.Name = "tabPageVideo";
-			this.tabPageVideo.Size = new System.Drawing.Size(426, 278);
+			this.tabPageVideo.Size = new System.Drawing.Size(414, 278);
 			this.tabPageVideo.TabIndex = 3;
 			this.tabPageVideo.Text = "Video";
 			this.tabPageVideo.ToolTipText = "Video streams and their properties";
@@ -554,7 +556,7 @@
 			this.tabPageAudio.Controls.Add(this.userControlStreamsViewerAudio);
 			this.tabPageAudio.Location = new System.Drawing.Point(4, 22);
 			this.tabPageAudio.Name = "tabPageAudio";
-			this.tabPageAudio.Size = new System.Drawing.Size(426, 278);
+			this.tabPageAudio.Size = new System.Drawing.Size(414, 278);
 			this.tabPageAudio.TabIndex = 4;
 			this.tabPageAudio.Text = "Audio";
 			this.tabPageAudio.ToolTipText = "Audio streams and their properties";
@@ -576,7 +578,7 @@
 			this.tabPageText.Controls.Add(this.userControlStreamsViewerText);
 			this.tabPageText.Location = new System.Drawing.Point(4, 22);
 			this.tabPageText.Name = "tabPageText";
-			this.tabPageText.Size = new System.Drawing.Size(426, 278);
+			this.tabPageText.Size = new System.Drawing.Size(414, 278);
 			this.tabPageText.TabIndex = 5;
 			this.tabPageText.Text = "Text";
 			this.tabPageText.ToolTipText = "Text streams and their properties";
@@ -598,7 +600,7 @@
 			this.tabPageImage.Controls.Add(this.userControlStreamsViewerImage);
 			this.tabPageImage.Location = new System.Drawing.Point(4, 22);
 			this.tabPageImage.Name = "tabPageImage";
-			this.tabPageImage.Size = new System.Drawing.Size(426, 278);
+			this.tabPageImage.Size = new System.Drawing.Size(414, 278);
 			this.tabPageImage.TabIndex = 6;
 			this.tabPageImage.Text = "Image";
 			this.tabPageImage.ToolTipText = "Image streams and their properties";
@@ -620,7 +622,7 @@
 			this.tabPageOther.Controls.Add(this.userControlStreamsViewerOther);
 			this.tabPageOther.Location = new System.Drawing.Point(4, 22);
 			this.tabPageOther.Name = "tabPageOther";
-			this.tabPageOther.Size = new System.Drawing.Size(426, 278);
+			this.tabPageOther.Size = new System.Drawing.Size(414, 278);
 			this.tabPageOther.TabIndex = 7;
 			this.tabPageOther.Text = "Other";
 			this.tabPageOther.ToolTipText = "Other streams and their properties";
@@ -642,7 +644,7 @@
 			this.tabPageMenus.Controls.Add(this.userControlStreamsViewerMenus);
 			this.tabPageMenus.Location = new System.Drawing.Point(4, 22);
 			this.tabPageMenus.Name = "tabPageMenus";
-			this.tabPageMenus.Size = new System.Drawing.Size(426, 278);
+			this.tabPageMenus.Size = new System.Drawing.Size(414, 278);
 			this.tabPageMenus.TabIndex = 8;
 			this.tabPageMenus.Text = "Menus";
 			this.tabPageMenus.ToolTipText = "Menu streams and their properties";
@@ -692,7 +694,7 @@
 			// 
 			// splitContainer2.Panel2
 			// 
-			this.splitContainer2.Panel2.Controls.Add(this.listBox1);
+			this.splitContainer2.Panel2.Controls.Add(this.listBoxMediaFiles);
 			this.splitContainer2.Size = new System.Drawing.Size(210, 310);
 			this.splitContainer2.SplitterDistance = 90;
 			this.splitContainer2.TabIndex = 0;
@@ -704,13 +706,14 @@
 			this.treeViewFiles.ImageList = this.imageList1;
 			this.treeViewFiles.Location = new System.Drawing.Point(0, 0);
 			this.treeViewFiles.Name = "treeViewFiles";
-			treeNode2.Name = "NodeRoot";
-			treeNode2.Text = "Node0";
+			treeNode1.Name = "NodeRoot";
+			treeNode1.Text = "Node0";
 			this.treeViewFiles.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
 			this.treeViewFiles.SelectedImageIndex = 0;
 			this.treeViewFiles.Size = new System.Drawing.Size(210, 90);
 			this.treeViewFiles.TabIndex = 0;
+			this.treeViewFiles.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewFiles_AfterSelect);
 			this.treeViewFiles.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewFiles_NodeMouseClick);
 			// 
 			// imageList1
@@ -719,21 +722,21 @@
 			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			this.imageList1.Images.SetKeyName(0, "Folder.png");
 			// 
-			// listBox1
+			// listBoxMediaFiles
 			// 
-			this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.listBoxMediaFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.listBox1.ContextMenuStrip = this.contextMenuStrip1;
-			this.listBox1.DataSource = this.bindingSourceMediaFiles;
-			this.listBox1.DisplayMember = "filePath";
-			this.listBox1.FormattingEnabled = true;
-			this.listBox1.Location = new System.Drawing.Point(3, 1);
-			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(207, 212);
-			this.listBox1.Sorted = true;
-			this.listBox1.TabIndex = 4;
-			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+			this.listBoxMediaFiles.ContextMenuStrip = this.contextMenuStrip1;
+			this.listBoxMediaFiles.DataSource = this.bindingSourceFilteredList;
+			this.listBoxMediaFiles.DisplayMember = "filePath";
+			this.listBoxMediaFiles.FormattingEnabled = true;
+			this.listBoxMediaFiles.Location = new System.Drawing.Point(3, 1);
+			this.listBoxMediaFiles.Name = "listBoxMediaFiles";
+			this.listBoxMediaFiles.Size = new System.Drawing.Size(207, 212);
+			this.listBoxMediaFiles.Sorted = true;
+			this.listBoxMediaFiles.TabIndex = 4;
+			this.listBoxMediaFiles.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
 			// 
 			// contextMenuStrip1
 			// 
@@ -785,6 +788,12 @@
 			this.toolStripMenuItemHandbrake.Size = new System.Drawing.Size(194, 22);
 			this.toolStripMenuItemHandbrake.Text = "Open with Handbrake";
 			this.toolStripMenuItemHandbrake.Click += new System.EventHandler(this.toolStripMenuItemHandbrake_Click);
+			// 
+			// bindingSourceFilteredList
+			// 
+			this.bindingSourceFilteredList.AllowNew = true;
+			this.bindingSourceFilteredList.DataSource = typeof(MediaInfoDotNet.MediaFile);
+			this.bindingSourceFilteredList.Sort = "";
 			// 
 			// backgroundWorker1
 			// 
@@ -885,6 +894,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
 			this.splitContainer2.ResumeLayout(false);
 			this.contextMenuStrip1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilteredList)).EndInit();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -937,7 +947,7 @@
 		private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 		private System.Windows.Forms.ToolStripMenuItem abortOperationToolStripMenuItem;
-		private System.Windows.Forms.ListBox listBox1;
+		private System.Windows.Forms.ListBox listBoxMediaFiles;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteFile;
 		private UserControlStreamsViewer userControlStreamsViewerVideo;
@@ -962,6 +972,7 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemMMG;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemHandbrake;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpen;
+		private System.Windows.Forms.BindingSource bindingSourceFilteredList;
     }
 }
 
