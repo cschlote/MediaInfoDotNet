@@ -21,7 +21,9 @@ namespace MediaInfoDotNet.WFClient
 {
 	public partial class FormHistogram : Form
 	{
-		private BindingList<MediaFile> bindingList;
+		private BindingSource  bindingSource;
+		//private BindingList<MediaFile> bindingList;
+
 		protected struct args
 		{
 			public string category;
@@ -31,9 +33,9 @@ namespace MediaInfoDotNet.WFClient
 			InitializeComponent();
 		}
 
-		public FormHistogram(BindingList<MediaFile> bindingList)
+		public FormHistogram(BindingSource bindingSource)
 			: this() {
-			this.bindingList = bindingList;
+				this.bindingSource = bindingSource;
 		}
 
 		private void tabKeywordsBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
@@ -59,7 +61,7 @@ namespace MediaInfoDotNet.WFClient
 		}
 
 		private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e) {
-			foreach (MediaFile mf in bindingList) {
+			foreach (MediaFile mf in bindingSource.List) {
 				string info = mf.General.miInform();
 				string[] lines = info.Split('\n');
 				args progressarg;

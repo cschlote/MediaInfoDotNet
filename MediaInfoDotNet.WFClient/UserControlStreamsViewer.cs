@@ -17,6 +17,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaInfoDotNet.Models;
+using System.Collections;
+using System.Reflection;
+
+//TODO: Create Custom GetProperty overload to show allstreams as subproperties?
 
 namespace MediaInfoDotNet.WFClient
 {
@@ -25,56 +29,65 @@ namespace MediaInfoDotNet.WFClient
 	{
 		public UserControlStreamsViewer() {
 			InitializeComponent();
-			SelectedStreamList = null;
-			SelectedMediaFile = null;
-		}
-//FIXME: Create Custom GetProperty overload to show allstreams as subproperties
-		protected MediaFile selectedMediaFile;
-		[Bindable(true)]
-		[Description("MediaFile object to display"), Category("Data")]
-		public MediaFile SelectedMediaFile {
-			get { return selectedMediaFile; }
-			set {
-				selectedMediaFile = value;
-			}
+			DataSource = null;
+
+			//propertyGridStreamElement.DataBindings.Add("SelectedObject", bsCollection, "Current", false, DataSourceUpdateMode.Never, null);
 		}
 
-		protected List<BaseStreamCommons> selectedStreamList;
+		protected List<Models.BaseStreamCommons> datasource;
+		protected Type datatype;
+
 		[Bindable(true)]
 		[Description("MediaFile Streamlist to display"), Category("Data")]
-		public IList<BaseStreamCommons> SelectedStreamList {
-			get { return (IList<BaseStreamCommons>)selectedStreamList; }
+		public List<Models.BaseStreamCommons> DataSource {
+			get { return (List<Models.BaseStreamCommons>)datasource; }
 			set {
-				selectedStreamList = (List<BaseStreamCommons>)value;
-				int streamCount = 0;
-				if (selectedStreamList != null && selectedStreamList.Count > 0) {
-					streamCount = selectedStreamList.Count;
-					propertyGridStreamElement.SelectedObject = selectedStreamList[0];
-					propertyGridStreamElement.Enabled = true;
-					numericUpDownStreamIndex.Minimum = 0;
-					numericUpDownStreamIndex.Value = 0;
-					numericUpDownStreamIndex.Maximum = streamCount - 1;
-					numericUpDownStreamIndex.Enabled = true;
+				if (value != null) {
+					Type item_type = GetListItemType(value);
+					datasource = value as List<Models.BaseStreamCommons>;
+					datatype = item_type;
 				}
 				else {
-					propertyGridStreamElement.SelectedObject = null;
-					propertyGridStreamElement.Enabled = false;
-					numericUpDownStreamIndex.Minimum = 0;
-					numericUpDownStreamIndex.Value = 0;
-					numericUpDownStreamIndex.Maximum = 0;
-					numericUpDownStreamIndex.Enabled = false;
+					datasource = null;
+					datatype = null;
 				}
-				labelStream.Text = String.Format("There are {0} streams.", streamCount);
+				bsCollection.DataSource = value;
 			}
 		}
 
-		private void numericUpDownStreamIndex_ValueChanged(object sender, EventArgs e) {
-			decimal idx = numericUpDownStreamIndex.Value;
-			if (idx >= 0 && selectedStreamList != null && idx < selectedStreamList.Count) {
-				propertyGridStreamElement.SelectedObject = selectedStreamList[(int)idx];
+		#region DataSource type checks and conversion
+
+		static Type GetListItemType(object list) {
+			foreach (Type iface in list.GetType().GetInterfaces()) {
+				System.Diagnostics.Debug.WriteLine("Iface: {0}", iface.Name);
+				if (iface.IsGenericType && iface.GetGenericTypeDefinition() == typeof(IList<>))
+					return iface.GetGenericArguments()[0];
 			}
+			System.Diagnostics.Debug.WriteLine("Type: {0}", list.GetType().FullName);
+			if (list is IList) {
+				PropertyInfo item_property = GetItemProperty(list.GetType());
+				if (item_property == null)
+					// `Item' could be interface-explicit, and thus private
+					return typeof(object);
+				else
+					return item_property.PropertyType;
+			}
+			else
+				throw new ArgumentException("Type {0} does not implement IList or IList<>", list.GetType().FullName);
 		}
 
+		static PropertyInfo GetItemProperty(Type type) {
+			foreach (PropertyInfo prop in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+				if (prop.Name == "Item")
+					return prop;
+
+			return null;
+		}
+
+		#endregion
+
+		private void bsCollection_CurrentChanged(object sender, EventArgs e) {
+			propertyGridStreamElement.SelectedObject = bsCollection.Current;
+		}
 	}
-
 }
