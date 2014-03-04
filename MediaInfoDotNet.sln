@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0A3EA5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaInfoDotNet.WFClient", "MediaInfoDotNet.WFClient\MediaInfoDotNet.WFClient.csproj", "{E6D2CC35-4B89-4339-9A03-4A382C385EBB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaInfoDotNet.Examples", "MediaInfoDotNet.Examples\MediaInfoDotNet.Examples.csproj", "{5E29E96D-DC82-4E8E-95DC-6AA15782A5C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,12 @@ Global
 		{E6D2CC35-4B89-4339-9A03-4A382C385EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6D2CC35-4B89-4339-9A03-4A382C385EBB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E6D2CC35-4B89-4339-9A03-4A382C385EBB}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E29E96D-DC82-4E8E-95DC-6AA15782A5C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E29E96D-DC82-4E8E-95DC-6AA15782A5C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E29E96D-DC82-4E8E-95DC-6AA15782A5C5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E29E96D-DC82-4E8E-95DC-6AA15782A5C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E29E96D-DC82-4E8E-95DC-6AA15782A5C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E29E96D-DC82-4E8E-95DC-6AA15782A5C5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
