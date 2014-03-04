@@ -169,7 +169,7 @@ namespace MediaInfoDotNet.WFClient
 		FormHistogram formHistogram;
 		private void histogramInformOutputToolStripMenuItem_Click(object sender, EventArgs e) {
 			System.Diagnostics.Debug.WriteLine("Booh");
-			if (formHistogram != null) {
+			if (formHistogram == null) {
 				formHistogram = new FormHistogram(bindingSourceMediaFiles);
 			}
 			formHistogram.Show();
