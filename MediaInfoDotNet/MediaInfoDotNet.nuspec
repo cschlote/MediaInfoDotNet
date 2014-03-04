@@ -17,11 +17,11 @@
  - Upstream https://code.google.com/p/mediainfo-dot-net/
  - Upstream http://mediainfo.sourceforge.net/
  - Compiled as AnyCPU, Debug, including Symbols and Source
- - Includes copies of MediaInfo.dll 7.62 for both x86 and x64. 
+ - Includes copies of MediaInfo.dll 7.67 for both x86 and x64. 
  - Includes linux and Mac dllmap config
  - Includes code to preload unmanaged DLL, which matches bitness
     </releaseNotes>
-    <copyright>Copyright 2013, $author$</copyright>
+    <copyright>Copyright 2013,2014  $author$</copyright>
     <tags>net40 media tags scraper</tags>
   </metadata>
   <files>

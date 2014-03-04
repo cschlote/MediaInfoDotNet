@@ -78,10 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="Info_Parameter_7.67.txt" />
     <Content Include="MediaInfoDotNet.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="CodeMap1.dgml" />
+    <None Include="MediaInfoDotNet.dgml" />
     <None Include="MediaInfoDotNet.nuspec">
       <SubType>Designer</SubType>
     </None>
