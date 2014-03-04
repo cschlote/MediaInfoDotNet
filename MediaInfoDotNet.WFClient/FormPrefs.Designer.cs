@@ -37,7 +37,7 @@
 			this.propertyGrid1.HelpVisible = false;
 			this.propertyGrid1.Location = new System.Drawing.Point(12, 29);
 			this.propertyGrid1.Name = "propertyGrid1";
-			this.propertyGrid1.Size = new System.Drawing.Size(260, 221);
+			this.propertyGrid1.Size = new System.Drawing.Size(715, 258);
 			this.propertyGrid1.TabIndex = 0;
 			this.propertyGrid1.ToolbarVisible = false;
 			// 
@@ -54,13 +54,14 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.ClientSize = new System.Drawing.Size(739, 299);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.propertyGrid1);
 			this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::MediaInfoDotNet.WFClient.Properties.Settings.Default, "WinPosPrefs", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
 			this.Location = global::MediaInfoDotNet.WFClient.Properties.Settings.Default.WinPosPrefs;
 			this.MinimumSize = new System.Drawing.Size(300, 300);
 			this.Name = "FormPrefs";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Preferences";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrefs_FormClosing);
 			this.Load += new System.EventHandler(this.FormPrefs_Load);
