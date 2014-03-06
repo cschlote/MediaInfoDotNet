@@ -31,6 +31,7 @@ using System.ComponentModel;
 using MediaInfoDotNet.Models;
 using MediaInfoLib;
 using System.Collections;
+using System.Globalization;
 
 namespace MediaInfoDotNet
 {
@@ -63,7 +64,7 @@ namespace MediaInfoDotNet
 
 		bool informComplete;
 		/// <summary>Gets the summary text for this object</summary>
-		[Description("Gets the summary text for this object."), Category("MediaFile")]
+		[Description("Enables the complete summary text for this object."), Category("MediaFile")]
 		public bool InformComplete {
 			get {
 				//return String.IsNullOrEmpty(General.miOption("Complete")) ? true : false;
@@ -122,6 +123,7 @@ namespace MediaInfoDotNet
 		List<VideoStream> videoStreams;
         ///<summary>Video streams in this file.</summary>
         [Description ("Video streams in this file."), Category ("Streams")]
+		[TypeConverter (typeof( StreamListConverter<VideoStream> ) )]
 		public List<VideoStream> Video {
             get {
                 if (videoStreams == null) {
@@ -137,6 +139,7 @@ namespace MediaInfoDotNet
 		List<AudioStream> audioStreams;
         ///<summary>Audio streams in this file.</summary>
         [Description ("Audio streams in this file."), Category ("Streams")]
+		[TypeConverter(typeof(StreamListConverter<AudioStream>))]
 		public List<AudioStream> Audio {
             get {
                 if (audioStreams == null) {
@@ -153,6 +156,7 @@ namespace MediaInfoDotNet
 		List<TextStream> textStreams;
         ///<summary>Text streams in this file.</summary>
         [Description ("Text streams in this file."), Category ("Streams")]
+		[TypeConverter(typeof(StreamListConverter<TextStream>))]
 		public List<TextStream> Text {
             get {
                 if (textStreams == null) {
@@ -169,6 +173,7 @@ namespace MediaInfoDotNet
 		List<ImageStream> imageStreams;
         ///<summary>Image streams in this file.</summary>
         [Description ("Image streams in this file."), Category ("Streams")]
+		[TypeConverter(typeof(StreamListConverter<ImageStream>))]
 		public List<ImageStream> Image {
             get {
                 if (imageStreams == null) {
@@ -185,6 +190,7 @@ namespace MediaInfoDotNet
 		List<OtherStream> otherStreams;
         ///<summary>Other streams in this file.</summary>
         [Description ("Other streams in this file. (e.g. chapters)"), Category ("Streams")]
+		[TypeConverter(typeof(StreamListConverter<OtherStream>))]
 		public List<OtherStream> Other {
             get {
                 if (otherStreams == null) {
@@ -201,6 +207,7 @@ namespace MediaInfoDotNet
 		List<MenuStream> menuStreams;
         ///<summary>Menu streams in this file.</summary>
         [Description ("Menu streams in this file."), Category ("Streams")]
+		[TypeConverter(typeof(StreamListConverter<MenuStream>))]
 		public List<MenuStream> Menu {
             get {
                 if (menuStreams == null) {
@@ -212,6 +219,180 @@ namespace MediaInfoDotNet
                 return menuStreams;
             }
         }
-
     }
+
+//#pragma warning disable 1591 // Disable XML documentation warnings
+
+	/// <summary>
+	/// TypeConverter for the generic lists above. We don't need an editor
+	/// or setting of a value. 
+	/// The list item are expanded into virtial Poperties for the PropertyGrid.
+	/// </summary>
+	/// <typeparam name="ItemType"></typeparam>
+	public class StreamListConverter<ItemType> : ExpandableObjectConverter
+	{
+		/// <summary>
+		/// Return true, if we can handle this detinationType, otherwise call base class.
+		/// <see cref="System.ComponentModel.TypeConverter.CanConvertTo(ITypeDescriptorContext, Type)"/>
+		/// </summary>
+		public override bool CanConvertTo(ITypeDescriptorContext context,System.Type destinationType) {
+			if (destinationType == typeof(List<ItemType>))
+				return true;
+			return base.CanConvertTo(context, destinationType);
+		}
+		/// <summary>
+		/// Convert the list object into some humanreadble string...
+		/// <see cref="System.ComponentModel.TypeConverter.ConvertTo(object, Type)"/>
+		/// </summary>
+		public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture,object value,System.Type destinationType) {
+			if (destinationType == typeof(System.String))
+			{
+				List<ItemType> list = (List<ItemType>)value;
+				return "There are " + list.Count + " streams of type " + typeof(ItemType).Name;
+			}
+			return base.ConvertTo(context, culture, value, destinationType);
+		}
+		/// <summary>
+		/// Return true, if we can handle sourceType. 
+		/// We can'T, because item are static and can't be changed.
+		/// <see cref="System.ComponentModel.TypeConverter.CanConvertFrom(ITypeDescriptorContext, Type)"/>
+		/// </summary>
+		public override bool CanConvertFrom(ITypeDescriptorContext context, System.Type sourceType) {
+			//if (sourceType == typeof(string))
+			//	return true;
+			return base.CanConvertFrom(context, sourceType);
+		}
+		/// <summary>
+		/// Return true, if we can handle sourceType. 
+		/// We can'T, because item are static and can't be changed.
+		/// <see cref="System.ComponentModel.TypeConverter.ConvertFrom(ITypeDescriptorContext, CultureInfo, object)"/>
+		/// </summary>
+		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value) 
+		{
+			//if (value is string) {      // Nothing useful to do here.
+			//}  
+		    return base.ConvertFrom(context, culture, value);
+		}
+
+		/// <summary>
+		/// Custom GetProperties method. Splits the List items into separate virtual Properties.
+		/// <see cref="System.ComponentModel.TypeConverter.GetProperties(ITypeDescriptorContext, object, Attribute[])"/>
+		/// </summary>
+		public override PropertyDescriptorCollection GetProperties(ITypeDescriptorContext context, object component, Attribute[] attrs) {
+			// our list of props.
+			ArrayList propList = new ArrayList();
+
+			// add a property descriptor for each stream
+			for (int i = 0; i < ((List<ItemType>)component).Count; i++) {
+				propList.Add(new StreamListPropertyDescriptor<ItemType>(((List<ItemType>)component), i));
+			}
+
+			// return the collection of PropertyDescriptors.
+			PropertyDescriptor[] props = (PropertyDescriptor[]) propList.ToArray(typeof(PropertyDescriptor));
+			return new PropertyDescriptorCollection(props);
+		}
+
+		/// <summary>
+		/// This PropertyDescriptor is used to expand the internal lists of stream into separate virtual
+		/// properties for the stream. So the stream can be expanded in the property grid.
+		/// </summary>
+		private class StreamListPropertyDescriptor<StreamItemType> : PropertyDescriptor
+		{
+			List<StreamItemType> owner;
+			int index;
+			//System.Drawing.Design.UITypeEditor editor;
+
+			/// <summary>
+			/// Initialize our state.
+			/// </summary>
+			/// <param name="owner">The PropertyTab that created this Property</param>
+			/// <param name="index">The vertex this PropertyDescriptor operates on.</param>
+			public StreamListPropertyDescriptor(List<StreamItemType> owner, int index) :
+				base("Stream " + index, new Attribute[] { CategoryAttribute.Data }) {
+				this.owner = owner;
+				this.index = index;
+			}
+
+			/// <summary>
+			/// The type of component the framework expects for this property.  Notice
+			/// This returns List'StreamItemType.  That is because the object that is being browsed
+			/// when this property is shown is a List'StreamItemType.  So we are faking the PropertyGrid
+			/// into thinking this is a property on that type, even though it isn't.
+			/// </summary>	
+			public override Type ComponentType {
+				get {
+					return typeof(List<StreamItemType>);
+				}
+			}
+
+			/// <summary>
+			/// Must override abstract properties.
+			/// </summary>
+			public override bool IsReadOnly {
+				get {
+					return true;
+				}
+			}
+
+
+			/// <summary>
+			/// This property is a StreamItemType type property.
+			/// </summary>
+			public override Type PropertyType {
+				get {
+					return typeof(StreamItemType);
+				}
+			}
+
+			/// <summary>
+			/// This allows us to specify the editor that will be used for this
+			/// property.
+			/// </summary>
+			/// <param name="editorBaseType"></param>
+			/// <returns></returns>
+			public override object GetEditor(Type editorBaseType) {
+				// make sure we're looking for a UITypeEditor.
+				//
+				//if (editorBaseType == typeof(System.Drawing.Design.UITypeEditor)) {
+				//	// create and return one of our editors.
+				//	//
+				//	if (editor == null) {
+				//		editor = new PointUIEditor(owner.target);
+				//	}
+				//	return editor;
+
+				//}
+				return base.GetEditor(editorBaseType);
+			}
+
+
+			/// <summary>
+			/// Gets the value for the StreamList
+			/// </summary>
+			public override object GetValue(object o) {
+				// Just as the the underlaying List<> for the item
+				return ((List<StreamItemType>)o)[index];
+			}
+
+			/// <summary>
+			/// Thsi routine should normale set a value from some object.
+			/// Obviously we can't change the the data. So just do nothing.
+			/// </summary>
+			public override void SetValue(object o, object value) {
+			}
+
+			/// <summary>
+			/// Abstract base members
+			/// </summary>			
+			public override void ResetValue(object o) { }
+
+			public override bool CanResetValue(object o) {
+				return false;
+			}
+
+			public override bool ShouldSerializeValue(object o) {
+				return false;
+			}
+		}
+	}
 }
