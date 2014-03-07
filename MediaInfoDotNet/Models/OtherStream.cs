@@ -10,10 +10,11 @@
  ******************************************************************************
  */
 
-using System;
-using System.ComponentModel;
 using MediaInfoDotNet.Models;
 using MediaInfoLib;
+using System;
+using System.ComponentModel;
+using System.Text;
 
 namespace MediaInfoDotNet.Models
 {
@@ -27,6 +28,16 @@ namespace MediaInfoDotNet.Models
 		public OtherStream(MediaInfo mediaInfo, int id)
 			: base(mediaInfo, StreamKind.Other, id) {
 		}
+		/// <summary>Overides base method to provide short summary of stream kind.</summary>
+		public override string ToString() {
+			StringBuilder sb = new StringBuilder();
+			sb.AppendFormat(", {0}", this.Format);
+			if (!String.IsNullOrEmpty(this.FormatProfile)) sb.AppendFormat(" {0}", this.FormatProfile);
+			if (!String.IsNullOrEmpty(this.title)) sb.AppendFormat(", '{0}'", this.Title);
+
+			return sb.ToString();
+		}
+
 
 		#region AllStreamsCommon
 

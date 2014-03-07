@@ -14,6 +14,7 @@ using MediaInfoLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 
 namespace MediaInfoDotNet.Models
 {
@@ -26,6 +27,17 @@ namespace MediaInfoDotNet.Models
 		///<param name="id">The MediaInfo ID for this text stream.</param>
 		public TextStream(MediaInfo mediaInfo, int id)
 			: base(mediaInfo, StreamKind.Text, id) {
+		}
+		/// <summary>Overides base method to provide short summary of stream kind.</summary>
+		public override string ToString() {
+			StringBuilder sb = new StringBuilder();
+			sb.AppendFormat("{0}", String.IsNullOrEmpty(this.Language) ? "ud" : this.Language);
+			sb.AppendFormat(", {0}", this.Format);
+			if (!String.IsNullOrEmpty(this.FormatProfile)) sb.AppendFormat(" {0}", this.FormatProfile);
+			if (this.Default) sb.Append(", Default");
+			if (this.Forced) sb.Append(", Forced");
+			if (!String.IsNullOrEmpty(this.title)) sb.AppendFormat(", '{0}'", this.Title);
+			return sb.ToString();
 		}
 
 		#region AllStreamsCommon

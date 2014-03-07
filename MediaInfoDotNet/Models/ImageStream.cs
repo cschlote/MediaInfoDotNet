@@ -10,11 +10,12 @@
  ******************************************************************************
  */
 
+using MediaInfoDotNet;
+using MediaInfoLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using MediaInfoDotNet;
-using MediaInfoLib;
+using System.Text;
 
 namespace MediaInfoDotNet.Models
 {
@@ -28,6 +29,17 @@ namespace MediaInfoDotNet.Models
 		public ImageStream(MediaInfo mediaInfo, int id)
 			: base(mediaInfo, StreamKind.Image, id) {
 		}
+		/// <summary>Overides base method to provide short summary of stream kind.</summary>
+		public override string ToString() {
+			StringBuilder sb = new StringBuilder();
+			sb.AppendFormat("{0}", this.Format);
+			if (!String.IsNullOrEmpty(this.FormatProfile)) sb.AppendFormat(" {0}", this.FormatProfile);
+			sb.AppendFormat(", {0}x{1} px", this.Width, this.Height);
+			if (!String.IsNullOrEmpty(this.title)) sb.AppendFormat(", '{0}'", this.Title);
+
+			return sb.ToString();
+		}
+
 
 		#region AllStreamsCommon
 

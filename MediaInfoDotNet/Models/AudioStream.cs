@@ -10,10 +10,11 @@
  ******************************************************************************
  */
 
+using MediaInfoLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using MediaInfoLib;
+using System.Text;
 
 namespace MediaInfoDotNet.Models
 {
@@ -27,6 +28,20 @@ namespace MediaInfoDotNet.Models
 		public AudioStream(MediaInfo mediaInfo, int id)
 			: base(mediaInfo, StreamKind.Audio, id) {
 		}
+		/// <summary>Overides base method to provide short summary of stream kind.</summary>
+		public override string ToString() {
+			StringBuilder sb = new StringBuilder();
+			sb.AppendFormat("{0}", String.IsNullOrEmpty(this.Language) ? "ud" : this.Language);
+			sb.AppendFormat(", {0}", this.Format);
+			if (!String.IsNullOrEmpty(this.FormatProfile)) sb.AppendFormat(" {0}", this.FormatProfile);
+			sb.AppendFormat(", {0} Channels", this.Channels);
+			if (this.Default) sb.Append(", Default");
+			if (this.Forced) sb.Append(", Forced");
+			if (!String.IsNullOrEmpty(this.title)) sb.AppendFormat(", '{0}'", this.Title);
+
+			return sb.ToString();
+		}
+
 
 		#region AllStreamsCommon
 
