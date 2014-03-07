@@ -175,6 +175,18 @@ namespace MediaInfoDotNet.Models
 
 		#endregion
 
+		#region AudioTextCommon
+
+		///<summary>The Default flag for this stream.</summary>
+		[Description("The Default flag for this stream."), Category("AudioTextCommon")]
+		public bool Default { get { return this.default_track; } }
+
+		///<summary>The Forced-Display flag for this stream.</summary>
+		[Description("The Forced-Display flag for this stream."), Category("AudioTextCommon")]
+		public bool Forced { get { return this.forced_track; } }
+
+		#endregion
+
 		#region Audio
 
 		int _channels = int.MinValue;

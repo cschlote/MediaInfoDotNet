@@ -461,5 +461,32 @@ namespace MediaInfoDotNet.Models
 		}
 
 		#endregion
+
+		#region AudioTextCommon
+
+		string _default;
+		///<summary>Colorspace used for encoding.</summary>
+		protected bool default_track {
+			get {
+				if (String.IsNullOrEmpty(_default)) {
+					_default = miGetString("Default");
+				}
+				return String.Compare(_default,"Yes",true)==0;
+			}
+		}
+
+		string _forced;
+		///<summary>Colorspace used for encoding.</summary>
+		protected bool forced_track {
+			get {
+				if (String.IsNullOrEmpty(_forced)) {
+					_forced = miGetString("Forced");
+				}
+				return String.Compare(_forced, "Yes", true) == 0;
+			}
+		}
+
+		#endregion
+
 	}
 }
