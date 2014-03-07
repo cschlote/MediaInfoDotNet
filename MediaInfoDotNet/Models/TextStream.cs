@@ -116,9 +116,9 @@ namespace MediaInfoDotNet.Models
 
 		#region VideoAudioTextCommon
 
-		///<summary>The bit rate of this stream, in bits per second</summary>
-		[Description("The bit rate of this stream, in bits per second"), Category("VideoAudioTextCommon")]
-		public int BitRate { get { return this.bitRate; } }
+		///<summary>The bitrate(s) of this stream, in bits per second, separated by /</summary>
+		[Description("The bitrate(s) of this stream, in bits per second, separated by /"), Category("VideoAudioTextCommon")]
+		public string BitRate { get { return this.bitRate; } }
 
 		///<summary>The maximum bitrate of this stream in BPS.</summary>
 		[Description("The maximum bitrate of this stream in BPS."), Category("VideoAudioTextCommon")]

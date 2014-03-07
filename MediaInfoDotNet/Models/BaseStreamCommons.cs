@@ -248,12 +248,12 @@ namespace MediaInfoDotNet.Models
 
 		#region VideoAudioTextCommon
 
-		int _bitRate = int.MinValue;
+		string _bitRate = null;
 		///<summary>The bit rate of this stream, in bits per second</summary>
-		protected int bitRate {
+		protected string bitRate {
 			get {
-				if (_bitRate == int.MinValue)
-					_bitRate = miGetInt("BitRate");
+				if (String.IsNullOrEmpty(_bitRate))
+					_bitRate = miGetString("BitRate");
 				return _bitRate;
 			}
 		}
