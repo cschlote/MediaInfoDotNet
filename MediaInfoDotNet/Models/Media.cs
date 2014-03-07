@@ -99,6 +99,10 @@ namespace MediaInfoDotNet.Models
 			string miResult = mediaInfo.Get(kind, id, parameter);
 			bool rc = int.TryParse(miResult, NumberStyles.Number,
 				System.Globalization.CultureInfo.InvariantCulture, out parsedValue);
+			if (!String.IsNullOrEmpty(miResult) && !rc) {
+				System.Diagnostics.Debug.WriteLine("MediaInfo.dll returned NAN for parameter {0}", parameter);
+				System.Diagnostics.Debugger.Break();
+			}
 			return rc ? parsedValue : 0;
 		}
 
@@ -109,6 +113,10 @@ namespace MediaInfoDotNet.Models
 			string miResult = mediaInfo.Get(kind, id, parameter);
 			bool rc = float.TryParse(miResult, NumberStyles.Float,
 				System.Globalization.CultureInfo.InvariantCulture, out parsedValue);
+			if (!String.IsNullOrEmpty(miResult) && !rc) {
+				System.Diagnostics.Debug.WriteLine("MediaInfo.dll returned NAN for parameter {0}", parameter);
+				System.Diagnostics.Debugger.Break();
+			}
 			return rc ? parsedValue : 0.0f;
 		}
 
@@ -119,6 +127,10 @@ namespace MediaInfoDotNet.Models
 			string miResult = mediaInfo.Get(kind, id, parameter);
 			bool rc = double.TryParse(miResult, NumberStyles.Float,
 				System.Globalization.CultureInfo.InvariantCulture, out parsedValue);
+			if (!String.IsNullOrEmpty(miResult) && !rc) {
+				System.Diagnostics.Debug.WriteLine("MediaInfo.dll returned NAN for parameter {0}", parameter);
+				System.Diagnostics.Debugger.Break();
+			}
 			return rc ? parsedValue : 0.0;
 		}
 
@@ -132,6 +144,10 @@ namespace MediaInfoDotNet.Models
 			bool rc = DateTime.TryParseExact(miResult, format,
 				DateTimeFormatInfo.InvariantInfo,
 				DateTimeStyles.AssumeUniversal, out parsedValue);
+			if (!String.IsNullOrEmpty(miResult) && !rc) {
+				System.Diagnostics.Debug.WriteLine("MediaInfo.dll returned NAN for parameter {0}", parameter);
+				System.Diagnostics.Debugger.Break();
+			}
 			return rc ? parsedValue.ToUniversalTime() : DateTime.SpecifyKind(DateTime.MinValue, DateTimeKind.Utc);
 		}
 
