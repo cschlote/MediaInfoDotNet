@@ -82,8 +82,10 @@ namespace MediaInfoDotNet.WFClient
 
 			propertyGridMediaFile.SelectedObject = mf;
 
+			if (mf != null) mf.InformComplete = checkBoxCOmpleteInform.Checked;
+			textBoxInform.Text = mf != null ? mf.Inform : "No data.";
+
 			// USES DATABINDING....
-			//textBoxInform.Text = mf != null ? mf.Inform : "No data.";
 			//textBoxInfoParms.Text = mf != null ? mf.InfoParameters : "No parameter data.";
 			//textBoxCodecs.Text = mf != null ? mf.InfoCodecs : "No codec data.";
 			//labelMediaInfoLibVersion.Text = mf != null ? mf.General.miOption("Info_Version") : "No version data.";

@@ -419,7 +419,6 @@
 			this.textBoxInform.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBoxInform.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceMediaFiles, "Inform", true));
 			this.textBoxInform.Font = new System.Drawing.Font("Courier New", 8.25F);
 			this.textBoxInform.Location = new System.Drawing.Point(6, 32);
 			this.textBoxInform.Multiline = true;
