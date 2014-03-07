@@ -204,13 +204,13 @@ namespace MediaInfoDotNet.Models
 
 		#region Audio
 
-		int _channels = int.MinValue;
+		string _channels = null;
 		///<summary>Number of audio channels, e.g. 6 for 5.1 audio.</summary>
 		[Description("Number of audio channels, e.g. 6 for 5.1 audio."), Category("Audio")]
-		public int Channels {
+		public string Channels {
 			get {
-				if (_channels == int.MinValue)
-					_channels = miGetInt("Channel(s)");
+				if (String.IsNullOrEmpty(_channels))
+					_channels = miGetString("Channel(s)");
 				return _channels;
 			}
 		}
