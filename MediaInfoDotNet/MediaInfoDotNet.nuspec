@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>Charles Burns, Carsten Schlote</authors>
     <owners>cschlote</owners>
-    <projectUrl>http://git.vahanus.net/?p=csc/MediaInfoDotNet.git;a=summary</projectUrl>
+    <projectUrl>https://github.com/cschlote/MediaInfoDotNet</projectUrl>
     <iconUrl>http://mediainfo.sourceforge.net/_/Image/Default/Logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>$description$</summary>
@@ -21,7 +21,7 @@
  - Includes linux and Mac dllmap config
  - Includes code to preload unmanaged DLL, which matches bitness
     </releaseNotes>
-    <copyright>Copyright 2013,2014  $author$</copyright>
+    <copyright>Copyright 2013-2015  $author$</copyright>
     <tags>net40 media tags scraper</tags>
   </metadata>
   <files>
