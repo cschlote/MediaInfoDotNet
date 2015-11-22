@@ -14,12 +14,12 @@
  It abstracts the calls to the underlaying native DLL and provides strongly typed fields for each kind of media stream within a file.
     </description>
     <releaseNotes>
- - Upstream https://code.google.com/p/mediainfo-dot-net/
- - Upstream http://mediainfo.sourceforge.net/
- - Compiled as AnyCPU, Debug, including Symbols and Source
- - Includes copies of MediaInfo.dll 7.67 for both x86 and x64. 
- - Includes linux and Mac dllmap config
- - Includes code to preload unmanaged DLL, which matches bitness
+      - Upstream https://code.google.com/p/mediainfo-dot-net/
+      - Upstream http://mediainfo.sourceforge.net/
+      - Compiled as AnyCPU, Debug, including Symbols and Source
+      - Includes copies of MediaInfo.dll 0.7.79 for both x86 and x64.
+      - Includes linux and Mac dllmap config
+      - Includes code to preload unmanaged DLL, which matches bitness
     </releaseNotes>
     <copyright>Copyright 2013-2015  $author$</copyright>
     <tags>net40 media tags scraper</tags>
