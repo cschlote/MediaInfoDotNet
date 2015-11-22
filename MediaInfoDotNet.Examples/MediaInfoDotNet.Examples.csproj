@@ -40,7 +40,9 @@
     <None Include="Example.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="MediaInfoDotNet.dll.config" />
+    <None Include="MediaInfoDotNet.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -115,8 +117,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MediaInfoDotNet">
-      <HintPath>..\packages\MediaInfoDotNet.0.7.62.40921\lib\net40\MediaInfoDotNet.dll</HintPath>
+    <Reference Include="MediaInfoDotNet, Version=0.7.67.40922, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediaInfoDotNet.0.7.67.40922\lib\net40\MediaInfoDotNet.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
