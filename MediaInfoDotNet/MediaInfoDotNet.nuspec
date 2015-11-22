@@ -22,7 +22,7 @@
       - Includes code to preload unmanaged DLL, which matches bitness
     </releaseNotes>
     <copyright>Copyright 2013-2015  $author$</copyright>
-    <tags>net40 media tags scraper</tags>
+    <tags>net45 media tags scraper</tags>
   </metadata>
   <files>
     <file src="tools\install.ps1" target="tools" />
