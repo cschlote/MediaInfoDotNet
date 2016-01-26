@@ -52,63 +52,6 @@
     <Compile Include="Example\HowToUse_Dll_CLI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Documentation.html" />
-    <Content Include="Doc\annotated.html" />
-    <Content Include="Doc\bc_s.png" />
-    <Content Include="Doc\bdwn.png" />
-    <Content Include="Doc\classes.html" />
-    <Content Include="Doc\class_media_info_lib_1_1_media_info-members.html" />
-    <Content Include="Doc\class_media_info_lib_1_1_media_info.html" />
-    <Content Include="Doc\class_media_info_lib_1_1_media_info_list-members.html" />
-    <Content Include="Doc\class_media_info_lib_1_1_media_info_list.html" />
-    <Content Include="Doc\closed.png" />
-    <Content Include="Doc\dir_04ac3ca04e7df05c28b97e8a54b78cec.html" />
-    <Content Include="Doc\dir_1948383ebc858d7498bcb23a8a53c434.html" />
-    <Content Include="Doc\doxygen.css" />
-    <Content Include="Doc\doxygen.png" />
-    <Content Include="Doc\dynsections.js" />
-    <Content Include="Doc\files.html" />
-    <Content Include="Doc\ftv2blank.png" />
-    <Content Include="Doc\ftv2cl.png" />
-    <Content Include="Doc\ftv2doc.png" />
-    <Content Include="Doc\ftv2folderclosed.png" />
-    <Content Include="Doc\ftv2folderopen.png" />
-    <Content Include="Doc\ftv2lastnode.png" />
-    <Content Include="Doc\ftv2link.png" />
-    <Content Include="Doc\ftv2mlastnode.png" />
-    <Content Include="Doc\ftv2mnode.png" />
-    <Content Include="Doc\ftv2mo.png" />
-    <Content Include="Doc\ftv2node.png" />
-    <Content Include="Doc\ftv2ns.png" />
-    <Content Include="Doc\ftv2plastnode.png" />
-    <Content Include="Doc\ftv2pnode.png" />
-    <Content Include="Doc\ftv2splitbar.png" />
-    <Content Include="Doc\ftv2vertline.png" />
-    <Content Include="Doc\functions.html" />
-    <Content Include="Doc\functions_func.html" />
-    <Content Include="Doc\index.html" />
-    <Content Include="Doc\jquery.js" />
-    <Content Include="Doc\namespacemembers.html" />
-    <Content Include="Doc\namespacemembers_enum.html" />
-    <Content Include="Doc\namespacemembers_eval.html" />
-    <Content Include="Doc\namespacemembers_type.html" />
-    <Content Include="Doc\namespaces.html" />
-    <Content Include="Doc\namespace_media_info_lib.html" />
-    <Content Include="Doc\nav_f.png" />
-    <Content Include="Doc\nav_g.png" />
-    <Content Include="Doc\nav_h.png" />
-    <Content Include="Doc\open.png" />
-    <Content Include="Doc\sync_off.png" />
-    <Content Include="Doc\sync_on.png" />
-    <Content Include="Doc\tabs.css" />
-    <Content Include="Doc\tab_a.png" />
-    <Content Include="Doc\tab_b.png" />
-    <Content Include="Doc\tab_h.png" />
-    <Content Include="Doc\tab_s.png" />
-    <Content Include="Doc\_media_info_8h_source.html" />
-    <Content Include="Doc\_media_info_d_l_l_8h_source.html" />
-    <Content Include="Doc\_media_info_list_8h_source.html" />
-    <Content Include="Doc\_media_info___const_8h_source.html" />
     <Content Include="x64\MediaInfo.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -117,8 +60,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MediaInfoDotNet, Version=0.7.67.40922, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MediaInfoDotNet.0.7.67.40922\lib\net40\MediaInfoDotNet.dll</HintPath>
+    <Reference Include="MediaInfoDotNet, Version=0.7.79.40925, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediaInfoDotNet.0.7.79.40925\lib\net45\MediaInfoDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
