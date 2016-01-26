@@ -31,7 +31,7 @@ namespace MediaInfoDotNet.Models
 
 		int _streamid = Int32.MinValue;
 		///<summary>The ID of this stream in the file.</summary>
-		protected int streamid {
+		public int streamid {
 			get {
 				if (_streamid == Int32.MinValue)
 					_streamid = miGetInt("ID");
@@ -41,7 +41,7 @@ namespace MediaInfoDotNet.Models
 
 		string _format;
 		///<summary>The format or container of this file or stream.</summary>
-		protected string format {
+		public string format {
 			get {
 				if (_format == null)
 					_format = miGetString("Format");
@@ -51,7 +51,7 @@ namespace MediaInfoDotNet.Models
 
 		string _format_info;
 		///<summary>Additional format information for this stream.</summary>
-		protected string format_info {
+		public string format_info {
 			get {
 				if (_format_info == null)
 					_format_info = miGetString("Format/Info");
@@ -61,7 +61,7 @@ namespace MediaInfoDotNet.Models
 
 		string _format_profile;
 		///<summary>Additional format information for this stream.</summary>
-		protected string format_profile {
+		public string format_profile {
 			get {
 				if (_format_profile == null)
 					_format_profile = miGetString("Format_Profile");
@@ -71,7 +71,7 @@ namespace MediaInfoDotNet.Models
 
 		string _format_version;
 		///<summary>Additional format information for this stream.</summary>
-		protected string format_version {
+		public string format_version {
 			get {
 				if (_format_version == null)
 					_format_version = miGetString("Format_Version");
@@ -81,7 +81,7 @@ namespace MediaInfoDotNet.Models
 
 		string _title;
 		///<summary>The title of this stream.</summary>
-		protected string title {
+		public string title {
 			get {
 				if (_title == null)
 					_title = miGetString("Title"); //FIXME Why must this be uppercase? Bug?
@@ -94,7 +94,7 @@ namespace MediaInfoDotNet.Models
 
 		string _uniqueId;
 		///<summary>This stream's globally unique ID (GUID).</summary>
-		protected string uniqueId {
+		public string uniqueId {
 			get {
 				if (_uniqueId == null)
 					_uniqueId = miGetString("UniqueID");
@@ -108,7 +108,7 @@ namespace MediaInfoDotNet.Models
 
 		string _encodedApplication;
 		/// <summary>Encoding application for this file or stream.</summary>
-		protected string encodedApplication {
+		public string encodedApplication {
 			get {
 				if (String.IsNullOrEmpty(_encodedApplication))
 					_encodedApplication = miGetString("Encoded_Application");
@@ -122,7 +122,7 @@ namespace MediaInfoDotNet.Models
 
 		DateTime _encodedDate = DateTime.MinValue;
 		///<summary>Date and time stream encoding completed.</summary>
-		protected DateTime encodedDate {
+		public DateTime encodedDate {
 			get {
 				if (_encodedDate == DateTime.MinValue)
 					_encodedDate = miGetDateTime("Encoded_Date");
@@ -132,7 +132,7 @@ namespace MediaInfoDotNet.Models
 
 		string _encoderLibrary = null;
 		///<summary>Software used to encode this stream.</summary>
-		protected string encoderLibrary {
+		public string encoderLibrary {
 			get {
 				if (_encoderLibrary == null)
 					_encoderLibrary = miGetString("Encoded_Library");
@@ -142,7 +142,7 @@ namespace MediaInfoDotNet.Models
 
 		string _internetMediaType = null;
 		///<summary>Media type of stream, formerly called MIME type.</summary>
-		protected string internetMediaType {
+		public string internetMediaType {
 			get {
 				if (_internetMediaType == null)
 					_internetMediaType = miGetString("InternetMediaType");
@@ -152,7 +152,7 @@ namespace MediaInfoDotNet.Models
 
 		long _size = long.MinValue;
 		///<summary>Size in bytes.</summary>
-		protected long size {
+		public long size {
 			get {
 				if (_size == long.MinValue) {
 					if (kind == StreamKind.General)
@@ -167,7 +167,7 @@ namespace MediaInfoDotNet.Models
 		string _encoderSettingsRaw = null;
 		///<summary>Encoder settings used for encoding this stream.
 		///String format: name=value / name=value / ...</summary>
-		protected string encoderSettingsRaw {
+		public string encoderSettingsRaw {
 			get {
 				if (_encoderSettingsRaw == null)
 					_encoderSettingsRaw
@@ -178,7 +178,7 @@ namespace MediaInfoDotNet.Models
 
 		IDictionary<string, string> _encoderSettings = null;
 		///<summary>Encoder settings used for encoding this stream.</summary>
-		protected IDictionary<string, string> encoderSettings {
+		public IDictionary<string, string> encoderSettings {
 			get {
 				if (_encoderSettings == null) {
 					_encoderSettings = new Dictionary<string, string>();
@@ -202,7 +202,7 @@ namespace MediaInfoDotNet.Models
 		string _codecId = null;
 		///<summary>Codec ID available from some codecs.</summary>
 		///<example>AAC audio:A_AAC, h.264 video:V_MPEG4/ISO/AVC</example>
-		protected string codecId {
+		public string codecId {
 			get {
 				if (_codecId == null)
 					_codecId = miGetString("CodecID");
@@ -212,7 +212,7 @@ namespace MediaInfoDotNet.Models
 
 		string _codecCommonName = null;
 		///<summary>Common name of the codec.</summary>
-		protected string codecCommonName {
+		public string codecCommonName {
 			get {
 				if (_codecCommonName == null)
 					_codecCommonName = miGetString("CodecID/Hint");
@@ -226,7 +226,7 @@ namespace MediaInfoDotNet.Models
 
 		int _delay = int.MinValue;
 		///<summary>Stream delay (e.g. to sync audio/video) in ms.</summary>
-		protected int delay {
+		public int delay {
 			get {
 				if (_delay == int.MinValue)
 					_delay = miGetInt("Delay");
@@ -236,7 +236,7 @@ namespace MediaInfoDotNet.Models
 
 		int _duration = int.MinValue;
 		///<summary>Duration of the stream in milliseconds.</summary>
-		protected int duration {
+		public int duration {
 			get {
 				if (_duration == int.MinValue)
 					_duration = miGetInt("Duration");
@@ -250,7 +250,7 @@ namespace MediaInfoDotNet.Models
 
 		string _bitRate = null;
 		///<summary>The bit rate of this stream, in bits per second</summary>
-		protected string bitRate {
+		public string bitRate {
 			get {
 				if (String.IsNullOrEmpty(_bitRate))
 					_bitRate = miGetString("BitRate");
@@ -260,7 +260,7 @@ namespace MediaInfoDotNet.Models
 
 		int _bitRateMaximum = int.MinValue;
 		///<summary>The maximum bitrate of this stream in BPS.</summary>
-		protected int bitRateMaximum {
+		public int bitRateMaximum {
 			get {
 				if (_bitRateMaximum == int.MinValue)
 					_bitRateMaximum = miGetInt("BitRate_Maximum");
@@ -270,7 +270,7 @@ namespace MediaInfoDotNet.Models
 
 		int _bitRateMinimum = int.MinValue;
 		///<summary>The minimum bitrate of this stream in BPS.</summary>
-		protected int bitRateMinimum {
+		public int bitRateMinimum {
 			get {
 				if (_bitRateMinimum == int.MinValue)
 					_bitRateMinimum = miGetInt("BitRate_Minimum");
@@ -281,7 +281,7 @@ namespace MediaInfoDotNet.Models
 		int _bitRateNominal = int.MinValue;
 		///<summary>The maximum allowed bitrate, in BPS, with the encoder
 		/// settings used. Some encoders report the average BPS.</summary>
-		protected int bitRateNominal {
+		public int bitRateNominal {
 			get {
 				if (_bitRateNominal == int.MinValue)
 					_bitRateNominal = miGetInt("BitRate_Nominal");
@@ -291,7 +291,7 @@ namespace MediaInfoDotNet.Models
 
 		string _bitRateMode = null;
 		///<summary>Mode (CBR, VBR) used for bit allocation.</summary>
-		protected string bitRateMode {
+		public string bitRateMode {
 			get {
 				if (_bitRateMode == null)
 					_bitRateMode = miGetString("BitRate_Mode");
@@ -301,7 +301,7 @@ namespace MediaInfoDotNet.Models
 
 		string _muxingMode = null;
 		///<summary>How the stream is muxed into the container.</summary>
-		protected string muxingMode {
+		public string muxingMode {
 			get {
 				if (_muxingMode == null)
 					_muxingMode = miGetString("MuxingMode");
@@ -311,7 +311,7 @@ namespace MediaInfoDotNet.Models
 
 		int _frameCount = int.MinValue;
 		///<summary>The total number of frames (e.g. video frames).</summary>
-		protected int frameCount {
+		public int frameCount {
 			get {
 				if (_frameCount == int.MinValue)
 					_frameCount = miGetInt("FrameCount");
@@ -321,7 +321,7 @@ namespace MediaInfoDotNet.Models
 
 		float _frameRate = float.MinValue;
 		///<summary>Frame rate of the stream in frames per second.</summary>
-		protected float frameRate {
+		public float frameRate {
 			get {
 				if (_frameRate == float.MinValue)
 					_frameRate = miGetFloat("FrameRate");
@@ -335,7 +335,7 @@ namespace MediaInfoDotNet.Models
 
 		string _compressionMode = null;
 		///<summary>Compression mode (lossy or lossless).</summary>
-		protected string compressionMode {
+		public string compressionMode {
 			get {
 				if (_compressionMode == null)
 					_compressionMode = miGetString("Compression_Mode");
@@ -345,7 +345,7 @@ namespace MediaInfoDotNet.Models
 
 		string _compressionRatio = null;
 		///<summary>Ratio of current size to uncompressed size.</summary>
-		protected string compressionRatio {
+		public string compressionRatio {
 			get {
 				if (_compressionRatio == null)
 					_compressionRatio = miGetString("Compression_Ratio");
@@ -356,7 +356,7 @@ namespace MediaInfoDotNet.Models
 
 		int _bitDepth = int.MinValue;
 		///<example>Stream bit depth (16, 24, 32...)</example>
-		protected int bitDepth {
+		public int bitDepth {
 			get {
 				if (_bitDepth == int.MinValue)
 					_bitDepth = miGetInt("BitDepth");
@@ -370,7 +370,7 @@ namespace MediaInfoDotNet.Models
 
 		string _language = null;
 		///<summary>2-letter (if available) or 3-letter ISO code.</summary>
-		protected string language {
+		public string language {
 			get {
 				if (_language == null)
 					_language = miGetString("Language");
@@ -384,7 +384,7 @@ namespace MediaInfoDotNet.Models
 
 		float _displayAspectRatio = float.MinValue;
 		///<summary>Ratio of pixel width to pixel height.</summary>
-		protected float displayAspectRatio {
+		public float displayAspectRatio {
 			get {
 				if (_displayAspectRatio == float.MinValue)
 					_displayAspectRatio = miGetFloat("DisplayAspectRatio");
@@ -394,7 +394,7 @@ namespace MediaInfoDotNet.Models
 
 		float _pixelAspectRatio = float.MinValue;
 		///<summary>Ratio of pixel width to pixel height.</summary>
-		protected float pixelAspectRatio {
+		public float pixelAspectRatio {
 			get {
 				if (_pixelAspectRatio == float.MinValue)
 					_pixelAspectRatio = miGetFloat("PixelAspectRatio");
@@ -408,7 +408,7 @@ namespace MediaInfoDotNet.Models
 
 		string _frameRateMode = null;
 		///<summary>Frame rate mode (CFR, VFR) of stream.</summary>
-		protected string frameRateMode {
+		public string frameRateMode {
 			get {
 				if (_frameRateMode == null)
 					_frameRateMode = miGetString("FrameRate_Mode");
@@ -422,7 +422,7 @@ namespace MediaInfoDotNet.Models
 
 		int _height = int.MinValue;
 		///<summary>Height in pixels.</summary>
-		protected int height {
+		public int height {
 			get {
 				if (_height == int.MinValue)
 					_height = miGetInt("Height");
@@ -432,7 +432,7 @@ namespace MediaInfoDotNet.Models
 
 		int _width = int.MinValue;
 		///<summary>Width in pixels.</summary>
-		protected int width {
+		public int width {
 			get {
 				if (_width == int.MinValue)
 					_width = miGetInt("Width");
@@ -442,7 +442,7 @@ namespace MediaInfoDotNet.Models
 
 		string _colorspace;
 		///<summary>Colorspace used for encoding.</summary>
-		protected string colorspace {
+		public string colorspace {
 			get {
 				if (String.IsNullOrEmpty(_colorspace))
 					_colorspace = miGetString("ColorSpace");
@@ -452,7 +452,7 @@ namespace MediaInfoDotNet.Models
 
 		string _chromasubsampling;
 		///<summary>Colorspace used for encoding.</summary>
-		protected string chromasubsampling {
+		public string chromasubsampling {
 			get {
 				if (String.IsNullOrEmpty(_chromasubsampling))
 					_chromasubsampling = miGetString("ChromaSubsampling");
@@ -466,7 +466,7 @@ namespace MediaInfoDotNet.Models
 
 		string _default;
 		///<summary>Colorspace used for encoding.</summary>
-		protected bool default_track {
+		public bool default_track {
 			get {
 				if (String.IsNullOrEmpty(_default)) {
 					_default = miGetString("Default");
@@ -477,7 +477,7 @@ namespace MediaInfoDotNet.Models
 
 		string _forced;
 		///<summary>Colorspace used for encoding.</summary>
-		protected bool forced_track {
+		public bool forced_track {
 			get {
 				if (String.IsNullOrEmpty(_forced)) {
 					_forced = miGetString("Forced");
