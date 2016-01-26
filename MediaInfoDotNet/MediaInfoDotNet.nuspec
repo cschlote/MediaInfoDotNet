@@ -21,7 +21,7 @@
       - Includes linux and Mac dllmap config
       - Includes code to preload unmanaged DLL, which matches bitness
     </releaseNotes>
-    <copyright>Copyright 2013-2015  $author$</copyright>
+    <copyright>Copyright 2013-2016  $author$</copyright>
     <tags>net45 media tags scraper</tags>
   </metadata>
   <files>
