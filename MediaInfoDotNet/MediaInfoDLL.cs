@@ -201,7 +201,7 @@ namespace MediaInfoLib
                 // Determine bitness of system and pre-load appropriate library
                 if (moduleHandle == IntPtr.Zero)
                 {
-                    string fullexepath = (new Uri(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath;
+                    string fullexepath = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
                     FileInfo fi = new FileInfo(fullexepath);
                     fullexepath = Uri.UnescapeDataString(Path.Combine(fi.Directory.FullName, Environment.Is64BitProcess ? "x64" : "x86", "MediaInfo.dll"));
                     moduleHandle = UnsafeNativeMethods.LoadLibraryEx(fullexepath, IntPtr.Zero, 0);
