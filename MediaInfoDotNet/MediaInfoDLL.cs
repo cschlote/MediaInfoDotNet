@@ -26,6 +26,7 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -201,9 +202,15 @@ namespace MediaInfoLib
                 if (moduleHandle == IntPtr.Zero)
                 {
                     string fullexepath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                    FileInfo fi = new FileInfo(fullexepath);
-                    fullexepath = Path.Combine(fi.Directory.FullName, Environment.Is64BitProcess ? "x64" : "x86", "MediaInfo.dll");
-                    moduleHandle = UnsafeNativeMethods.LoadLibraryEx(fullexepath, IntPtr.Zero, 0);
+                    if (fullexepath != String.Empty)
+                    {
+                        FileInfo fi = new FileInfo(fullexepath);
+                        fullexepath = Path.Combine(fi.Directory.FullName, Environment.Is64BitProcess ? "x64" : "x86", "MediaInfo.dll");
+                        moduleHandle = UnsafeNativeMethods.LoadLibraryEx(fullexepath, IntPtr.Zero, 0);
+                    }else
+                    {
+                        Trace.TraceWarning("MediaInfoDotNet could not automatically load MediaInfo.dll. You will need to manually load the file using using LoadLibraryEx() or ensuring that the file is in the default library search paths.");
+                    }
                 }
                 MustUseAnsi = true;
             }
