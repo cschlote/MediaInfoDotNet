@@ -28,6 +28,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -76,27 +77,27 @@ namespace MediaInfoLib
         FileOption_Max = 0x04
     };
 
-	/// <summary>
-	/// Status returned by <see cref="MediaInfo.Open_Buffer_Continue"/>
-	/// bit 0: Is Accepted (format is known)
-	/// bit 1: Is Filled (main data is collected)
-	/// bit 2: Is Updated (some data have beed updated, example: duration for a real time MPEG-TS stream)
-	/// bit 3: Is Finalized (No more data is needed, will not use further data)
-	/// bit 4-15: Reserved bit 16-31: User defined
-	/// </summary>
-	[FlagsAttribute]
-	public enum Status
-	{
-		None = 0x00,
-		/// <summary>Is Accepted (format is known) </summary>
-		Accepted = 0x01,
-		/// <summary> Is Filled (main data is collected) </summary>
-		Filled = 0x02,
-		/// <summary>Is Updated (some data have beed updated, example: duration for a real time MPEG-TS stream)</summary>
-		Updated = 0x04,
-		/// <summary>Is Finalized (No more data is needed, will not use further data)</summary>
-		Finalized = 0x08,
-	};
+    /// <summary>
+    /// Status returned by <see cref="MediaInfo.Open_Buffer_Continue"/>
+    /// bit 0: Is Accepted (format is known)
+    /// bit 1: Is Filled (main data is collected)
+    /// bit 2: Is Updated (some data have beed updated, example: duration for a real time MPEG-TS stream)
+    /// bit 3: Is Finalized (No more data is needed, will not use further data)
+    /// bit 4-15: Reserved bit 16-31: User defined
+    /// </summary>
+    [FlagsAttribute]
+    public enum Status
+    {
+        None = 0x00,
+        /// <summary>Is Accepted (format is known) </summary>
+        Accepted = 0x01,
+        /// <summary> Is Filled (main data is collected) </summary>
+        Filled = 0x02,
+        /// <summary>Is Updated (some data have beed updated, example: duration for a real time MPEG-TS stream)</summary>
+        Updated = 0x04,
+        /// <summary>Is Finalized (No more data is needed, will not use further data)</summary>
+        Finalized = 0x08,
+    };
 
 
     public class MediaInfo : IDisposable
@@ -201,11 +202,11 @@ namespace MediaInfoLib
                 // Determine bitness of system and pre-load appropriate library
                 if (moduleHandle == IntPtr.Zero)
                 {
-                    string fullexepath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                    string fullexepath = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
                     if (fullexepath != String.Empty)
                     {
                         FileInfo fi = new FileInfo(fullexepath);
-                        fullexepath = Path.Combine(fi.Directory.FullName, Environment.Is64BitProcess ? "x64" : "x86", "MediaInfo.dll");
+                        fullexepath = Uri.UnescapeDataString(Path.Combine(fi.Directory.FullName, Environment.Is64BitProcess ? "x64" : "x86", "MediaInfo.dll"));
                         moduleHandle = UnsafeNativeMethods.LoadLibraryEx(fullexepath, IntPtr.Zero, 0);
                     }else
                     {
