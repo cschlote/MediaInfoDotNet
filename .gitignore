@@ -10,3 +10,4 @@ bin/
 *.VisualState.xml
 *.nupkg
 *.csproj.user
+/.vs
