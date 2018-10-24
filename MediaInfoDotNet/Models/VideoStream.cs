@@ -212,6 +212,14 @@ namespace MediaInfoDotNet.Models
 		[Description("Frame rate mode (CFR, VFR) of stream."), Category("VideoTextCommon")]
 		public string FrameRateMode { get { return this.frameRateMode; } }
 
+	    ///<summary>Scan Type - Interlaced or Progressive</summary>
+	    [Description("Scan Type - Interlaced or Progressive."), Category("VideoTextCommon")]
+	    public string ScanType { get { return this.scantype; } }
+
+	    ///<summary>Scan Order - if Interlaced, the field order</summary>
+	    [Description("Scan Order - if Interlaced, the field order."), Category("VideoTextCommon")]
+	    public string ScanOrder { get { return this.scanorder; } }
+
 		#endregion
 
 		#region VideoTextImageCommon

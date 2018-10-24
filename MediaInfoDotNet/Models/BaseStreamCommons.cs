@@ -460,6 +460,29 @@ namespace MediaInfoDotNet.Models
 			}
 		}
 
+	    string _scantype;
+	    ///<summary>Scan Type - Interlaced or Progressive</summary>
+	    public string scantype
+	    {
+	        get
+	        {
+	            if (String.IsNullOrEmpty(_scantype))
+	                _scantype = miGetString("ScanType");
+	            return _scantype;
+	        }
+	    }
+
+	    string _scanorder;
+	    ///<summary>Scan Order - if Interlaced, the field order</summary>
+        public string scanorder
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_scanorder))
+                    _scanorder = miGetString("ScanOrder");
+                return _scanorder;
+            }
+        }
 		#endregion
 
 		#region AudioTextCommon
