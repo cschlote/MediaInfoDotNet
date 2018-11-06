@@ -79,6 +79,17 @@ namespace MediaInfoDotNet.Models
 			}
 		}
 
+	    string _format_commercial;
+	    ///<summary>Commercial format name.</summary>
+	    public string format_commercial {
+	        get {
+	            if (_format_commercial == null)
+	                _format_commercial = miGetString("Format_Commercial");
+	            return _format_commercial;
+	        }
+	    }
+
+
 		string _title;
 		///<summary>The title of this stream.</summary>
 		public string title {
