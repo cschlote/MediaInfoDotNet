@@ -197,8 +197,10 @@ namespace MediaInfoLib
 
         public MediaInfo()
         {
-            if (Environment.OSVersion.ToString().IndexOf("Windows") != -1)
+            if (Environment.OSVersion.ToString().Contains("Windows"))
             {
+                MustUseAnsi = false;
+
                 // Determine bitness of system and pre-load appropriate library
                 if (moduleHandle == IntPtr.Zero)
                 {
@@ -206,17 +208,19 @@ namespace MediaInfoLib
                     if (fullexepath != String.Empty)
                     {
                         FileInfo fi = new FileInfo(fullexepath);
-                        fullexepath = Uri.UnescapeDataString(Path.Combine(fi.Directory.FullName, Environment.Is64BitProcess ? "x64" : "x86", "MediaInfo.dll"));
+                        fullexepath = Uri.UnescapeDataString(Path.Combine(fi.Directory.FullName, Environment.Is64BitProcess ? "x64" : "x86", "mediainfo"));
                         moduleHandle = UnsafeNativeMethods.LoadLibraryEx(fullexepath, IntPtr.Zero, 0);
-                    }else
+                    }
+                    else
                     {
                         Trace.TraceWarning("MediaInfoDotNet could not automatically load MediaInfo.dll. You will need to manually load the file using using LoadLibraryEx() or ensuring that the file is in the default library search paths.");
                     }
                 }
-                MustUseAnsi = true;
             }
             else
-                MustUseAnsi = false;
+            {
+                MustUseAnsi = true;
+            }
 
             // Open the loaded DLL for operation
             Handle = UnsafeNativeMethods.MediaInfo_New();
