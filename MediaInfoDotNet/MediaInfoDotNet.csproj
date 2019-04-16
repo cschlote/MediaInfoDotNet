@@ -7,7 +7,7 @@
     
     <AssemblyTitle>MediaInfoDotNet</AssemblyTitle>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-    <Version>0.7.79.40926</Version>
+    <Version>0.7.79.40927-beta.1</Version>
 
     <Company>vahanus.net</Company>
     <Product>MediaInfoDotNet</Product>
