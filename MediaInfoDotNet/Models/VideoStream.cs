@@ -61,6 +61,10 @@ namespace MediaInfoDotNet.Models
 		[Description("Format version for this container or stream."), Category("AllStreamsCommon")]
 		public string FormatVersion { get { return this.format_version; } }
 
+	    ///<summary>Commercial format name.</summary>
+	    [Description("Commercial format name for this container or stream."), Category("AllStreamsCommon")]
+        public string FormatCommercial { get { return this.format_commercial; } }
+
 		///<summary>The title of this stream.</summary>
 		[Description("The title of this container or stream."), Category("AllStreamsCommon")]
 		public string Title { get { return this.title; } }
@@ -211,6 +215,14 @@ namespace MediaInfoDotNet.Models
 		///<summary>Frame rate mode (CFR, VFR) of stream.</summary>
 		[Description("Frame rate mode (CFR, VFR) of stream."), Category("VideoTextCommon")]
 		public string FrameRateMode { get { return this.frameRateMode; } }
+
+	    ///<summary>Scan Type - Interlaced or Progressive</summary>
+	    [Description("Scan Type - Interlaced or Progressive."), Category("VideoTextCommon")]
+	    public string ScanType { get { return this.scantype; } }
+
+	    ///<summary>Scan Order - if Interlaced, the field order</summary>
+	    [Description("Scan Order - if Interlaced, the field order."), Category("VideoTextCommon")]
+	    public string ScanOrder { get { return this.scanorder; } }
 
 		#endregion
 

@@ -79,6 +79,17 @@ namespace MediaInfoDotNet.Models
 			}
 		}
 
+	    string _format_commercial;
+	    ///<summary>Commercial format name.</summary>
+	    public string format_commercial {
+	        get {
+	            if (_format_commercial == null)
+	                _format_commercial = miGetString("Format_Commercial");
+	            return _format_commercial;
+	        }
+	    }
+
+
 		string _title;
 		///<summary>The title of this stream.</summary>
 		public string title {
@@ -460,6 +471,29 @@ namespace MediaInfoDotNet.Models
 			}
 		}
 
+	    string _scantype;
+	    ///<summary>Scan Type - Interlaced or Progressive</summary>
+	    public string scantype
+	    {
+	        get
+	        {
+	            if (String.IsNullOrEmpty(_scantype))
+	                _scantype = miGetString("ScanType");
+	            return _scantype;
+	        }
+	    }
+
+	    string _scanorder;
+	    ///<summary>Scan Order - if Interlaced, the field order</summary>
+        public string scanorder
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_scanorder))
+                    _scanorder = miGetString("ScanOrder");
+                return _scanorder;
+            }
+        }
 		#endregion
 
 		#region AudioTextCommon
