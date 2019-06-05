@@ -29,6 +29,6 @@ one more symlink using the naming scheme that .Net is looking for.
 Important: be sure to update below command using the paths specific to your environment.
 
 > ln -s /usr/lib/x86_64-linux-gnu/libmediainfo.so.0 /usr/lib/x86_64-linux-gnu/libmediainfo.so
-> ldcache
+> ldconfig
 
 Thats it! 
