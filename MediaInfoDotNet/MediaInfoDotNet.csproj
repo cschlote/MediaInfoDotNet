@@ -27,7 +27,15 @@ It abstracts the calls to the underlaying native DLL and provides strongly typed
     <PackageProjectUrl>https://github.com/cschlote/MediaInfoDotNet</PackageProjectUrl>
     <PackageIconUrl>http://mediainfo.sourceforge.net/_/Image/Default/Logo.png</PackageIconUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
     <DocumentationFile>bin\Debug\MediaInfoDotNet.xml</DocumentationFile>
   </PropertyGroup>
