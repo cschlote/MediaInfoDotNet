@@ -245,12 +245,12 @@ namespace MediaInfoDotNet.Models
 			}
 		}
 
-		int _duration = int.MinValue;
+		double _duration = double.MinValue;
 		///<summary>Duration of the stream in milliseconds.</summary>
-		public int duration {
+		public double duration {
 			get {
-				if (_duration == int.MinValue)
-					_duration = miGetInt("Duration");
+				if (_duration == double.MinValue)
+					_duration = miGetDouble("Duration");
 				return _duration;
 			}
 		}

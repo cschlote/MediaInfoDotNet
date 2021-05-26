@@ -110,7 +110,7 @@ namespace MediaInfoDotNet.Models
 
 		///<summary>Duration of the stream in milliseconds.</summary>
 		[Description("Duration of the stream in milliseconds."), Category("GeneralVideoAudioTextMenu")]
-		public int Duration { get { return this.duration; } }
+		public double Duration { get { return this.duration; } }
 
 		#endregion
 
